@@ -1,0 +1,23 @@
+{
+  "name": "queueflow-monorepo",
+  "version": "1.0.0",
+  "description": "QueueFlow - Production Full-Stack Queue Management SaaS Platform",
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "test:backend": "cd backend && npm run test",
+    "seed:backend": "cd backend && node seed.js",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": [
+    "queueflow",
+    "queue-management",
+    "fullstack",
+    "react",
+    "express",
+    "mongodb"
+  ],
+  "author": "QueueFlow Team",
+  "license": "ISC"
+}
