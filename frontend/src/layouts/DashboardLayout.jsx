@@ -22,7 +22,7 @@ const DashboardLayout = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#080B11] dark:text-slate-100 flex flex-col lg:flex-row antialiased transition-colors duration-150">
+    <div className="min-h-screen bg-[#F8F6F0] text-[#26221F] dark:bg-[#1C1815] dark:text-[#FAF8F5] flex flex-col lg:flex-row antialiased transition-colors duration-150">
       {/* Sidebar */}
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 

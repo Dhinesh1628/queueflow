@@ -55,19 +55,19 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col justify-center items-center p-4 sm:p-6 relative transition-colors duration-150">
+    <div className="min-h-screen bg-[#F8F6F0] dark:bg-[#1C1815] text-[#26221F] dark:text-[#FAF8F5] flex flex-col justify-center items-center p-4 sm:p-6 relative transition-colors duration-150">
       {/* Top right theme toggle */}
       <div className="absolute top-4 right-4">
         <button
           onClick={toggleTheme}
-          title={theme === 'dark' ? 'Switch to CKD Light Mode' : 'Switch to Dark Mode'}
-          className="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white shadow-xs transition-colors cursor-pointer"
+          title={theme === 'dark' ? 'Switch to Warm Alabaster Light Mode' : 'Switch to Espresso Dark Mode'}
+          className="p-2.5 rounded-xl bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] text-[#736A62] dark:text-[#A69B8F] hover:text-[#26221F] dark:hover:text-white shadow-xs transition-colors cursor-pointer"
           aria-label="Toggle theme"
         >
           {theme === 'dark' ? (
-            <Sun className="w-4 h-4 text-amber-400" />
+            <Sun className="w-4 h-4 text-[#D4A373]" />
           ) : (
-            <Moon className="w-4 h-4 text-slate-600" />
+            <Moon className="w-4 h-4 text-[#736A62]" />
           )}
         </button>
       </div>
@@ -76,62 +76,62 @@ const RegisterPage = () => {
         {/* Clickable Brand Header */}
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-2 mb-3">
-            <div className="w-9 h-9 rounded-lg bg-sky-600 flex items-center justify-center text-white font-bold text-base">
+            <div className="w-9 h-9 rounded-lg bg-[#8C532B] flex items-center justify-center text-white font-bold text-base shadow-sm">
               QF
             </div>
-            <span className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">QueueFlow</span>
+            <span className="text-2xl font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight">QueueFlow</span>
           </Link>
-          <p className="text-xs text-slate-500 dark:text-slate-400">
+          <p className="text-xs text-[#736A62] dark:text-[#A69B8F]">
             Create your Queue Manager Account
           </p>
         </div>
 
         {/* Register Card */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl">
+        <div className="bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] rounded-2xl p-6 sm:p-8 shadow-xl">
           <div className="mb-6">
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">Register Manager</h2>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+            <h2 className="text-lg font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight">Register Manager</h2>
+            <p className="text-xs text-[#736A62] dark:text-[#A69B8F] mt-0.5">
               Set up your profile to manage multi-counter queues and live tokens
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-[#26221F] dark:text-[#FAF8F5] uppercase tracking-wider mb-1.5">
                 Full Name
               </label>
               <div className="relative">
-                <User className="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3.5 top-3" />
+                <User className="w-4 h-4 text-[#736A62] dark:text-[#A69B8F] absolute left-3.5 top-3" />
                 <input
                   type="text"
                   required
                   placeholder="e.g. Alex Henderson"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg pl-10 pr-3.5 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors"
+                  className="w-full bg-[#F8F6F0] dark:bg-[#1C1815] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-[#26221F] dark:text-[#FAF8F5] placeholder-[#A69B8F] focus:outline-none focus:border-[#8C532B] focus:ring-1 focus:ring-[#8C532B]/30 transition-colors"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-[#26221F] dark:text-[#FAF8F5] uppercase tracking-wider mb-1.5">
                 Work Email Address
               </label>
               <div className="relative">
-                <Mail className="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3.5 top-3" />
+                <Mail className="w-4 h-4 text-[#736A62] dark:text-[#A69B8F] absolute left-3.5 top-3" />
                 <input
                   type="email"
                   required
                   placeholder="manager@company.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg pl-10 pr-3.5 py-2.5 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors"
+                  className="w-full bg-[#F8F6F0] dark:bg-[#1C1815] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-[#26221F] dark:text-[#FAF8F5] placeholder-[#A69B8F] focus:outline-none focus:border-[#8C532B] focus:ring-1 focus:ring-[#8C532B]/30 transition-colors"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-[#26221F] dark:text-[#FAF8F5] uppercase tracking-wider mb-1.5">
                 Password
               </label>
               <PasswordInput
@@ -143,7 +143,7 @@ const RegisterPage = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-semibold text-[#26221F] dark:text-[#FAF8F5] uppercase tracking-wider mb-1.5">
                 Confirm Password
               </label>
               <PasswordInput
@@ -156,21 +156,21 @@ const RegisterPage = () => {
 
             {/* GDPR Consent & Age Verification Checkbox */}
             <div className="pt-2">
-              <label className="flex items-start gap-2.5 cursor-pointer text-xs text-slate-500 dark:text-slate-400 select-none">
+              <label className="flex items-start gap-2.5 cursor-pointer text-xs text-[#736A62] dark:text-[#A69B8F] select-none">
                 <input
                   type="checkbox"
                   required
                   checked={consentChecked}
                   onChange={(e) => setConsentChecked(e.target.checked)}
-                  className="mt-0.5 rounded bg-slate-50 dark:bg-slate-950 border-slate-300 dark:border-slate-800 text-sky-600 focus:ring-sky-500"
+                  className="mt-0.5 rounded bg-[#F8F6F0] dark:bg-[#1C1815] border-[#E6E0D4] dark:border-[#3E342C] text-[#8C532B] focus:ring-[#8C532B]"
                 />
                 <span className="leading-relaxed">
                   I confirm I am at least 16 years of age and agree to the{' '}
-                  <Link to="/terms" className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 underline">
+                  <Link to="/terms" className="text-[#8C532B] dark:text-[#D4A373] hover:text-[#774421] underline">
                     Terms of Service
                   </Link>{' '}
                   and{' '}
-                  <Link to="/privacy" className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 underline">
+                  <Link to="/privacy" className="text-[#8C532B] dark:text-[#D4A373] hover:text-[#774421] underline">
                     Privacy Policy
                   </Link>
                   .
@@ -181,18 +181,18 @@ const RegisterPage = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-sky-600 hover:bg-sky-500 disabled:opacity-50 text-white font-semibold text-sm rounded-lg shadow-sm transition-colors cursor-pointer mt-2"
+              className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-[#8C532B] hover:bg-[#774421] disabled:opacity-50 text-white font-semibold text-sm rounded-xl shadow-md shadow-[#8C532B]/20 transition-all cursor-pointer mt-2"
             >
               <span>{loading ? 'Creating Account...' : 'Create Manager Account'}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </form>
 
-          <div className="mt-6 text-center text-xs text-slate-500 dark:text-slate-400">
+          <div className="mt-6 text-center text-xs text-[#736A62] dark:text-[#A69B8F]">
             Already have an account?{' '}
             <Link
               to="/login"
-              className="text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 font-semibold underline ml-1"
+              className="text-[#8C532B] dark:text-[#D4A373] hover:text-[#774421] font-semibold underline ml-1"
             >
               Sign In
             </Link>
@@ -200,17 +200,17 @@ const RegisterPage = () => {
         </div>
 
         {/* Footer & Security links */}
-        <div className="flex items-center justify-center gap-4 mt-6 text-xs text-slate-500">
-          <Link to="/privacy" className="hover:text-slate-700 dark:hover:text-slate-300 transition-colors">
+        <div className="flex items-center justify-center gap-4 mt-6 text-xs text-[#736A62] dark:text-[#A69B8F]">
+          <Link to="/privacy" className="hover:text-[#26221F] dark:hover:text-[#FAF8F5] transition-colors">
             Privacy Policy
           </Link>
           <span>•</span>
-          <Link to="/terms" className="hover:text-slate-700 dark:hover:text-slate-300 transition-colors">
+          <Link to="/terms" className="hover:text-[#26221F] dark:hover:text-[#FAF8F5] transition-colors">
             Terms of Service
           </Link>
           <span>•</span>
-          <span className="flex items-center gap-1 text-slate-500 dark:text-slate-400">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
+          <span className="flex items-center gap-1 text-[#2E7D32]">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#2E7D32]" />
             <span>Encrypted</span>
           </span>
         </div>

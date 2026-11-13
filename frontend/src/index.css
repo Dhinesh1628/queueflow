@@ -6,32 +6,40 @@
   html, body {
     overflow-x: hidden;
     scroll-behavior: smooth;
-    background-color: #080B11;
+    background-color: #F8F6F0;
   }
 
   body {
-    @apply bg-[#080B11] text-slate-100 antialiased min-h-screen font-sans;
+    @apply bg-[#F8F6F0] dark:bg-[#1C1815] text-[#26221F] dark:text-[#FAF8F5] antialiased min-h-screen font-sans;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum";
   }
 }
 
-/* Cockpit Scrollbars */
+/* Warm Studio Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #080B11;
+  background: #F8F6F0;
+}
+
+:is(.dark) ::-webkit-scrollbar-track {
+  background: #1C1815;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1E293B;
+  background: #D4CBBF;
   border-radius: 4px;
 }
 
+:is(.dark) ::-webkit-scrollbar-thumb {
+  background: #3E342C;
+}
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #8C532B;
 }
 
 /* Print Stylesheet */

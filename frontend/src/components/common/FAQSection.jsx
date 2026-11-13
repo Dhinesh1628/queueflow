@@ -32,15 +32,15 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] rounded-xl p-6 shadow-xs dark:shadow-md">
+    <div className="bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] rounded-2xl p-6 shadow-xs dark:shadow-md">
       <div className="flex items-center gap-2 mb-4">
-        <HelpCircle className="w-5 h-5 text-cyan-500 dark:text-cyan-400" />
-        <h3 className="text-base font-bold text-slate-900 dark:text-white tracking-tight font-mono">
+        <HelpCircle className="w-5 h-5 text-[#8C532B] dark:text-[#D4A373]" />
+        <h3 className="text-base font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight font-mono">
           OPERATIONAL PROTOCOLS & FAQ
         </h3>
       </div>
 
-      <div className="divide-y divide-slate-100 dark:divide-white/[0.06]">
+      <div className="divide-y divide-[#E6E0D4] dark:divide-[#3E342C]">
         {faqs.map((item, idx) => {
           const isOpen = openIndex === idx;
           return (
@@ -49,17 +49,17 @@ const FAQSection = () => {
                 type="button"
                 onClick={() => toggle(idx)}
                 aria-expanded={isOpen}
-                className="w-full flex items-center justify-between text-left gap-4 text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-cyan-300 transition-colors cursor-pointer"
+                className="w-full flex items-center justify-between text-left gap-4 text-sm font-semibold text-[#26221F] dark:text-[#FAF8F5] hover:text-[#8C532B] dark:hover:text-[#D4A373] transition-colors cursor-pointer"
               >
                 <span>{item.q}</span>
                 {isOpen ? (
-                  <ChevronUp className="w-4 h-4 text-cyan-500 dark:text-cyan-400 shrink-0" />
+                  <ChevronUp className="w-4 h-4 text-[#8C532B] dark:text-[#D4A373] shrink-0" />
                 ) : (
-                  <ChevronDown className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0" />
+                  <ChevronDown className="w-4 h-4 text-[#736A62] dark:text-[#A69B8F] shrink-0" />
                 )}
               </button>
               {isOpen && (
-                <p className="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed pl-1 font-mono">
+                <p className="text-xs text-[#736A62] dark:text-[#C7BCB0] mt-2 leading-relaxed pl-1 font-mono">
                   {item.a}
                 </p>
               )}

@@ -33,35 +33,35 @@ const Sidebar = ({ isOpen, onClose }) => {
         />
       )}
 
-      {/* Sidebar container matching CarWhisperer Cockpit structure */}
+      {/* Sidebar container in Warm Walnut & White */}
       <aside
-        className={`fixed top-0 bottom-0 left-0 z-40 w-64 bg-white dark:bg-[#0B0F19] border-r border-slate-200/90 dark:border-white/[0.08] flex flex-col transition-transform duration-200 ease-in-out lg:translate-x-0 ${
+        className={`fixed top-0 bottom-0 left-0 z-40 w-64 bg-white dark:bg-[#211C18] border-r border-[#E6E0D4] dark:border-[#3E342C] flex flex-col transition-transform duration-200 ease-in-out lg:translate-x-0 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         {/* Brand Header */}
-        <div className="h-16 flex items-center px-6 border-b border-slate-200/80 dark:border-white/[0.08]">
+        <div className="h-16 flex items-center px-6 border-b border-[#E6E0D4] dark:border-[#3E342C]">
           <Link to="/" onClick={onClose} className="flex items-center gap-3 group">
-            <div className="w-8 h-8 rounded-lg bg-cyan-500 flex items-center justify-center text-[#080B11] font-extrabold text-sm tracking-wide shadow-[0_0_14px_rgba(6,182,212,0.45)]">
+            <div className="w-8 h-8 rounded-lg bg-[#8C532B] flex items-center justify-center text-white font-mono font-extrabold text-sm tracking-wide shadow-sm">
               QF
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="font-bold text-base text-slate-900 dark:text-white tracking-tight group-hover:text-cyan-400 transition-colors">
+                <span className="font-bold text-base text-[#26221F] dark:text-[#FAF8F5] tracking-tight group-hover:text-[#8C532B] transition-colors">
                   QueueFlow
                 </span>
-                <span className="px-1.5 py-0.5 text-[10px] font-mono font-semibold bg-cyan-500/10 text-cyan-400 rounded border border-cyan-500/25">
-                  COCKPIT
+                <span className="px-1.5 py-0.5 text-[10px] font-mono font-semibold bg-[#8C532B]/10 text-[#8C532B] dark:text-[#C78753] rounded border border-[#8C532B]/20">
+                  STUDIO
                 </span>
               </div>
-              <p className="text-[10px] text-slate-500 dark:text-slate-400 font-mono tracking-wider uppercase">Command Telemetry</p>
+              <p className="text-[10px] text-[#736A62] dark:text-[#A69B8F] font-mono tracking-wider uppercase">Dispatch Telemetry</p>
             </div>
           </Link>
         </div>
 
         {/* Navigation Links */}
         <div className="flex-1 px-3 py-5 space-y-1 overflow-y-auto">
-          <div className="px-3 pb-2 text-[10px] font-mono font-semibold tracking-widest text-slate-400 dark:text-slate-500 uppercase">
+          <div className="px-3 pb-2 text-[10px] font-mono font-semibold tracking-widest text-[#8C827A] dark:text-[#7A6F66] uppercase">
             TELEMETRY SYSTEMS
           </div>
 
@@ -74,54 +74,54 @@ const Sidebar = ({ isOpen, onClose }) => {
                 end={item.to === '/'}
                 onClick={onClose}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-xs transition-all ${
+                  `flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-xs font-mono transition-all ${
                     isActive
-                      ? 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-300 font-semibold border border-cyan-500/25 shadow-[0_0_12px_rgba(6,182,212,0.1)]'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-white/[0.04]'
+                      ? 'bg-[#8C532B]/10 text-[#8C532B] dark:text-[#C78753] font-bold border border-[#8C532B]/25'
+                      : 'text-[#736A62] dark:text-[#A69B8F] hover:text-[#26221F] dark:hover:text-[#FAF8F5] hover:bg-[#F8F6F0] dark:hover:bg-[#2C241F]'
                   }`
                 }
               >
-                <Icon className="w-4 h-4 shrink-0" />
+                <Icon className="w-4 h-4 shrink-0 text-[#8C532B] dark:text-[#C78753]" />
                 <span>{item.name}</span>
               </NavLink>
             );
           })}
 
-          <div className="pt-6 px-3 pb-2 text-[10px] font-mono font-semibold tracking-widest text-slate-400 dark:text-slate-500 uppercase">
+          <div className="pt-6 px-3 pb-2 text-[10px] font-mono font-semibold tracking-widest text-[#8C827A] dark:text-[#7A6F66] uppercase">
             LEGAL COMPLIANCE
           </div>
           <Link
             to="/privacy"
             onClick={onClose}
-            className="flex items-center gap-3 px-3.5 py-2 rounded-lg text-xs text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-white/[0.04] transition-colors"
+            className="flex items-center gap-3 px-3.5 py-2 rounded-lg text-xs font-mono text-[#736A62] dark:text-[#A69B8F] hover:text-[#26221F] dark:hover:text-[#FAF8F5] hover:bg-[#F8F6F0] dark:hover:bg-[#2C241F] transition-colors"
           >
-            <ShieldCheck className="w-4 h-4 text-slate-400" />
+            <ShieldCheck className="w-4 h-4 text-[#8C532B] dark:text-[#C78753]" />
             <span>Privacy Policy</span>
           </Link>
           <Link
             to="/terms"
             onClick={onClose}
-            className="flex items-center gap-3 px-3.5 py-2 rounded-lg text-xs text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-white/[0.04] transition-colors"
+            className="flex items-center gap-3 px-3.5 py-2 rounded-lg text-xs font-mono text-[#736A62] dark:text-[#A69B8F] hover:text-[#26221F] dark:hover:text-[#FAF8F5] hover:bg-[#F8F6F0] dark:hover:bg-[#2C241F] transition-colors"
           >
-            <HelpCircle className="w-4 h-4 text-slate-400" />
+            <HelpCircle className="w-4 h-4 text-[#8C532B] dark:text-[#C78753]" />
             <span>Terms of Service</span>
           </Link>
         </div>
 
         {/* Footer / User Profile Card */}
-        <div className="p-3 border-t border-slate-200/80 dark:border-white/[0.08] bg-slate-50/50 dark:bg-[#0B0F19]">
-          <div className="flex items-center justify-between gap-3 p-2.5 rounded-lg bg-white dark:bg-[#0E1526] border border-slate-200/80 dark:border-white/[0.08] shadow-xs">
+        <div className="p-3 border-t border-[#E6E0D4] dark:border-[#3E342C] bg-[#FAF8F5] dark:bg-[#1A1613]">
+          <div className="flex items-center justify-between gap-3 p-2.5 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] shadow-xs">
             <div className="flex items-center gap-2.5 min-w-0">
-              <div className="w-8 h-8 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/25 flex items-center justify-center font-mono font-bold text-xs uppercase shrink-0">
+              <div className="w-8 h-8 rounded-md bg-[#8C532B]/15 text-[#8C532B] dark:text-[#C78753] border border-[#8C532B]/25 flex items-center justify-center font-mono font-bold text-xs uppercase shrink-0">
                 {manager?.name ? manager.name.charAt(0) : 'M'}
               </div>
               <div className="min-w-0 truncate">
-                <p className="text-xs font-semibold text-slate-900 dark:text-slate-200 truncate">
+                <p className="text-xs font-semibold text-[#26221F] dark:text-[#FAF8F5] truncate">
                   {manager?.name || 'Manager'}
                 </p>
                 <a
                   href={`mailto:${manager?.email}`}
-                  className="text-[11px] text-slate-400 hover:text-cyan-400 truncate block transition-colors font-mono"
+                  className="text-[11px] text-[#736A62] dark:text-[#A69B8F] hover:text-[#8C532B] truncate block transition-colors font-mono"
                   title="Click to send email"
                 >
                   {manager?.email || ''}
@@ -131,7 +131,7 @@ const Sidebar = ({ isOpen, onClose }) => {
             <button
               onClick={logout}
               title="Logout"
-              className="p-1.5 rounded-md text-slate-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors shrink-0 cursor-pointer"
+              className="p-1.5 rounded-md text-[#736A62] hover:text-[#B71C1C] hover:bg-[#B71C1C]/10 transition-colors shrink-0 cursor-pointer"
             >
               <LogOut className="w-4 h-4" />
             </button>

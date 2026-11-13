@@ -42,24 +42,25 @@
         "description": "Enterprise Queue Operations & Customer Waiting Line Management Platform"
       }
     </script>
-    <!-- Theme Preload Script: Cockpit Dark Foundation -->
+    <!-- Theme Preload Script: Warm Editorial & Dark Espresso Foundation -->
     <script>
       (function() {
-        var theme = localStorage.getItem('queueflow_theme') || 'dark';
-        document.documentElement.classList.add('dark');
-        document.documentElement.style.colorScheme = 'dark';
-        if (theme === 'light') {
+        var theme = localStorage.getItem('queueflow_theme') || 'light';
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+          document.documentElement.style.colorScheme = 'dark';
+        } else {
           document.documentElement.classList.remove('dark');
           document.documentElement.style.colorScheme = 'light';
         }
       })();
     </script>
   </head>
-  <body class="bg-[#080B11] text-slate-100 antialiased selection:bg-cyan-500/25 selection:text-cyan-300 min-h-screen">
+  <body class="bg-[#F8F6F0] dark:bg-[#1C1815] text-[#26221F] dark:text-[#FAF8F5] antialiased selection:bg-[#8C532B] selection:text-white min-h-screen">
     <!-- Skip to main content link for accessibility -->
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-sky-600 focus:text-white focus:font-semibold focus:rounded-md focus:shadow-lg focus:outline-none"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#8C532B] focus:text-white focus:font-semibold focus:rounded-md focus:shadow-lg focus:outline-none"
     >
       Skip to main content
     </a>

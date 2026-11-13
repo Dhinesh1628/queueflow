@@ -220,12 +220,12 @@ const QueueDetailPage = () => {
   return (
     <div className="space-y-6" id="main-content">
       {/* Breadcrumb Navigation */}
-      <nav aria-label="Breadcrumb" className="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-cyan-400/70">
-        <Link to="/" className="hover:text-cyan-400 transition-colors">DASHBOARD</Link>
-        <span className="mx-1.5 text-slate-600">/</span>
-        <Link to="/queues" className="hover:text-cyan-400 transition-colors">QUEUES</Link>
-        <span className="mx-1.5 text-slate-600">/</span>
-        <span className="text-slate-900 dark:text-cyan-300 font-bold">{queue.name}</span>
+      <nav aria-label="Breadcrumb" className="text-[11px] font-mono uppercase tracking-wider text-[#8C827A] dark:text-[#C78753]">
+        <Link to="/" className="hover:text-[#8C532B] transition-colors">DASHBOARD</Link>
+        <span className="mx-1.5 text-[#D4CBBF] dark:text-[#4A3E35]">/</span>
+        <Link to="/queues" className="hover:text-[#8C532B] transition-colors">QUEUES</Link>
+        <span className="mx-1.5 text-[#D4CBBF] dark:text-[#4A3E35]">/</span>
+        <span className="text-[#26221F] dark:text-[#FAF8F5] font-bold">{queue.name}</span>
       </nav>
 
       {/* Top Header Bar */}
@@ -233,22 +233,22 @@ const QueueDetailPage = () => {
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate('/queues')}
-            className="p-2 rounded-lg bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.04] hover:dark:border-cyan-500/30 shadow-xs transition-all cursor-pointer"
+            className="p-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] text-[#736A62] dark:text-[#A69B8F] hover:text-[#26221F] dark:hover:text-[#FAF8F5] hover:bg-[#F8F6F0] dark:hover:bg-[#322A24] shadow-xs transition-all cursor-pointer"
             title="Return to Queues list"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-slate-100 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border border-slate-200 dark:border-cyan-500/30">
+              <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-[#8C532B]/10 text-[#8C532B] dark:text-[#C78753] border border-[#8C532B]/20">
                 {queue.prefix}
               </span>
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight">
                 {queue.name}
               </h2>
             </div>
             {queue.description && (
-              <p className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-1">{queue.description}</p>
+              <p className="text-xs font-mono text-[#736A62] dark:text-[#A69B8F] mt-1">{queue.description}</p>
             )}
           </div>
         </div>
@@ -257,42 +257,42 @@ const QueueDetailPage = () => {
         <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={handleCopyLink}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] hover:dark:border-cyan-500/40 text-xs font-mono uppercase text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-mono uppercase text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
             title="Copy queue URL"
           >
-            {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-cyan-400" />}
+            {copiedLink ? <Check className="w-3.5 h-3.5 text-[#2E7D32]" /> : <Copy className="w-3.5 h-3.5 text-[#8C532B] dark:text-[#C78753]" />}
             <span>{copiedLink ? 'COPIED' : 'SHARE LINK'}</span>
           </button>
 
           <button
             onClick={() => window.print()}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] hover:dark:border-cyan-500/40 text-xs font-mono uppercase text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-mono uppercase text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
             title="Print queue list"
           >
-            <Printer className="w-3.5 h-3.5 text-cyan-400" />
+            <Printer className="w-3.5 h-3.5 text-[#8C532B] dark:text-[#C78753]" />
             <span>PRINT SHEET</span>
           </button>
 
           <button
             onClick={() => loadQueueData(true)}
             disabled={refreshing}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] hover:dark:border-cyan-500/40 text-xs font-mono uppercase text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-mono uppercase text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
           >
-            <RefreshCw className={`w-3.5 h-3.5 text-cyan-400 ${refreshing ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`w-3.5 h-3.5 text-[#8C532B] dark:text-[#C78753] ${refreshing ? 'animate-spin' : ''}`} />
             <span>SYNC</span>
           </button>
 
           <button
             onClick={() => setEditQueueOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] hover:dark:border-cyan-500/40 text-xs font-mono uppercase text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-mono uppercase text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
           >
-            <Edit2 className="w-3.5 h-3.5 text-cyan-400" />
+            <Edit2 className="w-3.5 h-3.5 text-[#8C532B] dark:text-[#C78753]" />
             <span>EDIT</span>
           </button>
 
           <button
             onClick={() => setDeleteQueueOpen(true)}
-            className="p-2 rounded-lg bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] hover:dark:border-rose-500/40 text-slate-500 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-slate-100 dark:hover:bg-white/[0.04] shadow-xs transition-all cursor-pointer"
+            className="p-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#B71C1C]/40 text-[#736A62] hover:text-[#B71C1C] hover:bg-[#B71C1C]/10 shadow-xs transition-all cursor-pointer"
             title="Delete Queue"
           >
             <Trash2 className="w-4 h-4" />
@@ -300,12 +300,12 @@ const QueueDetailPage = () => {
 
           <button
             onClick={() => setCreateTokenOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-mono font-bold uppercase tracking-wider rounded-lg shadow-md shadow-cyan-500/20 transition-all cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2 bg-[#8C532B] hover:bg-[#774421] text-white text-xs font-mono font-bold uppercase tracking-wider rounded-lg shadow-sm transition-all cursor-pointer"
             title="Dispatch new ticket (Shortcut: Alt+A)"
           >
             <Plus className="w-4 h-4 stroke-[2.5]" />
             <span>DISPATCH TICKET</span>
-            <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded text-[9px] font-mono bg-black/25 text-[#080B11] font-extrabold border border-black/20">
+            <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded text-[9px] font-mono bg-black/25 text-white font-extrabold border border-black/20">
               Alt+A
             </kbd>
           </button>

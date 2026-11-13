@@ -3,10 +3,10 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 export const ThemeContext = createContext(null);
 
 export const ThemeProvider = ({ children }) => {
-  // Default to Cockpit Dark Mode (inspired by CarWhisperer digital cockpit), or load from localStorage
+  // Default to Warm Linen & Alabaster White Mode, or load from localStorage
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem('queueflow_theme');
-    return saved ? saved : 'dark';
+    return saved ? saved : 'light';
   });
 
   useEffect(() => {

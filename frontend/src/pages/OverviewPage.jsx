@@ -120,14 +120,14 @@ const OverviewPage = () => {
       {/* Top Banner & Quick Action Buttons */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2">
         <div>
-          <nav aria-label="Breadcrumb" className="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-cyan-400/70 mb-1">
-            <span>DASHBOARD</span> <span className="mx-1 text-slate-600">/</span> <span className="text-slate-900 dark:text-cyan-300 font-bold">OVERVIEW_TELEMETRY</span>
+          <nav aria-label="Breadcrumb" className="text-[11px] font-mono uppercase tracking-wider text-[#8C827A] dark:text-[#C78753] mb-1">
+            <span>DASHBOARD</span> <span className="mx-1 text-[#D4CBBF] dark:text-[#4A3E35]">/</span> <span className="text-[#26221F] dark:text-[#FAF8F5] font-bold">OVERVIEW_STUDIO</span>
           </nav>
-          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
+          <h2 className="text-xl sm:text-2xl font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight flex items-center gap-2">
             <span>Queue Operations Control</span>
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse hidden sm:inline-block" />
+            <span className="w-2 h-2 rounded-full bg-[#2E7D32] animate-pulse hidden sm:inline-block" />
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5 font-mono">
+          <p className="text-xs sm:text-sm text-[#736A62] dark:text-[#A69B8F] mt-0.5 font-mono">
             LIVE MULTI-COUNTER DISPATCH · REAL-TIME TELEMETRY FEED
           </p>
         </div>
@@ -136,12 +136,12 @@ const OverviewPage = () => {
           <button
             onClick={() => loadDashboardData(true)}
             disabled={refreshing}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] hover:dark:border-cyan-500/40 text-xs font-mono uppercase text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-all cursor-pointer"
+            className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-mono uppercase text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
             title="Sync telemetry data (Shortcut: Alt+R)"
           >
-            <RefreshCw className={`w-3.5 h-3.5 text-cyan-400 ${refreshing ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`w-3.5 h-3.5 text-[#8C532B] dark:text-[#C78753] ${refreshing ? 'animate-spin' : ''}`} />
             <span>SYNC</span>
-            <kbd className="hidden sm:inline-block px-1 py-0.5 rounded text-[9px] font-mono bg-slate-200 dark:bg-white/[0.06] text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-white/10">
+            <kbd className="hidden sm:inline-block px-1 py-0.5 rounded text-[9px] font-mono bg-[#F8F6F0] dark:bg-[#322A24] text-[#8C827A] dark:text-[#A69B8F] border border-[#E6E0D4] dark:border-[#4A3E35]">
               Alt+R
             </kbd>
           </button>
@@ -149,24 +149,24 @@ const OverviewPage = () => {
           <button
             onClick={() => setCreateTokenOpen(true)}
             disabled={queues.length === 0}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-[#0D121F] dark:hover:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] hover:dark:border-cyan-500/40 text-xs font-mono uppercase font-semibold text-slate-800 dark:text-cyan-300 shadow-xs transition-all cursor-pointer disabled:opacity-40"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#F8F6F0] hover:bg-[#F3EFE6] dark:bg-[#26201B] dark:hover:bg-[#322A24] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-mono uppercase font-semibold text-[#8C532B] dark:text-[#C78753] shadow-xs transition-all cursor-pointer disabled:opacity-40"
             title="Dispatch new ticket (Shortcut: Alt+A)"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>DISPATCH TICKET</span>
-            <kbd className="hidden sm:inline-block px-1 py-0.5 rounded text-[9px] font-mono bg-slate-200 dark:bg-white/[0.06] text-slate-500 dark:text-cyan-400 border border-slate-300 dark:border-white/10">
+            <kbd className="hidden sm:inline-block px-1 py-0.5 rounded text-[9px] font-mono bg-[#EAE4D8] dark:bg-[#322A24] text-[#8C532B] dark:text-[#C78753] border border-[#D4CBBF] dark:border-[#4A3E35]">
               Alt+A
             </kbd>
           </button>
 
           <button
             onClick={() => setCreateQueueOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-xs font-mono font-bold uppercase tracking-wider text-slate-950 shadow-md shadow-cyan-500/20 transition-all cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#8C532B] hover:bg-[#774421] text-xs font-mono font-bold uppercase tracking-wider text-white shadow-sm transition-all cursor-pointer"
             title="Create counter queue (Shortcut: Alt+Q)"
           >
             <Plus className="w-4 h-4 stroke-[2.5]" />
             <span>CREATE QUEUE</span>
-            <kbd className="hidden sm:inline-block px-1 py-0.5 rounded text-[9px] font-mono bg-black/25 text-[#080B11] font-extrabold border border-black/20">
+            <kbd className="hidden sm:inline-block px-1 py-0.5 rounded text-[9px] font-mono bg-black/25 text-white font-extrabold border border-black/20">
               Alt+Q
             </kbd>
           </button>
@@ -223,11 +223,11 @@ const OverviewPage = () => {
       <div>
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <Layers className="w-5 h-5 text-cyan-500 dark:text-cyan-400" />
-            <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight font-mono">
+            <Layers className="w-5 h-5 text-[#8C532B] dark:text-[#C78753]" />
+            <h3 className="text-base sm:text-lg font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight font-mono">
               ACTIVE COUNTER CONSOLES
             </h3>
-            <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-slate-100 dark:bg-white/[0.04] text-cyan-700 dark:text-cyan-300 border border-slate-200 dark:border-white/[0.08]">
+            <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#F8F6F0] dark:bg-[#1A1613] text-[#8C532B] dark:text-[#C78753] border border-[#E6E0D4] dark:border-[#3E342C]">
               {queues.length} {queues.length === 1 ? 'CONSOLE' : 'CONSOLES'}
             </span>
           </div>
@@ -235,7 +235,7 @@ const OverviewPage = () => {
           {queues.length > 0 && (
             <button
               onClick={() => navigate('/queues')}
-              className="text-xs font-mono uppercase tracking-wider text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 flex items-center gap-1 cursor-pointer"
+              className="text-xs font-mono uppercase tracking-wider text-[#8C532B] dark:text-[#C78753] hover:text-[#774421] flex items-center gap-1 cursor-pointer"
             >
               <span>ALL QUEUES</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -244,19 +244,19 @@ const OverviewPage = () => {
         </div>
 
         {queues.length === 0 ? (
-          <div className="bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] rounded-xl p-8 sm:p-12 text-center flex flex-col items-center justify-center shadow-xs">
-            <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] flex items-center justify-center text-cyan-400 mb-4 shadow-inner">
+          <div className="bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl p-8 sm:p-12 text-center flex flex-col items-center justify-center shadow-sm">
+            <div className="w-12 h-12 rounded-xl bg-[#F8F6F0] dark:bg-[#1A1613] border border-[#E6E0D4] dark:border-[#3E342C] flex items-center justify-center text-[#8C532B] mb-4">
               <Layers className="w-6 h-6" />
             </div>
-            <h4 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
+            <h4 className="text-lg font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight">
               No counter queues configured
             </h4>
-            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md mt-1 mb-6 leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#736A62] dark:text-[#A69B8F] max-w-md mt-1 mb-6 leading-relaxed">
               Create your first queue counter to start generating atomic tokens and managing waiting lines.
             </p>
             <button
               onClick={() => setCreateQueueOpen(true)}
-              className="flex items-center gap-2 px-5 py-2.5 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-mono font-bold text-xs uppercase tracking-wider rounded-lg shadow-md shadow-cyan-500/20 transition-all cursor-pointer"
+              className="flex items-center gap-2 px-5 py-2.5 bg-[#8C532B] hover:bg-[#774421] text-white font-mono font-bold text-xs uppercase tracking-wider rounded-lg shadow-sm transition-all cursor-pointer"
             >
               <Plus className="w-4 h-4 stroke-[2.5]" />
               <span>Create Your First Queue</span>
@@ -277,17 +277,17 @@ const OverviewPage = () => {
       </div>
 
       {/* Recent Activity Section */}
-      <div className="bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] rounded-xl p-5 sm:p-6 shadow-xs dark:shadow-md">
+      <div className="bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl p-5 sm:p-6 shadow-sm">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <Clock className="w-5 h-5 text-cyan-500 dark:text-cyan-400" />
-            <h3 className="text-base font-bold text-slate-900 dark:text-white tracking-tight font-mono">
+            <Clock className="w-5 h-5 text-[#8C532B] dark:text-[#C78753]" />
+            <h3 className="text-base font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight font-mono">
               RECENT DISPATCH FEED
             </h3>
           </div>
           <button
             onClick={() => navigate('/history')}
-            className="text-xs font-mono uppercase tracking-wider text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 flex items-center gap-1 cursor-pointer"
+            className="text-xs font-mono uppercase tracking-wider text-[#8C532B] dark:text-[#C78753] hover:text-[#774421] flex items-center gap-1 cursor-pointer"
           >
             <span>FULL AUDIT LOG</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -295,11 +295,11 @@ const OverviewPage = () => {
         </div>
 
         {recentTokens.length === 0 ? (
-          <p className="text-xs font-mono text-slate-500 text-center py-8">
+          <p className="text-xs font-mono text-[#8C827A] text-center py-8">
             NO DISPATCH ACTIVITY RECORDED YET.
           </p>
         ) : (
-          <div className="divide-y divide-slate-100 dark:divide-white/[0.06]">
+          <div className="divide-y divide-[#E6E0D4] dark:divide-[#3E342C]">
             {recentTokens.map((token) => {
               const badge = getStatusBadgeStyle(token.status);
               return (
@@ -308,14 +308,14 @@ const OverviewPage = () => {
                   className="py-3 flex items-center justify-between gap-3 text-xs"
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-[#080B11] text-cyan-600 dark:text-cyan-300 border border-slate-200 dark:border-cyan-500/20 shrink-0">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded bg-[#F8F6F0] dark:bg-[#1A1613] text-[#8C532B] dark:text-[#C78753] border border-[#E6E0D4] dark:border-[#3E342C] shrink-0">
                       {token.tokenNumber}
                     </span>
                     <div className="min-w-0 truncate">
-                      <p className="font-semibold text-slate-900 dark:text-white truncate">
+                      <p className="font-semibold text-[#26221F] dark:text-[#FAF8F5] truncate">
                         {token.customerName}
                       </p>
-                      <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400 truncate">
+                      <p className="text-[11px] font-mono text-[#736A62] dark:text-[#A69B8F] truncate">
                         {token.queueId?.name || 'Counter'}
                       </p>
                     </div>
@@ -328,7 +328,7 @@ const OverviewPage = () => {
                       <span className={`w-1.5 h-1.5 rounded-full ${badge.dot}`} />
                       {badge.label}
                     </span>
-                    <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 hidden sm:inline-block">
+                    <span className="text-[11px] font-mono text-[#8C827A] dark:text-[#7A6F66] hidden sm:inline-block">
                       {formatTimeAgo(token.createdAt)}
                     </span>
                   </div>

@@ -2,27 +2,27 @@ import React from 'react';
 
 const StatCard = ({ title, value, subtext, icon: Icon, color = 'slate' }) => {
   const iconColors = {
-    slate: 'text-slate-600 bg-slate-100 border-slate-200 dark:text-slate-300 dark:bg-white/[0.05] dark:border-white/[0.08]',
-    sky: 'text-sky-600 bg-sky-50 border-sky-100 dark:text-cyan-400 dark:bg-cyan-500/10 dark:border-cyan-500/25 dark:shadow-[0_0_10px_rgba(6,182,212,0.2)]',
-    emerald: 'text-emerald-600 bg-emerald-50 border-emerald-100 dark:text-emerald-400 dark:bg-emerald-500/10 dark:border-emerald-500/25 dark:shadow-[0_0_10px_rgba(16,185,129,0.2)]',
-    rose: 'text-rose-600 bg-rose-50 border-rose-100 dark:text-rose-400 dark:bg-rose-500/10 dark:border-rose-500/25 dark:shadow-[0_0_10px_rgba(244,63,94,0.2)]',
-    amber: 'text-amber-600 bg-amber-50 border-amber-100 dark:text-amber-400 dark:bg-amber-500/10 dark:border-amber-500/25 dark:shadow-[0_0_10px_rgba(245,158,11,0.2)]',
+    slate: 'text-[#594F45] bg-[#F8F6F0] border-[#E6E0D4] dark:text-[#D4CBBF] dark:bg-[#322A24] dark:border-[#4A3E35]',
+    sky: 'text-[#8C532B] bg-[#8C532B]/10 border-[#8C532B]/20 dark:text-[#C78753] dark:bg-[#8C532B]/15 dark:border-[#8C532B]/30',
+    emerald: 'text-[#2E7D32] bg-[#2E7D32]/10 border-[#2E7D32]/20 dark:text-[#4CAF50] dark:bg-[#2E7D32]/15 dark:border-[#2E7D32]/30',
+    rose: 'text-[#B71C1C] bg-[#B71C1C]/10 border-[#B71C1C]/20 dark:text-[#EF5350] dark:bg-[#B71C1C]/15 dark:border-[#B71C1C]/30',
+    amber: 'text-[#B87A44] bg-[#B87A44]/10 border-[#B87A44]/20 dark:text-[#D4955F] dark:bg-[#B87A44]/15 dark:border-[#B87A44]/30',
   };
 
   const currentIconColor = iconColors[color] || iconColors.slate;
 
   return (
-    <div className="bg-white dark:bg-[#0D121F] border border-slate-200/90 dark:border-white/[0.08] rounded-xl p-4 sm:p-5 shadow-xs dark:shadow-[0_4px_20px_rgba(0,0,0,0.35)] relative overflow-hidden transition-all hover:border-cyan-500/30">
+    <div className="bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl p-4 sm:p-5 shadow-sm relative overflow-hidden transition-all hover:border-[#8C532B]/40">
       <div className="flex items-center justify-between">
         <div>
-          <p className="font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">
+          <p className="font-mono text-[11px] font-semibold uppercase tracking-wider text-[#8C827A] dark:text-[#A69B8F] mb-1">
             {title}
           </p>
-          <h4 className="font-mono text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          <h4 className="font-mono text-2xl sm:text-3xl font-extrabold text-[#26221F] dark:text-[#FAF8F5] tracking-tight">
             {value}
           </h4>
           {subtext && (
-            <p className="font-mono text-[11px] text-slate-400 dark:text-slate-400 mt-1 font-medium">{subtext}</p>
+            <p className="font-mono text-[11px] text-[#A69B8F] dark:text-[#7A6F66] mt-1 font-medium">{subtext}</p>
           )}
         </div>
         {Icon && (

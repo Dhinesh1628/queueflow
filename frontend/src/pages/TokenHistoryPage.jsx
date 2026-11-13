@@ -76,12 +76,12 @@ const TokenHistoryPage = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2">
         <div>
           <div className="flex items-center gap-2">
-            <History className="w-5 h-5 text-cyan-500 dark:text-cyan-400" />
-            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight font-mono">
+            <History className="w-5 h-5 text-[#8C532B] dark:text-[#C78753]" />
+            <h2 className="text-xl sm:text-2xl font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight font-mono">
               AUDIT TELEMETRY & TOKEN LOG
             </h2>
           </div>
-          <p className="text-xs sm:text-sm font-mono text-slate-500 dark:text-slate-400 mt-0.5">
+          <p className="text-xs sm:text-sm font-mono text-[#736A62] dark:text-[#A69B8F] mt-0.5">
             IMMUTABLE LIFECYCLE AUDIT OF ALL GENERATED TOKENS AND DURATION TIMESTAMPS
           </p>
         </div>
@@ -89,35 +89,35 @@ const TokenHistoryPage = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={() => window.print()}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] hover:dark:border-cyan-500/40 text-xs font-mono uppercase text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-mono uppercase text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
             title="Print log"
           >
-            <Printer className="w-3.5 h-3.5 text-cyan-400" />
+            <Printer className="w-3.5 h-3.5 text-[#8C532B] dark:text-[#C78753]" />
             <span>PRINT LOG</span>
           </button>
 
           <button
             onClick={() => fetchTokens(true)}
             disabled={refreshing}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] hover:dark:border-cyan-500/40 text-xs font-mono uppercase text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-all cursor-pointer"
+            className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-mono uppercase text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
           >
-            <RefreshCw className={`w-3.5 h-3.5 text-cyan-400 ${refreshing ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`w-3.5 h-3.5 text-[#8C532B] dark:text-[#C78753] ${refreshing ? 'animate-spin' : ''}`} />
             <span>SYNC</span>
           </button>
         </div>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] rounded-xl p-4 flex flex-col md:flex-row items-center justify-between gap-3 shadow-xs dark:shadow-md">
+      <div className="bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl p-4 flex flex-col md:flex-row items-center justify-between gap-3 shadow-sm">
         {/* Search */}
         <div className="relative w-full md:w-80">
-          <Search className="w-4 h-4 text-slate-400 dark:text-cyan-400 absolute left-3.5 top-3" />
+          <Search className="w-4 h-4 text-[#8C827A] absolute left-3.5 top-3" />
           <input
             type="text"
             placeholder="Search by name, token #, phone..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-slate-50 dark:bg-[#080B11] border border-slate-200 dark:border-white/10 rounded-lg pl-10 pr-3.5 py-2 text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-500/30 font-mono transition-all"
+            className="w-full bg-[#F8F6F0] dark:bg-[#1A1613] border border-[#E6E0D4] dark:border-[#3E342C] rounded-lg pl-10 pr-3.5 py-2 text-xs text-[#26221F] dark:text-[#FAF8F5] placeholder-[#8C827A] focus:outline-none focus:border-[#8C532B] font-mono transition-all"
           />
         </div>
 
@@ -127,7 +127,7 @@ const TokenHistoryPage = () => {
           <select
             value={selectedQueue}
             onChange={(e) => setSelectedQueue(e.target.value)}
-            className="bg-slate-50 dark:bg-[#080B11] border border-slate-200 dark:border-white/10 rounded-lg px-3 py-2 text-xs text-slate-800 dark:text-slate-200 focus:outline-none focus:border-cyan-400 flex-1 md:flex-initial transition-all"
+            className="bg-[#F8F6F0] dark:bg-[#1A1613] border border-[#E6E0D4] dark:border-[#3E342C] rounded-lg px-3 py-2 text-xs text-[#26221F] dark:text-[#FAF8F5] focus:outline-none focus:border-[#8C532B] flex-1 md:flex-initial transition-all"
           >
             <option value="">ALL QUEUES</option>
             {queues.map((q) => (
@@ -141,7 +141,7 @@ const TokenHistoryPage = () => {
           <select
             value={selectedStatus}
             onChange={(e) => setSelectedStatus(e.target.value)}
-            className="bg-slate-50 dark:bg-[#080B11] border border-slate-200 dark:border-white/10 rounded-lg px-3 py-2 text-xs text-slate-800 dark:text-slate-200 focus:outline-none focus:border-cyan-400 flex-1 md:flex-initial transition-all"
+            className="bg-[#F8F6F0] dark:bg-[#1A1613] border border-[#E6E0D4] dark:border-[#3E342C] rounded-lg px-3 py-2 text-xs text-[#26221F] dark:text-[#FAF8F5] focus:outline-none focus:border-[#8C532B] flex-1 md:flex-initial transition-all"
           >
             <option value="">ALL STATUSES</option>
             <option value="WAITING">WAITING</option>
@@ -153,21 +153,21 @@ const TokenHistoryPage = () => {
       </div>
 
       {/* Audit Log Table */}
-      <div className="bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] rounded-xl overflow-hidden shadow-xs dark:shadow-md">
+      <div className="bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl overflow-hidden shadow-sm">
         {tokens.length === 0 ? (
           <div className="p-12 text-center flex flex-col items-center justify-center">
-            <History className="w-12 h-12 text-slate-400 dark:text-slate-600 mb-3" />
-            <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-200 font-mono">
+            <History className="w-12 h-12 text-[#8C827A] mb-3" />
+            <h4 className="text-sm font-semibold text-[#26221F] dark:text-[#FAF8F5] font-mono">
               NO AUDIT RECORDS FOUND
             </h4>
-            <p className="text-xs font-mono text-slate-500 dark:text-slate-400 max-w-sm mt-1">
+            <p className="text-xs font-mono text-[#736A62] dark:text-[#A69B8F] max-w-sm mt-1">
               Try adjusting your query parameters or counter filter.
             </p>
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50/70 dark:bg-[#080B11] text-slate-500 dark:text-cyan-400/80 font-mono uppercase tracking-wider text-[11px] border-b border-slate-200 dark:border-white/[0.08]">
+              <thead className="bg-[#FAF8F5] dark:bg-[#1A1613] text-[#8C827A] dark:text-[#A69B8F] font-mono uppercase tracking-wider text-[11px] border-b border-[#E6E0D4] dark:border-[#3E342C]">
                 <tr>
                   <th className="py-3 px-4">Token #</th>
                   <th className="py-3 px-4">Customer Name</th>
@@ -177,7 +177,7 @@ const TokenHistoryPage = () => {
                   <th className="py-3 px-4">Service Details</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 dark:divide-white/[0.06]">
+              <tbody className="divide-y divide-[#E6E0D4] dark:divide-[#3E342C]">
                 {tokens.map((token) => {
                   const badge = getStatusBadgeStyle(token.status);
                   const isCopied = copiedId === token._id;
@@ -191,35 +191,35 @@ const TokenHistoryPage = () => {
                   return (
                     <tr
                       key={token._id}
-                      className="hover:bg-slate-50/80 dark:hover:bg-white/[0.03] transition-colors"
+                      className="hover:bg-[#FAF8F5] dark:hover:bg-[#322A24] transition-colors"
                     >
-                      <td className="py-3.5 px-4 font-mono font-bold text-sm text-cyan-600 dark:text-cyan-400">
+                      <td className="py-3.5 px-4 font-mono font-bold text-sm text-[#8C532B] dark:text-[#C78753]">
                         <div className="flex items-center gap-1.5">
                           <span>{token.tokenNumber}</span>
                           <button
                             onClick={() => copyTokenCode(token._id, token.tokenNumber)}
                             title="Copy token code"
-                            className="text-slate-400 hover:text-cyan-400 dark:hover:text-cyan-300 transition-colors cursor-pointer"
+                            className="text-[#8C827A] hover:text-[#8C532B] transition-colors cursor-pointer"
                           >
-                            {isCopied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                            {isCopied ? <Check className="w-3 h-3 text-[#2E7D32]" /> : <Copy className="w-3 h-3" />}
                           </button>
                         </div>
                       </td>
                       <td className="py-3.5 px-4">
-                        <div className="font-semibold text-slate-900 dark:text-white">
+                        <div className="font-semibold text-[#26221F] dark:text-[#FAF8F5]">
                           {token.customerName}
                         </div>
                         {token.phoneNumber && (
                           <a
                             href={`tel:${token.phoneNumber}`}
-                            className="text-[11px] text-slate-500 dark:text-slate-400 hover:text-cyan-400 flex items-center gap-1 font-mono mt-0.5 transition-colors"
+                            className="text-[11px] text-[#736A62] dark:text-[#A69B8F] hover:text-[#8C532B] flex items-center gap-1 font-mono mt-0.5 transition-colors"
                           >
-                            <Phone className="w-3 h-3 text-slate-400 dark:text-slate-500" />
+                            <Phone className="w-3 h-3 text-[#8C827A]" />
                             <span>{token.phoneNumber}</span>
                           </a>
                         )}
                       </td>
-                      <td className="py-3.5 px-4 text-slate-700 dark:text-slate-300 font-mono">
+                      <td className="py-3.5 px-4 text-[#594F45] dark:text-[#D4CBBF] font-mono">
                         {token.queueId?.name || 'General Counter'}
                       </td>
                       <td className="py-3.5 px-4">
@@ -230,22 +230,22 @@ const TokenHistoryPage = () => {
                           {badge.label}
                         </span>
                       </td>
-                      <td className="py-3.5 px-4 text-slate-500 dark:text-slate-400 font-mono text-[11px]">
+                      <td className="py-3.5 px-4 text-[#736A62] dark:text-[#A69B8F] font-mono text-[11px]">
                         {formatDateTime(token.createdAt)}
                       </td>
-                      <td className="py-3.5 px-4 text-slate-700 dark:text-slate-300 font-mono text-[11px]">
+                      <td className="py-3.5 px-4 text-[#594F45] dark:text-[#D4CBBF] font-mono text-[11px]">
                         {token.status === 'COMPLETED' ? (
-                          <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-medium">
+                          <span className="flex items-center gap-1.5 text-[#2E7D32] dark:text-[#4CAF50] font-medium">
                             <CheckCircle className="w-3.5 h-3.5" />
                             <span>Served in {serviceDuration}</span>
                           </span>
                         ) : token.status === 'SERVING' ? (
-                          <span className="flex items-center gap-1.5 text-amber-600 dark:text-amber-400 font-medium">
+                          <span className="flex items-center gap-1.5 text-[#B87A44] dark:text-[#D4955F] font-medium">
                             <Clock className="w-3.5 h-3.5" />
                             <span>Serving ({serviceDuration})</span>
                           </span>
                         ) : (
-                          <span className="text-slate-400 dark:text-slate-600">-</span>
+                          <span className="text-[#8C827A]">-</span>
                         )}
                       </td>
                     </tr>
