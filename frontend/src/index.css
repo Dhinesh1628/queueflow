@@ -7,31 +7,35 @@
   }
 
   body {
-    @apply bg-slate-950 text-slate-100 antialiased min-h-screen font-sans;
+    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased min-h-screen font-sans transition-colors duration-150;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
 
-/* Custom Clean Scrollbars */
+/* Custom Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #cbd5e1;
   border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
 }
 
-/* Print Stylesheet for Physical Counter Tickets and Queue Audits */
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Print Stylesheet */
 @media print {
   body {
     background: white !important;
@@ -49,17 +53,13 @@
     max-width: 100% !important;
   }
 
-  .print-only {
-    display: block !important;
-  }
-
   table {
     border-collapse: collapse !important;
     width: 100% !important;
   }
 
   th, td {
-    border: 1px solid #ddd !important;
+    border: 1px solid #cbd5e1 !important;
     color: black !important;
     padding: 8px !important;
   }

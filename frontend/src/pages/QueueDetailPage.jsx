@@ -191,12 +191,12 @@ const QueueDetailPage = () => {
   return (
     <div className="space-y-6" id="main-content">
       {/* Breadcrumb Navigation */}
-      <nav aria-label="Breadcrumb" className="text-xs text-slate-400">
-        <Link to="/" className="hover:text-white transition-colors">Dashboard</Link>
+      <nav aria-label="Breadcrumb" className="text-xs text-slate-500 dark:text-slate-400">
+        <Link to="/" className="hover:text-slate-900 dark:hover:text-white transition-colors">Dashboard</Link>
         <span className="mx-1.5">/</span>
-        <Link to="/queues" className="hover:text-white transition-colors">My Queues</Link>
+        <Link to="/queues" className="hover:text-slate-900 dark:hover:text-white transition-colors">My Queues</Link>
         <span className="mx-1.5">/</span>
-        <span className="text-slate-200 font-semibold">{queue.name}</span>
+        <span className="text-slate-900 dark:text-slate-200 font-semibold">{queue.name}</span>
       </nav>
 
       {/* Top Header Bar */}
@@ -204,22 +204,22 @@ const QueueDetailPage = () => {
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate('/queues')}
-            className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+            className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 shadow-xs transition-colors cursor-pointer"
             title="Return to Queues list"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-slate-950 text-sky-400 border border-slate-800">
+              <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-950 text-sky-600 dark:text-sky-400 border border-slate-200 dark:border-slate-800">
                 {queue.prefix}
               </span>
-              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
                 {queue.name}
               </h2>
             </div>
             {queue.description && (
-              <p className="text-xs text-slate-400 mt-1">{queue.description}</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{queue.description}</p>
             )}
           </div>
         </div>
@@ -228,16 +228,16 @@ const QueueDetailPage = () => {
         <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={handleCopyLink}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-colors cursor-pointer"
             title="Copy queue URL"
           >
-            {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+            {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
             <span>{copiedLink ? 'Copied' : 'Share Link'}</span>
           </button>
 
           <button
             onClick={() => window.print()}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-colors cursor-pointer"
             title="Print queue list"
           >
             <Printer className="w-3.5 h-3.5" />
@@ -247,7 +247,7 @@ const QueueDetailPage = () => {
           <button
             onClick={() => loadQueueData(true)}
             disabled={refreshing}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-colors cursor-pointer"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin' : ''}`} />
             <span>Sync</span>
@@ -255,7 +255,7 @@ const QueueDetailPage = () => {
 
           <button
             onClick={() => setEditQueueOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-colors cursor-pointer"
           >
             <Edit2 className="w-3.5 h-3.5" />
             <span>Edit</span>
@@ -263,7 +263,7 @@ const QueueDetailPage = () => {
 
           <button
             onClick={() => setDeleteQueueOpen(true)}
-            className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-rose-400 hover:bg-slate-800 transition-colors cursor-pointer"
+            className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-slate-100 dark:hover:bg-slate-800 shadow-xs transition-colors cursor-pointer"
             title="Delete Queue"
           >
             <Trash2 className="w-4 h-4" />

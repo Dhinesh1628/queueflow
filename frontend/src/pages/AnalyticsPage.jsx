@@ -68,12 +68,12 @@ const AnalyticsPage = () => {
     CANCELLED: '#e11d48', // Rose
   };
 
-  // Custom Dark Tooltip for Recharts
+  // Custom Tooltip for Recharts with Light/Dark support
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-slate-900 border border-slate-800 p-3 rounded-lg shadow-xl text-xs space-y-1">
-          <p className="font-bold text-slate-300">{label}</p>
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 rounded-lg shadow-lg dark:shadow-xl text-xs space-y-1">
+          <p className="font-bold text-slate-800 dark:text-slate-200">{label}</p>
           {payload.map((item, index) => (
             <p key={index} style={{ color: item.color }} className="font-medium">
               {item.name}: <span className="font-bold">{item.value}</span>
@@ -95,25 +95,25 @@ const AnalyticsPage = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2">
         <div>
           <div className="flex items-center gap-2">
-            <BarChart3 className="w-5 h-5 text-sky-400" />
-            <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+            <BarChart3 className="w-5 h-5 text-sky-600 dark:text-sky-400" />
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
               Operational Analytics
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
             Real database metrics calculated from token creation and service timestamps
           </p>
         </div>
 
         {/* Date Filter & Refresh */}
         <div className="flex items-center gap-2.5">
-          <div className="inline-flex bg-slate-900 border border-slate-800 rounded-lg p-1 text-xs">
+          <div className="inline-flex bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg p-1 text-xs">
             <button
               onClick={() => setTimeframe('today')}
               className={`px-3 py-1.5 rounded-md font-semibold transition-colors cursor-pointer ${
                 timeframe === 'today'
-                  ? 'bg-slate-800 text-white'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               Today
@@ -122,8 +122,8 @@ const AnalyticsPage = () => {
               onClick={() => setTimeframe('7d')}
               className={`px-3 py-1.5 rounded-md font-semibold transition-colors cursor-pointer ${
                 timeframe === '7d'
-                  ? 'bg-slate-800 text-white'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               Last 7 Days
@@ -132,8 +132,8 @@ const AnalyticsPage = () => {
               onClick={() => setTimeframe('30d')}
               className={`px-3 py-1.5 rounded-md font-semibold transition-colors cursor-pointer ${
                 timeframe === '30d'
-                  ? 'bg-slate-800 text-white'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               Last 30 Days
@@ -143,7 +143,7 @@ const AnalyticsPage = () => {
           <button
             onClick={() => fetchAnalytics(true)}
             disabled={refreshing}
-            className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition-colors cursor-pointer"
+            className="p-2 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
             title="Refresh Analytics"
           >
             <RefreshCw className={`w-4 h-4 ${refreshing ? 'animate-spin' : ''}`} />
@@ -201,12 +201,12 @@ const AnalyticsPage = () => {
       {/* Primary Charts Row 1 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Chart 1: Queue Volume / Length Trend */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs dark:shadow-sm">
           <div className="mb-4">
-            <h3 className="text-sm font-bold text-white tracking-tight">
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">
               Queue Load & Volume Trend
             </h3>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
               Daily tokens received versus resolved over selected timeframe
             </p>
           </div>
@@ -217,7 +217,7 @@ const AnalyticsPage = () => {
                 data={charts.queueLengthTrend || []}
                 margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
               >
-                <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#94a3b8" strokeOpacity={0.2} />
                 <XAxis dataKey="label" stroke="#64748B" fontSize={11} tickLine={false} />
                 <YAxis stroke="#64748B" fontSize={11} tickLine={false} allowDecimals={false} />
                 <Tooltip content={<CustomTooltip />} />
@@ -249,12 +249,12 @@ const AnalyticsPage = () => {
         </div>
 
         {/* Chart 2: Token Status Distribution */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs dark:shadow-sm">
           <div className="mb-4">
-            <h3 className="text-sm font-bold text-white tracking-tight">
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">
               Token Status Breakdown
             </h3>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
               Current lifecycle distribution across all counter tickets
             </p>
           </div>
@@ -298,12 +298,12 @@ const AnalyticsPage = () => {
       {/* Row 2: Queue Performance Comparison & Daily Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Chart 3: Queue Performance Comparison */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs dark:shadow-sm">
           <div className="mb-4">
-            <h3 className="text-sm font-bold text-white tracking-tight">
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">
               Queue Throughput Comparison
             </h3>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
               Completed vs Waiting tokens across counters
             </p>
           </div>
@@ -319,7 +319,7 @@ const AnalyticsPage = () => {
                   data={charts.queuePerformance || []}
                   margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#94a3b8" strokeOpacity={0.2} />
                   <XAxis dataKey="name" stroke="#64748B" fontSize={11} tickLine={false} />
                   <YAxis stroke="#64748B" fontSize={11} tickLine={false} allowDecimals={false} />
                   <Tooltip content={<CustomTooltip />} />
@@ -346,12 +346,12 @@ const AnalyticsPage = () => {
         </div>
 
         {/* Chart 4: Daily Activity Breakdown */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs dark:shadow-sm">
           <div className="mb-4">
-            <h3 className="text-sm font-bold text-white tracking-tight">
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">
               Daily Operational Volume
             </h3>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
               Created, Completed, and Cancelled ticket counts
             </p>
           </div>
@@ -362,7 +362,7 @@ const AnalyticsPage = () => {
                 data={charts.dailyActivity || []}
                 margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
               >
-                <CartesianGrid strokeDasharray="3 3" stroke="#1E293B" />
+                <CartesianGrid strokeDasharray="3 3" stroke="#94a3b8" strokeOpacity={0.2} />
                 <XAxis dataKey="label" stroke="#64748B" fontSize={11} tickLine={false} />
                 <YAxis stroke="#64748B" fontSize={11} tickLine={false} allowDecimals={false} />
                 <Tooltip content={<CustomTooltip />} />

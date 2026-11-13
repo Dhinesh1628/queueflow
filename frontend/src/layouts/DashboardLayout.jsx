@@ -4,10 +4,10 @@ import Sidebar from '../components/common/Sidebar';
 import Navbar from '../components/common/Navbar';
 
 const pageTitleMap = {
-  '/': 'Operations Overview',
-  '/queues': 'My Queues',
+  '/': 'Overview',
+  '/queues': 'Queue Counters',
   '/analytics': 'Performance Analytics',
-  '/history': 'Token History & Audit Log',
+  '/history': 'Token Audit Trail',
   '/settings': 'System Settings',
 };
 
@@ -15,15 +15,14 @@ const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
 
-  // Determine current page title
   const currentPath = location.pathname;
   let pageTitle = pageTitleMap[currentPath] || 'Queue Details';
   if (currentPath.startsWith('/queues/')) {
-    pageTitle = 'Queue Management Console';
+    pageTitle = 'Counter Console';
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col lg:flex-row antialiased">
+    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 flex flex-col lg:flex-row antialiased transition-colors duration-150">
       {/* Sidebar */}
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 

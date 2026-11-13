@@ -4,12 +4,12 @@ import { FileText, ArrowLeft } from 'lucide-react';
 
 const TermsPage = () => {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto space-y-8">
-        <div className="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
           <Link
             to="/"
-            className="flex items-center gap-2 text-xs font-semibold text-sky-400 hover:text-sky-300 transition-colors"
+            className="flex items-center gap-2 text-xs font-semibold text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Dashboard</span>
@@ -18,19 +18,19 @@ const TermsPage = () => {
         </div>
 
         <div className="space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-800 border border-slate-700 text-xs text-slate-300 font-medium">
-            <FileText className="w-4 h-4 text-sky-400" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-700 dark:text-slate-300 font-medium">
+            <FileText className="w-4 h-4 text-sky-600 dark:text-sky-400" />
             <span>Standard SaaS Terms & Conditions</span>
           </div>
-          <h1 className="text-3xl font-extrabold text-white tracking-tight">Terms of Service</h1>
-          <p className="text-sm text-slate-400 leading-relaxed">
+          <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Terms of Service</h1>
+          <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
             Please review these Terms of Service (&quot;Terms&quot;) governing your access and operational use of the QueueFlow queue dispatch and analytics platform.
           </p>
         </div>
 
-        <div className="space-y-6 text-sm text-slate-300 leading-relaxed border-t border-slate-800/80 pt-6">
+        <div className="space-y-6 text-sm text-slate-700 dark:text-slate-300 leading-relaxed border-t border-slate-200 dark:border-slate-800/80 pt-6">
           <section className="space-y-2">
-            <h2 className="text-lg font-bold text-white">1. Acceptance of Agreement</h2>
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">1. Acceptance of Agreement</h2>
             <p>
               By registering an account, creating counter queues, or issuing customer tokens, you agree to comply with and be bound by these Terms. If you represent an organization or commercial entity, you confirm that you have the authority to bind that entity.
             </p>
