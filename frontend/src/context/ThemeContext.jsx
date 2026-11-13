@@ -13,10 +13,14 @@ export const ThemeProvider = ({ children }) => {
     const root = document.documentElement;
     if (theme === 'dark') {
       root.classList.add('dark');
+      root.classList.remove('light');
       root.style.colorScheme = 'dark';
+      document.body.classList.add('dark');
     } else {
       root.classList.remove('dark');
+      root.classList.add('light');
       root.style.colorScheme = 'light';
+      document.body.classList.remove('dark');
     }
     localStorage.setItem('queueflow_theme', theme);
   }, [theme]);
