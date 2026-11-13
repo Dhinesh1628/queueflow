@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ToastProvider } from './context/ToastContext';
 import { useAuth } from './hooks/useAuth';
@@ -12,8 +12,41 @@ import QueueDetailPage from './pages/QueueDetailPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import TokenHistoryPage from './pages/TokenHistoryPage';
 import SettingsPage from './pages/SettingsPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsPage from './pages/TermsPage';
+import CookiePolicyPage from './pages/CookiePolicyPage';
 import NotFoundPage from './pages/NotFoundPage';
 import LoadingSpinner from './components/common/LoadingSpinner';
+import CookieBanner from './components/common/CookieBanner';
+import BackToTop from './components/common/BackToTop';
+
+// Dynamic Page Title & Meta Management
+const PageTitleManager = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const titles = {
+      '/': 'Operations Overview | QueueFlow',
+      '/queues': 'Counter Queues | QueueFlow',
+      '/analytics': 'Performance Analytics | QueueFlow',
+      '/history': 'Token Audit History | QueueFlow',
+      '/settings': 'System Settings | QueueFlow',
+      '/login': 'Sign In | QueueFlow',
+      '/register': 'Register Manager | QueueFlow',
+      '/privacy': 'Privacy Policy | QueueFlow',
+      '/terms': 'Terms of Service | QueueFlow',
+      '/cookies': 'Cookie Policy | QueueFlow',
+    };
+
+    let title = titles[location.pathname];
+    if (location.pathname.startsWith('/queues/')) {
+      title = 'Queue Operations Console | QueueFlow';
+    }
+    document.title = title || 'QueueFlow | Enterprise Queue Platform';
+  }, [location]);
+
+  return null;
+};
 
 // Protected Route Guard
 const ProtectedRoute = ({ children }) => {
@@ -56,6 +89,7 @@ const PublicRoute = ({ children }) => {
 function App() {
   return (
     <BrowserRouter>
+      <PageTitleManager />
       <AuthProvider>
         <ToastProvider>
           <Routes>
@@ -77,6 +111,11 @@ function App() {
               }
             />
 
+            {/* Public Legal Compliance Routes */}
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/cookies" element={<CookiePolicyPage />} />
+
             {/* Protected Dashboard Routes */}
             <Route
               path="/"
@@ -94,9 +133,13 @@ function App() {
               <Route path="settings" element={<SettingsPage />} />
             </Route>
 
-            {/* Fallback */}
+            {/* Fallback Custom 404 */}
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
+
+          {/* GDPR Cookie Banner and Back to Top floating utilities */}
+          <CookieBanner />
+          <BackToTop />
         </ToastProvider>
       </AuthProvider>
     </BrowserRouter>

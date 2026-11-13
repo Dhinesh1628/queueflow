@@ -1,4 +1,6 @@
 const Manager = require('../models/Manager');
+const Queue = require('../models/Queue');
+const Token = require('../models/Token');
 const generateToken = require('../utils/generateToken');
 
 // @desc    Register a new queue manager
@@ -153,9 +155,36 @@ const updateProfile = async (req, res, next) => {
   }
 };
 
+// @desc    GDPR Right to Erasure: Permanently delete account and all associated queues & tokens
+// @route   DELETE /api/auth/account
+// @access  Private
+const deleteAccount = async (req, res, next) => {
+  try {
+    const managerId = req.user._id;
+
+    const [deletedTokens, deletedQueues] = await Promise.all([
+      Token.deleteMany({ managerId }),
+      Queue.deleteMany({ managerId }),
+      Manager.deleteOne({ _id: managerId }),
+    ]);
+
+    res.status(200).json({
+      success: true,
+      message: 'Account and all associated tenant data were permanently deleted per GDPR Right to Erasure.',
+      details: {
+        queuesDeleted: deletedQueues.deletedCount,
+        tokensDeleted: deletedTokens.deletedCount,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   register,
   login,
   getMe,
   updateProfile,
+  deleteAccount,
 };

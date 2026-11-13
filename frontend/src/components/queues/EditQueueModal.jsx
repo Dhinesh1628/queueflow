@@ -50,8 +50,8 @@ const EditQueueModal = ({ isOpen, onClose, queue, onQueueUpdated }) => {
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="Edit Queue Details"
-      subtitle="Modify queue configurations"
+      title="Edit Counter Queue"
+      subtitle="Modify queue details and configuration"
       maxWidth="max-w-md"
     >
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -64,7 +64,7 @@ const EditQueueModal = ({ isOpen, onClose, queue, onQueueUpdated }) => {
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+            className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors"
           />
         </div>
 
@@ -78,7 +78,7 @@ const EditQueueModal = ({ isOpen, onClose, queue, onQueueUpdated }) => {
               maxLength={5}
               value={prefix}
               onChange={(e) => setPrefix(e.target.value.toUpperCase())}
-              className="w-full uppercase font-mono bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+              className="w-full uppercase font-mono bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors"
             />
           </div>
 
@@ -90,7 +90,7 @@ const EditQueueModal = ({ isOpen, onClose, queue, onQueueUpdated }) => {
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors"
             />
           </div>
         </div>
@@ -99,17 +99,17 @@ const EditQueueModal = ({ isOpen, onClose, queue, onQueueUpdated }) => {
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 text-xs font-medium text-slate-400 hover:text-white bg-slate-800/80 hover:bg-slate-800 rounded-xl transition-colors"
+            className="px-4 py-2 text-xs font-medium text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors cursor-pointer"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={loading}
-            className="flex items-center gap-2 px-5 py-2 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-xs font-semibold rounded-xl shadow-lg transition-all cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2 bg-sky-600 hover:bg-sky-500 disabled:opacity-50 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors cursor-pointer"
           >
             <Check className="w-4 h-4" />
-            {loading ? 'Saving...' : 'Save Changes'}
+            <span>{loading ? 'Saving...' : 'Save Changes'}</span>
           </button>
         </div>
       </form>

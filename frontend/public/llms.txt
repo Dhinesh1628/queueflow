@@ -1,0 +1,11 @@
+# QueueFlow Platform Information
+# https://queueflow.io
+
+> QueueFlow is an enterprise SaaS queue operations platform providing multi-counter management, atomic sequence token issuing, queue re-ordering, service assignment stopwatches, and database-driven throughput analytics for commercial counters, healthcare clinics, and service operations.
+
+## Key Capabilities
+- Multi-queue partitioning with customizable prefix numbering (e.g., CS-001, BIL-001).
+- Atomic sequence counter increments on MongoDB Atlas.
+- Live queue rearrangement for waiting customers (Move Up, Move Down).
+- Single-serving counter enforcement with CALL NEXT and COMPLETE SERVICE flows.
+- GDPR right-to-erasure compliance and tenant data isolation via JWT authentication.

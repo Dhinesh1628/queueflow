@@ -1,0 +1,8 @@
+# robots.txt for QueueFlow
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /settings
+Disallow: /queues/
+
+Sitemap: https://queueflow.io/sitemap.xml

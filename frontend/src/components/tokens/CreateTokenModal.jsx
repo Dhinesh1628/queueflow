@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Modal from '../common/Modal';
 import { tokenService } from '../../services/tokenService';
 import { useToast } from '../../hooks/useToast';
-import { UserPlus, User, Phone, FileText } from 'lucide-react';
+import { UserPlus, User, Phone, FileText, ShieldCheck } from 'lucide-react';
 
 const CreateTokenModal = ({
   isOpen,
@@ -61,8 +61,8 @@ const CreateTokenModal = ({
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="Add Person to Queue"
-      subtitle="Issue a new sequence token and add customer to waiting list"
+      title="Add Person to Waiting Line"
+      subtitle="Issue an atomic sequence token for service dispatch"
       maxWidth="max-w-md"
     >
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -70,13 +70,13 @@ const CreateTokenModal = ({
         {!queueId && (
           <div>
             <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
-              Select Queue *
+              Select Counter Queue *
             </label>
             <select
               required
               value={selectedQueueId}
               onChange={(e) => setSelectedQueueId(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             >
               <option value="">Select a queue...</option>
               {queues.map((q) => (
@@ -100,7 +100,7 @@ const CreateTokenModal = ({
               placeholder="e.g. Jonathan Doe"
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg pl-10 pr-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors"
             />
           </div>
         </div>
@@ -116,42 +116,48 @@ const CreateTokenModal = ({
               placeholder="+1 (555) 000-0000"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg pl-10 pr-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors"
             />
           </div>
         </div>
 
         <div>
           <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
-            Notes / Reason for Visit (Optional)
+            Reason for Visit / Note (Optional)
           </label>
           <div className="relative">
             <FileText className="w-4 h-4 text-slate-500 absolute left-3.5 top-3" />
             <input
               type="text"
-              placeholder="e.g. Account inquiries, card replacement..."
+              placeholder="e.g. Account inquiry, payment processing..."
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg pl-10 pr-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors"
             />
           </div>
+        </div>
+
+        {/* Data Minimization Notice */}
+        <div className="flex items-center gap-2 p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-slate-400">
+          <ShieldCheck className="w-4 h-4 text-sky-400 shrink-0" />
+          <span>Customer data is used solely for counter calling and is protected under GDPR minimization standards.</span>
         </div>
 
         <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 text-xs font-medium text-slate-400 hover:text-white bg-slate-800/80 hover:bg-slate-800 rounded-xl transition-colors"
+            className="px-4 py-2 text-xs font-medium text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors cursor-pointer"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={loading}
-            className="flex items-center gap-2 px-5 py-2 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-xs font-semibold rounded-xl shadow-lg shadow-indigo-600/30 transition-all cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2 bg-sky-600 hover:bg-sky-500 disabled:opacity-50 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors cursor-pointer"
           >
             <UserPlus className="w-4 h-4" />
-            {loading ? 'Issuing...' : 'Generate Token'}
+            <span>{loading ? 'Issuing...' : 'Generate Token'}</span>
           </button>
         </div>
       </form>

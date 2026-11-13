@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import {
   ArrowLeft,
   Plus,
   RefreshCw,
-  Sparkles,
   Edit2,
   Trash2,
-  Users,
   Clock,
   UserCheck,
   CheckCircle2,
   XCircle,
+  Copy,
+  Check,
+  Printer,
 } from 'lucide-react';
 import { queueService } from '../services/queueService';
 import { tokenService } from '../services/tokenService';
@@ -23,7 +24,6 @@ import EditQueueModal from '../components/queues/EditQueueModal';
 import ConfirmDialog from '../components/common/ConfirmDialog';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import StatCard from '../components/common/StatCard';
-import { formatDateTime } from '../utils/formatters';
 
 const QueueDetailPage = () => {
   const { id } = useParams();
@@ -34,6 +34,7 @@ const QueueDetailPage = () => {
   const [waitingTokens, setWaitingTokens] = useState([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [copiedLink, setCopiedLink] = useState(false);
 
   // Operation loading states
   const [isCallingNext, setIsCallingNext] = useState(false);
@@ -78,12 +79,10 @@ const QueueDetailPage = () => {
 
   useEffect(() => {
     loadQueueData();
-    // Auto-refresh interval every 10 seconds for real-time sync
     const timer = setInterval(() => loadQueueData(true), 10000);
     return () => clearInterval(timer);
   }, [loadQueueData]);
 
-  // Handle CALL NEXT
   const handleCallNext = async () => {
     try {
       setIsCallingNext(true);
@@ -99,7 +98,6 @@ const QueueDetailPage = () => {
     }
   };
 
-  // Handle COMPLETE SERVICE
   const handleCompleteService = async (tokenId) => {
     try {
       setIsCompleting(true);
@@ -115,13 +113,12 @@ const QueueDetailPage = () => {
     }
   };
 
-  // Handle Move Token UP
   const handleMoveUp = async (token) => {
     try {
       setMovingTokenId(token._id);
       const res = await tokenService.moveTokenPosition(token._id, 'up');
       if (res.success) {
-        toast.success(`Token ${token.tokenNumber} moved up in queue`);
+        toast.success(`Token ${token.tokenNumber} moved up`);
         loadQueueData(true);
       }
     } catch (err) {
@@ -131,13 +128,12 @@ const QueueDetailPage = () => {
     }
   };
 
-  // Handle Move Token DOWN
   const handleMoveDown = async (token) => {
     try {
       setMovingTokenId(token._id);
       const res = await tokenService.moveTokenPosition(token._id, 'down');
       if (res.success) {
-        toast.success(`Token ${token.tokenNumber} moved down in queue`);
+        toast.success(`Token ${token.tokenNumber} moved down`);
         loadQueueData(true);
       }
     } catch (err) {
@@ -147,7 +143,6 @@ const QueueDetailPage = () => {
     }
   };
 
-  // Handle Cancel Token Confirm
   const handleCancelConfirm = async () => {
     if (!cancelTokenData) return;
     try {
@@ -165,7 +160,6 @@ const QueueDetailPage = () => {
     }
   };
 
-  // Handle Delete Queue
   const handleDeleteQueue = async () => {
     try {
       setDeleteLoading(true);
@@ -181,6 +175,12 @@ const QueueDetailPage = () => {
     }
   };
 
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setCopiedLink(true);
+    setTimeout(() => setCopiedLink(false), 2000);
+  };
+
   if (loading || !queue) {
     return <LoadingSpinner size="lg" text="Loading Queue Operations Console..." />;
   }
@@ -189,22 +189,32 @@ const QueueDetailPage = () => {
   const currentlyServing = stats.currentlyServingToken;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" id="main-content">
+      {/* Breadcrumb Navigation */}
+      <nav aria-label="Breadcrumb" className="text-xs text-slate-400">
+        <Link to="/" className="hover:text-white transition-colors">Dashboard</Link>
+        <span className="mx-1.5">/</span>
+        <Link to="/queues" className="hover:text-white transition-colors">My Queues</Link>
+        <span className="mx-1.5">/</span>
+        <span className="text-slate-200 font-semibold">{queue.name}</span>
+      </nav>
+
       {/* Top Header Bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate('/queues')}
-            className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+            className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+            title="Return to Queues list"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-bold px-2 py-0.5 rounded-md bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">
+              <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-slate-950 text-sky-400 border border-slate-800">
                 {queue.prefix}
               </span>
-              <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                 {queue.name}
               </h2>
             </div>
@@ -215,11 +225,29 @@ const QueueDetailPage = () => {
         </div>
 
         {/* Action Controls */}
-        <div className="flex items-center gap-2.5 flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap">
+          <button
+            onClick={handleCopyLink}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer"
+            title="Copy queue URL"
+          >
+            {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+            <span>{copiedLink ? 'Copied' : 'Share Link'}</span>
+          </button>
+
+          <button
+            onClick={() => window.print()}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer"
+            title="Print queue list"
+          >
+            <Printer className="w-3.5 h-3.5" />
+            <span>Print Sheet</span>
+          </button>
+
           <button
             onClick={() => loadQueueData(true)}
             disabled={refreshing}
-            className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin' : ''}`} />
             <span>Sync</span>
@@ -227,7 +255,7 @@ const QueueDetailPage = () => {
 
           <button
             onClick={() => setEditQueueOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer"
           >
             <Edit2 className="w-3.5 h-3.5" />
             <span>Edit</span>
@@ -235,7 +263,7 @@ const QueueDetailPage = () => {
 
           <button
             onClick={() => setDeleteQueueOpen(true)}
-            className="p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors cursor-pointer"
+            className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-rose-400 hover:bg-slate-800 transition-colors cursor-pointer"
             title="Delete Queue"
           >
             <Trash2 className="w-4 h-4" />
@@ -243,7 +271,7 @@ const QueueDetailPage = () => {
 
           <button
             onClick={() => setCreateTokenOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold rounded-xl shadow-lg shadow-indigo-600/30 transition-all cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors cursor-pointer"
           >
             <Plus className="w-4 h-4" />
             <span>Add Person</span>
@@ -264,23 +292,23 @@ const QueueDetailPage = () => {
       {/* Queue Stat Metrics */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
         <StatCard
-          title="Waiting Tokens"
+          title="Waiting Line"
           value={stats.waitingCount ?? waitingTokens.length}
-          subtext="Active in waiting line"
+          subtext="Active waiting line"
           icon={Clock}
-          color="indigo"
+          color="sky"
         />
         <StatCard
           title="Currently Serving"
           value={stats.servingCount ?? (currentlyServing ? 1 : 0)}
           subtext="At service desk"
           icon={UserCheck}
-          color="sky"
+          color="amber"
         />
         <StatCard
           title="Completed"
           value={stats.completedCount ?? 0}
-          subtext="Served today"
+          subtext="Resolved tickets"
           icon={CheckCircle2}
           color="emerald"
         />
@@ -302,7 +330,7 @@ const QueueDetailPage = () => {
           onCancel={(token) => setCancelTokenData(token)}
           movingTokenId={movingTokenId}
           onAddPerson={() => setCreateTokenOpen(true)}
-          emptyMessage="No customers are currently waiting in this queue. Click 'Add Person' to issue a new token."
+          emptyMessage="No customers are currently waiting in this line. Click 'Add Person' to issue a new token."
         />
       </div>
 
@@ -326,9 +354,9 @@ const QueueDetailPage = () => {
         onClose={() => setCancelTokenData(null)}
         onConfirm={handleCancelConfirm}
         isLoading={cancelLoading}
-        title={`Cancel Token ${cancelTokenData?.tokenNumber}?`}
-        message={`Are you sure you want to cancel the token for ${cancelTokenData?.customerName}? This will preserve historical records and automatically recalculate positions for all waiting customers.`}
-        confirmText="Cancel Token"
+        title={`Cancel Ticket ${cancelTokenData?.tokenNumber}?`}
+        message={`Are you sure you want to cancel the ticket for ${cancelTokenData?.customerName}? This will preserve historical audit logs and automatically re-index positions for all remaining waiting customers.`}
+        confirmText="Cancel Ticket"
       />
 
       <ConfirmDialog
@@ -337,7 +365,7 @@ const QueueDetailPage = () => {
         onConfirm={handleDeleteQueue}
         isLoading={deleteLoading}
         title={`Delete Queue "${queue.name}"?`}
-        message="Are you sure you want to delete this queue? All waiting, serving, completed, and cancelled tokens associated with this queue will also be permanently deleted."
+        message="Are you sure you want to delete this queue? All waiting, serving, completed, and cancelled tickets associated with this queue will also be permanently deleted."
         confirmText="Delete Queue"
       />
     </div>

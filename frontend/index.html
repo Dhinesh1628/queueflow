@@ -3,10 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>QueueFlow | Enterprise Queue Management & Token Dispatch Platform</title>
+    <meta
+      name="description"
+      content="High-throughput queue management and live token dispatch platform. Organize waiting customers, manage multi-counter operations, and monitor service performance."
+    />
+    <meta name="keywords" content="queue management system, token generator, waiting list, customer service counter, dispatch operations" />
+    <meta name="author" content="QueueFlow Operations Inc." />
+    <link rel="canonical" href="https://queueflow.io" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://queueflow.io/" />
+    <meta property="og:title" content="QueueFlow | Enterprise Queue Management Platform" />
+    <meta property="og:description" content="Organize counter queues, generate atomic tokens, reorder waiting lines, and analyze service performance with real database metrics." />
+    <meta property="og:image" content="https://queueflow.io/og-image.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://queueflow.io/" />
+    <meta name="twitter:title" content="QueueFlow | Enterprise Queue Management Platform" />
+    <meta name="twitter:description" content="High-throughput queue management and live token dispatch platform." />
+
+    <!-- Structured Data (Schema.org) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "QueueFlow",
+        "operatingSystem": "Web",
+        "applicationCategory": "BusinessApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Enterprise Queue Operations & Customer Waiting Line Management Platform"
+      }
+    </script>
   </head>
-  <body>
+  <body class="bg-slate-950 text-slate-100 antialiased selection:bg-sky-500/20 selection:text-sky-200 min-h-screen">
+    <!-- Skip to main content link for accessibility -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-sky-600 focus:text-white focus:font-semibold focus:rounded-md focus:shadow-lg focus:outline-none"
+    >
+      Skip to main content
+    </a>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

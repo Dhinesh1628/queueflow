@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Modal from '../common/Modal';
 import { queueService } from '../../services/queueService';
 import { useToast } from '../../hooks/useToast';
-import { Layers, Plus, Hash } from 'lucide-react';
+import { Plus } from 'lucide-react';
 
 const CreateQueueModal = ({ isOpen, onClose, onQueueCreated }) => {
   const [name, setName] = useState('');
@@ -45,8 +45,8 @@ const CreateQueueModal = ({ isOpen, onClose, onQueueCreated }) => {
     <Modal
       isOpen={isOpen}
       onClose={onClose}
-      title="Create New Queue"
-      subtitle="Define a new department or service queue"
+      title="Create New Counter Queue"
+      subtitle="Define a service desk or department counter"
       maxWidth="max-w-md"
     >
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -54,16 +54,14 @@ const CreateQueueModal = ({ isOpen, onClose, onQueueCreated }) => {
           <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
             Queue Name *
           </label>
-          <div className="relative">
-            <input
-              type="text"
-              required
-              placeholder="e.g. Customer Support, Billing Desk..."
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
-            />
-          </div>
+          <input
+            type="text"
+            required
+            placeholder="e.g. Customer Support, Billing Counter..."
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors"
+          />
         </div>
 
         <div className="grid grid-cols-3 gap-3">
@@ -71,16 +69,14 @@ const CreateQueueModal = ({ isOpen, onClose, onQueueCreated }) => {
             <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
               Prefix
             </label>
-            <div className="relative">
-              <input
-                type="text"
-                maxLength={5}
-                placeholder="QF"
-                value={prefix}
-                onChange={(e) => setPrefix(e.target.value.toUpperCase())}
-                className="w-full uppercase font-mono bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
-              />
-            </div>
+            <input
+              type="text"
+              maxLength={5}
+              placeholder="QF"
+              value={prefix}
+              onChange={(e) => setPrefix(e.target.value.toUpperCase())}
+              className="w-full uppercase font-mono bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors"
+            />
             <span className="text-[10px] text-slate-500 mt-1 block">e.g. CS-001</span>
           </div>
 
@@ -90,10 +86,10 @@ const CreateQueueModal = ({ isOpen, onClose, onQueueCreated }) => {
             </label>
             <input
               type="text"
-              placeholder="Purpose of this service counter"
+              placeholder="Counter purpose or location"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors"
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors"
             />
           </div>
         </div>
@@ -102,17 +98,17 @@ const CreateQueueModal = ({ isOpen, onClose, onQueueCreated }) => {
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 text-xs font-medium text-slate-400 hover:text-white bg-slate-800/80 hover:bg-slate-800 rounded-xl transition-colors"
+            className="px-4 py-2 text-xs font-medium text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors cursor-pointer"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={loading}
-            className="flex items-center gap-2 px-5 py-2 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-xs font-semibold rounded-xl shadow-lg shadow-indigo-600/30 transition-all cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2 bg-sky-600 hover:bg-sky-500 disabled:opacity-50 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors cursor-pointer"
           >
             <Plus className="w-4 h-4" />
-            {loading ? 'Creating...' : 'Create Queue'}
+            <span>{loading ? 'Creating...' : 'Create Queue'}</span>
           </button>
         </div>
       </form>

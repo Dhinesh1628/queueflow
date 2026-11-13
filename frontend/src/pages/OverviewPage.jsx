@@ -10,8 +10,6 @@ import {
   RefreshCw,
   ArrowRight,
   Clock,
-  Sparkles,
-  Flame,
 } from 'lucide-react';
 import { queueService } from '../services/queueService';
 import { analyticsService } from '../services/analyticsService';
@@ -24,7 +22,8 @@ import EditQueueModal from '../components/queues/EditQueueModal';
 import CreateTokenModal from '../components/tokens/CreateTokenModal';
 import ConfirmDialog from '../components/common/ConfirmDialog';
 import LoadingSpinner from '../components/common/LoadingSpinner';
-import { formatDateTime, formatTimeAgo, getStatusBadgeStyle } from '../utils/formatters';
+import FAQSection from '../components/common/FAQSection';
+import { formatTimeAgo, getStatusBadgeStyle } from '../utils/formatters';
 
 const OverviewPage = () => {
   const [queues, setQueues] = useState([]);
@@ -51,7 +50,7 @@ const OverviewPage = () => {
       const [queuesRes, analyticsRes, tokensRes] = await Promise.all([
         queueService.getQueues(),
         analyticsService.getAnalytics('today'),
-        tokenService.getTokens({ limit: 8 }),
+        tokenService.getTokens({ limit: 6 }),
       ]);
 
       if (queuesRes.success) setQueues(queuesRes.data);
@@ -89,15 +88,18 @@ const OverviewPage = () => {
   const kpis = analytics?.kpis || {};
 
   if (loading) {
-    return <LoadingSpinner size="lg" text="Loading QueueFlow Operations..." />;
+    return <LoadingSpinner size="lg" text="Loading Queue Operations Console..." />;
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8" id="main-content">
       {/* Top Banner & Quick Action Buttons */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2">
         <div>
-          <h2 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+          <nav aria-label="Breadcrumb" className="text-xs text-slate-400 mb-1">
+            <span>Dashboard</span> <span className="mx-1">/</span> <span className="text-slate-200 font-semibold">Overview</span>
+          </nav>
+          <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
             Queue Operations Control
           </h2>
           <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
@@ -109,7 +111,7 @@ const OverviewPage = () => {
           <button
             onClick={() => loadDashboardData(true)}
             disabled={refreshing}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+            className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin' : ''}`} />
             <span>Refresh</span>
@@ -118,7 +120,7 @@ const OverviewPage = () => {
           <button
             onClick={() => setCreateTokenOpen(true)}
             disabled={queues.length === 0}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700/80 border border-slate-700 text-xs font-semibold text-white shadow-sm transition-all cursor-pointer disabled:opacity-40"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-semibold text-white shadow-sm transition-colors cursor-pointer disabled:opacity-40"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>Add Person</span>
@@ -126,9 +128,9 @@ const OverviewPage = () => {
 
           <button
             onClick={() => setCreateQueueOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-xs font-semibold text-white shadow-lg shadow-indigo-600/30 transition-all cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-xs font-semibold text-white shadow-sm transition-colors cursor-pointer"
           >
-            <Plus className="w-3.5 h-3.5" />
+            <Plus className="w-4 h-4" />
             <span>Create Queue</span>
           </button>
         </div>
@@ -139,9 +141,9 @@ const OverviewPage = () => {
         <StatCard
           title="Total Queues"
           value={kpis.totalQueues ?? queues.length}
-          subtext="Active departments"
+          subtext="Configured counters"
           icon={Layers}
-          color="indigo"
+          color="slate"
         />
         <StatCard
           title="Total Tokens"
@@ -184,11 +186,11 @@ const OverviewPage = () => {
       <div>
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <Layers className="w-5 h-5 text-indigo-400" />
+            <Layers className="w-5 h-5 text-sky-400" />
             <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
-              Live Counter Queues
+              Counter Queues
             </h3>
-            <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
+            <span className="px-2 py-0.5 rounded text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">
               {queues.length} {queues.length === 1 ? 'Queue' : 'Queues'}
             </span>
           </div>
@@ -196,29 +198,28 @@ const OverviewPage = () => {
           {queues.length > 0 && (
             <button
               onClick={() => navigate('/queues')}
-              className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1 group cursor-pointer"
+              className="text-xs font-semibold text-sky-400 hover:text-sky-300 flex items-center gap-1 cursor-pointer"
             >
               <span>Manage all queues</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           )}
         </div>
 
         {queues.length === 0 ? (
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl p-8 sm:p-12 text-center flex flex-col items-center justify-center">
-            <div className="w-14 h-14 rounded-2xl bg-indigo-600/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400 mb-4">
-              <Layers className="w-7 h-7" />
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-8 sm:p-12 text-center flex flex-col items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 mb-4">
+              <Layers className="w-6 h-6" />
             </div>
             <h4 className="text-lg font-bold text-white tracking-tight">
-              No queues created yet
+              No counter queues configured
             </h4>
             <p className="text-xs sm:text-sm text-slate-400 max-w-md mt-1 mb-6 leading-relaxed">
-              Create your first queue (e.g. Customer Support, Billing Counter, General
-              Consultation) to start issuing tokens and organizing waiting lines.
+              Create your first queue counter to start generating atomic tokens and managing waiting lines.
             </p>
             <button
               onClick={() => setCreateQueueOpen(true)}
-              className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs rounded-xl shadow-lg shadow-indigo-600/30 transition-all cursor-pointer"
+              className="flex items-center gap-2 px-5 py-2.5 bg-sky-600 hover:bg-sky-500 text-white font-semibold text-xs rounded-lg shadow-sm transition-colors cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               <span>Create Your First Queue</span>
@@ -239,17 +240,17 @@ const OverviewPage = () => {
       </div>
 
       {/* Recent Activity Section */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm">
+      <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 sm:p-6 shadow-sm">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <Clock className="w-5 h-5 text-indigo-400" />
+            <Clock className="w-5 h-5 text-sky-400" />
             <h3 className="text-base font-bold text-white tracking-tight">
               Recent Activity Feed
             </h3>
           </div>
           <button
             onClick={() => navigate('/history')}
-            className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1 cursor-pointer"
+            className="text-xs font-semibold text-sky-400 hover:text-sky-300 flex items-center gap-1 cursor-pointer"
           >
             <span>View Full Audit Log</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -261,7 +262,7 @@ const OverviewPage = () => {
             No token activity recorded yet.
           </p>
         ) : (
-          <div className="divide-y divide-slate-800/80">
+          <div className="divide-y divide-slate-800">
             {recentTokens.map((token) => {
               const badge = getStatusBadgeStyle(token.status);
               return (
@@ -270,7 +271,7 @@ const OverviewPage = () => {
                   className="py-3 flex items-center justify-between gap-3 text-xs"
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded bg-slate-950 text-indigo-300 border border-slate-800 shrink-0">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded bg-slate-950 text-sky-400 border border-slate-800 shrink-0">
                       {token.tokenNumber}
                     </span>
                     <div className="min-w-0 truncate">
@@ -278,19 +279,19 @@ const OverviewPage = () => {
                         {token.customerName}
                       </p>
                       <p className="text-[11px] text-slate-400 truncate">
-                        {token.queueId?.name || 'Queue'}
+                        {token.queueId?.name || 'Counter'}
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-4 shrink-0">
                     <span
-                      className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold ${badge.bg}`}
+                      className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-semibold ${badge.bg}`}
                     >
                       <span className={`w-1.5 h-1.5 rounded-full ${badge.dot}`} />
                       {badge.label}
                     </span>
-                    <span className="text-[11px] text-slate-500 hidden sm:inline-block">
+                    <span className="text-[11px] text-slate-400 hidden sm:inline-block">
                       {formatTimeAgo(token.createdAt)}
                     </span>
                   </div>
@@ -300,6 +301,9 @@ const OverviewPage = () => {
           </div>
         )}
       </div>
+
+      {/* Expandable Operational FAQ Section */}
+      <FAQSection />
 
       {/* Modals */}
       <CreateQueueModal
