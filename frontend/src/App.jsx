@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ToastProvider } from './context/ToastContext';
+import { ThemeProvider } from './context/ThemeContext';
+import ErrorBoundary from './components/common/ErrorBoundary';
 import { useAuth } from './hooks/useAuth';
 import DashboardLayout from './layouts/DashboardLayout';
 import LoginPage from './pages/LoginPage';
@@ -88,61 +90,65 @@ const PublicRoute = ({ children }) => {
 
 function App() {
   return (
-    <BrowserRouter>
-      <PageTitleManager />
-      <AuthProvider>
-        <ToastProvider>
-          <Routes>
-            {/* Public Auth Routes */}
-            <Route
-              path="/login"
-              element={
-                <PublicRoute>
-                  <LoginPage />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <PublicRoute>
-                  <RegisterPage />
-                </PublicRoute>
-              }
-            />
+    <ErrorBoundary>
+      <ThemeProvider>
+        <BrowserRouter>
+          <PageTitleManager />
+          <AuthProvider>
+            <ToastProvider>
+              <Routes>
+                {/* Public Auth Routes */}
+                <Route
+                  path="/login"
+                  element={
+                    <PublicRoute>
+                      <LoginPage />
+                    </PublicRoute>
+                  }
+                />
+                <Route
+                  path="/register"
+                  element={
+                    <PublicRoute>
+                      <RegisterPage />
+                    </PublicRoute>
+                  }
+                />
 
-            {/* Public Legal Compliance Routes */}
-            <Route path="/privacy" element={<PrivacyPolicyPage />} />
-            <Route path="/terms" element={<TermsPage />} />
-            <Route path="/cookies" element={<CookiePolicyPage />} />
+                {/* Public Legal Compliance Routes */}
+                <Route path="/privacy" element={<PrivacyPolicyPage />} />
+                <Route path="/terms" element={<TermsPage />} />
+                <Route path="/cookies" element={<CookiePolicyPage />} />
 
-            {/* Protected Dashboard Routes */}
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <DashboardLayout />
-                </ProtectedRoute>
-              }
-            >
-              <Route index element={<OverviewPage />} />
-              <Route path="queues" element={<QueuesPage />} />
-              <Route path="queues/:id" element={<QueueDetailPage />} />
-              <Route path="analytics" element={<AnalyticsPage />} />
-              <Route path="history" element={<TokenHistoryPage />} />
-              <Route path="settings" element={<SettingsPage />} />
-            </Route>
+                {/* Protected Dashboard Routes */}
+                <Route
+                  path="/"
+                  element={
+                    <ProtectedRoute>
+                      <DashboardLayout />
+                    </ProtectedRoute>
+                  }
+                >
+                  <Route index element={<OverviewPage />} />
+                  <Route path="queues" element={<QueuesPage />} />
+                  <Route path="queues/:id" element={<QueueDetailPage />} />
+                  <Route path="analytics" element={<AnalyticsPage />} />
+                  <Route path="history" element={<TokenHistoryPage />} />
+                  <Route path="settings" element={<SettingsPage />} />
+                </Route>
 
-            {/* Fallback Custom 404 */}
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
+                {/* Fallback Custom 404 */}
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
 
-          {/* GDPR Cookie Banner and Back to Top floating utilities */}
-          <CookieBanner />
-          <BackToTop />
-        </ToastProvider>
-      </AuthProvider>
-    </BrowserRouter>
+              {/* GDPR Cookie Banner and Back to Top floating utilities */}
+              <CookieBanner />
+              <BackToTop />
+            </ToastProvider>
+          </AuthProvider>
+        </BrowserRouter>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }
 
