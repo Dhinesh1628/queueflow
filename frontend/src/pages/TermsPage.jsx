@@ -4,22 +4,22 @@ import { FileText, ArrowLeft } from 'lucide-react';
 
 const TermsPage = () => {
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#080B11] text-slate-800 dark:text-slate-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto space-y-8">
-        <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+        <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-white/[0.08]">
           <Link
             to="/"
-            className="flex items-center gap-2 text-xs font-semibold text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition-colors"
+            className="flex items-center gap-2 text-xs font-mono uppercase text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to Dashboard</span>
           </Link>
-          <span className="text-xs text-slate-500">Last Revised: November 13, 2026</span>
+          <span className="text-xs font-mono text-slate-500">Last Revised: November 13, 2026</span>
         </div>
 
         <div className="space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-700 dark:text-slate-300 font-medium">
-            <FileText className="w-4 h-4 text-sky-600 dark:text-sky-400" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-50 dark:bg-cyan-500/10 border border-cyan-200 dark:border-cyan-500/20 text-xs font-mono text-cyan-700 dark:text-cyan-300 font-medium">
+            <FileText className="w-4 h-4 text-cyan-500" />
             <span>Standard SaaS Terms & Conditions</span>
           </div>
           <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Terms of Service</h1>

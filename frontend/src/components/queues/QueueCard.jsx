@@ -14,17 +14,17 @@ const QueueCard = ({ queue, onEdit, onDelete }) => {
   const currentlyServing = stats.currentlyServingToken;
 
   return (
-    <div className="bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 rounded-xl p-5 shadow-xs transition-all flex flex-col justify-between group">
+    <div className="bg-white dark:bg-[#0D121F] border border-slate-200/90 dark:border-white/[0.08] hover:border-cyan-500/30 rounded-2xl p-5 shadow-xs dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)] transition-all flex flex-col justify-between group">
       <div>
         {/* Top Header */}
         <div className="flex items-start justify-between gap-3 mb-3">
           <div className="flex items-center gap-2">
-            <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-sky-50 dark:bg-slate-950 text-sky-700 dark:text-sky-400 border border-sky-100 dark:border-slate-800">
+            <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/25">
               {queue.prefix || 'QF'}
             </span>
             <h3
               onClick={() => navigate(`/queues/${queue._id}`)}
-              className="text-base font-bold text-slate-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors cursor-pointer tracking-tight"
+              className="text-base font-bold text-slate-900 dark:text-white group-hover:text-cyan-400 transition-colors cursor-pointer tracking-tight"
             >
               {queue.name}
             </h3>
@@ -35,14 +35,14 @@ const QueueCard = ({ queue, onEdit, onDelete }) => {
             <button
               onClick={() => onEdit(queue)}
               title="Edit Queue"
-              className="p-1.5 rounded text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+              className="p-1.5 rounded text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.06] transition-colors cursor-pointer"
             >
               <Edit2 className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={() => onDelete(queue)}
               title="Delete Queue"
-              className="p-1.5 rounded text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+              className="p-1.5 rounded text-slate-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors cursor-pointer"
             >
               <Trash2 className="w-3.5 h-3.5" />
             </button>
@@ -50,43 +50,43 @@ const QueueCard = ({ queue, onEdit, onDelete }) => {
         </div>
 
         {queue.description && (
-          <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mb-4 leading-relaxed">
+          <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mb-4 leading-relaxed font-mono">
             {queue.description}
           </p>
         )}
 
         {/* Live Serving Banner if any */}
         {currentlyServing ? (
-          <div className="mb-4 p-3 rounded-lg bg-sky-50 dark:bg-slate-950 border border-sky-100 dark:border-slate-800 flex items-center justify-between">
+          <div className="mb-4 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/25 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <span className="w-2 h-2 rounded-full bg-sky-500 animate-ping" />
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
               <div>
-                <span className="text-[10px] uppercase font-bold tracking-wider text-sky-700 dark:text-sky-400">
-                  Serving Now
+                <span className="text-[10px] font-mono font-bold tracking-wider text-emerald-600 dark:text-emerald-400 uppercase">
+                  DISPATCH SERVING
                 </span>
-                <p className="text-xs font-semibold text-slate-900 dark:text-white">
+                <p className="text-xs font-semibold text-slate-900 dark:text-white font-mono">
                   {currentlyServing.tokenNumber} - {currentlyServing.customerName}
                 </p>
               </div>
             </div>
-            <span className="text-[10px] text-sky-700 dark:text-slate-300 bg-sky-100 dark:bg-slate-800 px-2 py-0.5 rounded font-mono font-medium">
+            <span className="text-[10px] text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded font-mono font-bold border border-emerald-500/25">
               ACTIVE
             </span>
           </div>
         ) : (
-          <div className="mb-4 p-2.5 rounded-lg bg-slate-50 dark:bg-slate-950 border border-slate-200/60 dark:border-slate-800 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-            <Radio className="w-3.5 h-3.5 text-slate-400" />
-            <span>Counter idle • No customer serving</span>
+          <div className="mb-4 p-2.5 rounded-xl bg-slate-50 dark:bg-[#080B11] border border-slate-200/60 dark:border-white/[0.06] flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-mono">
+            <Radio className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Telemetry idle • Counter in standby</span>
           </div>
         )}
 
         {/* Status Metrics Grid */}
-        <div className="grid grid-cols-4 gap-2 py-3 border-y border-slate-100 dark:border-slate-800 my-3 text-center">
+        <div className="grid grid-cols-4 gap-2 py-3 border-y border-slate-100 dark:border-white/[0.08] my-3 text-center font-mono">
           <div>
             <span className="text-[10px] font-medium text-slate-400 block uppercase">
               Waiting
             </span>
-            <span className="text-sm font-bold text-sky-600 dark:text-sky-400">
+            <span className="text-sm font-bold text-cyan-600 dark:text-cyan-400">
               {stats.waitingCount || 0}
             </span>
           </div>
@@ -118,13 +118,13 @@ const QueueCard = ({ queue, onEdit, onDelete }) => {
       </div>
 
       {/* Card Footer */}
-      <div className="pt-2 flex items-center justify-between">
-        <span className="text-[11px] text-slate-400">
+      <div className="pt-2 flex items-center justify-between font-mono">
+        <span className="text-[10px] text-slate-400">
           Created {formatDateTime(queue.createdAt)}
         </span>
         <button
           onClick={() => navigate(`/queues/${queue._id}`)}
-          className="flex items-center gap-1.5 text-xs font-semibold text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 transition-colors cursor-pointer"
+          className="flex items-center gap-1.5 text-xs font-semibold text-cyan-600 dark:text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer"
         >
           <span>Open Console</span>
           <ArrowRight className="w-3.5 h-3.5" />

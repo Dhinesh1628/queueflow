@@ -56,7 +56,7 @@ const EditQueueModal = ({ isOpen, onClose, queue, onQueueUpdated }) => {
     >
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+          <label className="block text-[11px] font-mono uppercase tracking-wider text-slate-700 dark:text-cyan-400/80 mb-1.5">
             Queue Name *
           </label>
           <input
@@ -64,13 +64,13 @@ const EditQueueModal = ({ isOpen, onClose, queue, onQueueUpdated }) => {
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors"
+            className="w-full bg-slate-50 dark:bg-[#080B11] border border-slate-200 dark:border-white/10 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30 transition-all placeholder:text-slate-500"
           />
         </div>
 
         <div className="grid grid-cols-3 gap-3">
           <div className="col-span-1">
-            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-[11px] font-mono uppercase tracking-wider text-slate-700 dark:text-cyan-400/80 mb-1.5">
               Prefix
             </label>
             <input
@@ -78,38 +78,38 @@ const EditQueueModal = ({ isOpen, onClose, queue, onQueueUpdated }) => {
               maxLength={5}
               value={prefix}
               onChange={(e) => setPrefix(e.target.value.toUpperCase())}
-              className="w-full uppercase font-mono bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors"
+              className="w-full uppercase font-mono bg-slate-50 dark:bg-[#080B11] border border-slate-200 dark:border-white/10 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 dark:text-cyan-300 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30 transition-all"
             />
           </div>
 
           <div className="col-span-2">
-            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+            <label className="block text-[11px] font-mono uppercase tracking-wider text-slate-700 dark:text-cyan-400/80 mb-1.5">
               Description
             </label>
             <input
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-colors"
+              className="w-full bg-slate-50 dark:bg-[#080B11] border border-slate-200 dark:border-white/10 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30 transition-all placeholder:text-slate-500"
             />
           </div>
         </div>
 
-        <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+        <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-100 dark:border-white/[0.08]">
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-colors cursor-pointer"
+            className="px-4 py-2 text-xs font-mono uppercase text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-white/[0.04] border border-transparent dark:border-white/[0.06] hover:bg-slate-200 dark:hover:bg-white/[0.08] rounded-lg transition-colors cursor-pointer"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={loading}
-            className="flex items-center gap-2 px-4 py-2 bg-sky-600 hover:bg-sky-500 disabled:opacity-50 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-mono font-bold tracking-wide rounded-lg shadow-md shadow-cyan-500/20 disabled:opacity-50 transition-all cursor-pointer"
           >
             <Check className="w-4 h-4" />
-            <span>{loading ? 'Saving...' : 'Save Changes'}</span>
+            <span>{loading ? 'SAVING...' : 'SAVE CHANGES'}</span>
           </button>
         </div>
       </form>

@@ -34,7 +34,7 @@ const ConfirmDialog = ({
             type="button"
             onClick={onClose}
             disabled={isLoading}
-            className="px-4 py-2 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700/80 rounded-xl transition-colors cursor-pointer"
+            className="px-4 py-2 text-xs font-mono uppercase text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] border border-transparent dark:border-white/[0.08] dark:hover:bg-white/[0.08] rounded-xl transition-colors cursor-pointer"
           >
             {cancelText}
           </button>
@@ -42,10 +42,10 @@ const ConfirmDialog = ({
             type="button"
             onClick={onConfirm}
             disabled={isLoading}
-            className={`px-4 py-2 text-xs font-semibold rounded-xl text-white shadow-xs transition-all cursor-pointer ${
+            className={`px-4 py-2 text-xs font-mono font-bold uppercase rounded-xl text-white shadow-md transition-all cursor-pointer ${
               isDanger
-                ? 'bg-rose-600 hover:bg-rose-500'
-                : 'bg-sky-600 hover:bg-sky-500'
+                ? 'bg-rose-600 hover:bg-rose-500 shadow-rose-900/30'
+                : 'bg-cyan-500 hover:bg-cyan-400 text-slate-950 shadow-cyan-500/25'
             } disabled:opacity-50`}
           >
             {isLoading ? 'Processing...' : confirmText}

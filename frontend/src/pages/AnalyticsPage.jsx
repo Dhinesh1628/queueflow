@@ -62,18 +62,18 @@ const AnalyticsPage = () => {
   const charts = analytics?.charts || {};
 
   const statusColors = {
-    WAITING: '#0284c7', // Sky
-    SERVING: '#d97706', // Amber
-    COMPLETED: '#059669', // Emerald
-    CANCELLED: '#e11d48', // Rose
+    WAITING: '#06B6D4', // Electric Cyan
+    SERVING: '#F59E0B', // Tach Amber
+    COMPLETED: '#10B981', // Laser Emerald
+    CANCELLED: '#EF4444', // Crimson
   };
 
-  // Custom Tooltip for Recharts with Light/Dark support
+  // Custom Tooltip for Recharts with Cockpit Glass support
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 rounded-lg shadow-lg dark:shadow-xl text-xs space-y-1">
-          <p className="font-bold text-slate-800 dark:text-slate-200">{label}</p>
+        <div className="bg-white dark:bg-[#080B11] border border-slate-200 dark:border-white/10 p-3 rounded-lg shadow-2xl text-xs space-y-1 font-mono">
+          <p className="font-bold text-slate-800 dark:text-cyan-300">{label}</p>
           {payload.map((item, index) => (
             <p key={index} style={{ color: item.color }} className="font-medium">
               {item.name}: <span className="font-bold">{item.value}</span>
@@ -95,24 +95,24 @@ const AnalyticsPage = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2">
         <div>
           <div className="flex items-center gap-2">
-            <BarChart3 className="w-5 h-5 text-sky-600 dark:text-sky-400" />
-            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-              Operational Analytics
+            <BarChart3 className="w-5 h-5 text-cyan-500 dark:text-cyan-400" />
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight font-mono">
+              TELEMETRY & OPERATIONAL ANALYTICS
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-            Real database metrics calculated from token creation and service timestamps
+          <p className="text-xs sm:text-sm font-mono text-slate-500 dark:text-slate-400 mt-0.5">
+            DATABASE METRICS DERIVED FROM ATOMIC TICKET CREATION & SERVICE DELTAS
           </p>
         </div>
 
         {/* Date Filter & Refresh */}
         <div className="flex items-center gap-2.5">
-          <div className="inline-flex bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg p-1 text-xs">
+          <div className="inline-flex bg-slate-100 dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] rounded-lg p-1 text-xs font-mono uppercase">
             <button
               onClick={() => setTimeframe('today')}
-              className={`px-3 py-1.5 rounded-md font-semibold transition-colors cursor-pointer ${
+              className={`px-3 py-1.5 rounded-md font-semibold transition-all cursor-pointer ${
                 timeframe === 'today'
-                  ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs'
+                  ? 'bg-cyan-500 text-slate-950 font-bold shadow-md shadow-cyan-500/20'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
@@ -120,33 +120,33 @@ const AnalyticsPage = () => {
             </button>
             <button
               onClick={() => setTimeframe('7d')}
-              className={`px-3 py-1.5 rounded-md font-semibold transition-colors cursor-pointer ${
+              className={`px-3 py-1.5 rounded-md font-semibold transition-all cursor-pointer ${
                 timeframe === '7d'
-                  ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs'
+                  ? 'bg-cyan-500 text-slate-950 font-bold shadow-md shadow-cyan-500/20'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              Last 7 Days
+              7 Days
             </button>
             <button
               onClick={() => setTimeframe('30d')}
-              className={`px-3 py-1.5 rounded-md font-semibold transition-colors cursor-pointer ${
+              className={`px-3 py-1.5 rounded-md font-semibold transition-all cursor-pointer ${
                 timeframe === '30d'
-                  ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-xs'
+                  ? 'bg-cyan-500 text-slate-950 font-bold shadow-md shadow-cyan-500/20'
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              Last 30 Days
+              30 Days
             </button>
           </div>
 
           <button
             onClick={() => fetchAnalytics(true)}
             disabled={refreshing}
-            className="p-2 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
+            className="p-2 rounded-lg bg-slate-100 dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:dark:border-cyan-500/30 transition-all cursor-pointer"
             title="Refresh Analytics"
           >
-            <RefreshCw className={`w-4 h-4 ${refreshing ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`w-4 h-4 text-cyan-400 ${refreshing ? 'animate-spin' : ''}`} />
           </button>
         </div>
       </div>
@@ -201,12 +201,12 @@ const AnalyticsPage = () => {
       {/* Primary Charts Row 1 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Chart 1: Queue Volume / Length Trend */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs dark:shadow-sm">
+        <div className="bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] rounded-xl p-5 shadow-xs dark:shadow-md">
           <div className="mb-4">
-            <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">
-              Queue Load & Volume Trend
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight font-mono">
+              QUEUE LOAD & VOLUME TREND
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+            <p className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-0.5">
               Daily tokens received versus resolved over selected timeframe
             </p>
           </div>
@@ -217,7 +217,7 @@ const AnalyticsPage = () => {
                 data={charts.queueLengthTrend || []}
                 margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
               >
-                <CartesianGrid strokeDasharray="3 3" stroke="#94a3b8" strokeOpacity={0.2} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#334155" strokeOpacity={0.2} />
                 <XAxis dataKey="label" stroke="#64748B" fontSize={11} tickLine={false} />
                 <YAxis stroke="#64748B" fontSize={11} tickLine={false} allowDecimals={false} />
                 <Tooltip content={<CustomTooltip />} />
@@ -229,18 +229,18 @@ const AnalyticsPage = () => {
                   type="monotone"
                   dataKey="tokensReceived"
                   name="Tokens Issued"
-                  stroke="#0284c7"
+                  stroke="#06B6D4"
                   strokeWidth={2}
-                  fill="#0284c7"
+                  fill="#06B6D4"
                   fillOpacity={0.15}
                 />
                 <Area
                   type="monotone"
                   dataKey="tokensCompleted"
                   name="Tokens Completed"
-                  stroke="#059669"
+                  stroke="#10B981"
                   strokeWidth={2}
-                  fill="#059669"
+                  fill="#10B981"
                   fillOpacity={0.15}
                 />
               </AreaChart>
@@ -249,19 +249,19 @@ const AnalyticsPage = () => {
         </div>
 
         {/* Chart 2: Token Status Distribution */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs dark:shadow-sm">
+        <div className="bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] rounded-xl p-5 shadow-xs dark:shadow-md">
           <div className="mb-4">
-            <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">
-              Token Status Breakdown
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight font-mono">
+              TOKEN STATUS BREAKDOWN
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+            <p className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-0.5">
               Current lifecycle distribution across all counter tickets
             </p>
           </div>
 
           <div className="h-64 w-full flex items-center justify-center">
             {charts.statusDistribution?.every((s) => s.value === 0) ? (
-              <p className="text-xs text-slate-500">No token activity in this timeframe.</p>
+              <p className="text-xs font-mono text-slate-500">NO TOKEN ACTIVITY IN THIS TIMEFRAME.</p>
             ) : (
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
@@ -277,8 +277,8 @@ const AnalyticsPage = () => {
                     {charts.statusDistribution?.map((entry, index) => (
                       <Cell
                         key={`cell-${index}`}
-                        fill={statusColors[entry.key] || '#0284c7'}
-                        stroke="#0F172A"
+                        fill={statusColors[entry.key] || '#06B6D4'}
+                        stroke="#080B11"
                         strokeWidth={2}
                       />
                     ))}
@@ -295,23 +295,23 @@ const AnalyticsPage = () => {
         </div>
       </div>
 
-      {/* Row 2: Queue Performance Comparison & Daily Activity */}
+      {/* Row 2: Queue Throughput & Daily Activity */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Chart 3: Queue Performance Comparison */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs dark:shadow-sm">
+        <div className="bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] rounded-xl p-5 shadow-xs dark:shadow-md">
           <div className="mb-4">
-            <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">
-              Queue Throughput Comparison
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight font-mono">
+              QUEUE THROUGHPUT COMPARISON
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+            <p className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-0.5">
               Completed vs Waiting tokens across counters
             </p>
           </div>
 
           <div className="h-64 w-full">
             {charts.queuePerformance?.length === 0 ? (
-              <div className="h-full flex items-center justify-center text-xs text-slate-500">
-                No queues created yet.
+              <div className="h-full flex items-center justify-center text-xs font-mono text-slate-500">
+                NO QUEUES CONFIGURED YET.
               </div>
             ) : (
               <ResponsiveContainer width="100%" height="100%">
@@ -319,7 +319,7 @@ const AnalyticsPage = () => {
                   data={charts.queuePerformance || []}
                   margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" stroke="#94a3b8" strokeOpacity={0.2} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#334155" strokeOpacity={0.2} />
                   <XAxis dataKey="name" stroke="#64748B" fontSize={11} tickLine={false} />
                   <YAxis stroke="#64748B" fontSize={11} tickLine={false} allowDecimals={false} />
                   <Tooltip content={<CustomTooltip />} />
@@ -330,13 +330,13 @@ const AnalyticsPage = () => {
                   <Bar
                     dataKey="completed"
                     name="Completed"
-                    fill="#059669"
+                    fill="#10B981"
                     radius={[3, 3, 0, 0]}
                   />
                   <Bar
                     dataKey="waiting"
                     name="Waiting"
-                    fill="#0284c7"
+                    fill="#06B6D4"
                     radius={[3, 3, 0, 0]}
                   />
                 </BarChart>
@@ -346,12 +346,12 @@ const AnalyticsPage = () => {
         </div>
 
         {/* Chart 4: Daily Activity Breakdown */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-xs dark:shadow-sm">
+        <div className="bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] rounded-xl p-5 shadow-xs dark:shadow-md">
           <div className="mb-4">
-            <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight">
-              Daily Operational Volume
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white tracking-tight font-mono">
+              DAILY OPERATIONAL VOLUME
             </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+            <p className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-0.5">
               Created, Completed, and Cancelled ticket counts
             </p>
           </div>
@@ -362,7 +362,7 @@ const AnalyticsPage = () => {
                 data={charts.dailyActivity || []}
                 margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
               >
-                <CartesianGrid strokeDasharray="3 3" stroke="#94a3b8" strokeOpacity={0.2} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#334155" strokeOpacity={0.2} />
                 <XAxis dataKey="label" stroke="#64748B" fontSize={11} tickLine={false} />
                 <YAxis stroke="#64748B" fontSize={11} tickLine={false} allowDecimals={false} />
                 <Tooltip content={<CustomTooltip />} />
@@ -373,19 +373,19 @@ const AnalyticsPage = () => {
                 <Bar
                   dataKey="created"
                   name="Created"
-                  fill="#0284c7"
+                  fill="#06B6D4"
                   radius={[3, 3, 0, 0]}
                 />
                 <Bar
                   dataKey="completed"
                   name="Completed"
-                  fill="#059669"
+                  fill="#10B981"
                   radius={[3, 3, 0, 0]}
                 />
                 <Bar
                   dataKey="cancelled"
                   name="Cancelled"
-                  fill="#e11d48"
+                  fill="#EF4444"
                   radius={[3, 3, 0, 0]}
                 />
               </BarChart>

@@ -96,14 +96,15 @@ const OverviewPage = () => {
       {/* Top Banner & Quick Action Buttons */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2">
         <div>
-          <nav aria-label="Breadcrumb" className="text-xs text-slate-500 dark:text-slate-400 mb-1">
-            <span>Dashboard</span> <span className="mx-1">/</span> <span className="text-slate-900 dark:text-slate-200 font-semibold">Overview</span>
+          <nav aria-label="Breadcrumb" className="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-cyan-400/70 mb-1">
+            <span>DASHBOARD</span> <span className="mx-1 text-slate-600">/</span> <span className="text-slate-900 dark:text-cyan-300 font-bold">OVERVIEW_TELEMETRY</span>
           </nav>
-          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
-            Queue Operations Control
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
+            <span>Queue Operations Control</span>
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse hidden sm:inline-block" />
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-            Real-time multi-counter tracking and live token dispatching
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5 font-mono">
+            LIVE MULTI-COUNTER DISPATCH · REAL-TIME TELEMETRY FEED
           </p>
         </div>
 
@@ -111,27 +112,27 @@ const OverviewPage = () => {
           <button
             onClick={() => loadDashboardData(true)}
             disabled={refreshing}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 shadow-xs transition-colors cursor-pointer"
+            className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] hover:dark:border-cyan-500/40 text-xs font-mono uppercase text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-all cursor-pointer"
           >
-            <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin' : ''}`} />
-            <span>Refresh</span>
+            <RefreshCw className={`w-3.5 h-3.5 text-cyan-400 ${refreshing ? 'animate-spin' : ''}`} />
+            <span>SYNC</span>
           </button>
 
           <button
             onClick={() => setCreateTokenOpen(true)}
             disabled={queues.length === 0}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-800 dark:text-white shadow-xs transition-colors cursor-pointer disabled:opacity-40"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-[#0D121F] dark:hover:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] hover:dark:border-cyan-500/40 text-xs font-mono uppercase font-semibold text-slate-800 dark:text-cyan-300 shadow-xs transition-all cursor-pointer disabled:opacity-40"
           >
             <Plus className="w-3.5 h-3.5" />
-            <span>Add Person</span>
+            <span>DISPATCH TICKET</span>
           </button>
 
           <button
             onClick={() => setCreateQueueOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-xs font-semibold text-white shadow-sm transition-colors cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-xs font-mono font-bold uppercase tracking-wider text-slate-950 shadow-md shadow-cyan-500/20 transition-all cursor-pointer"
           >
-            <Plus className="w-4 h-4" />
-            <span>Create Queue</span>
+            <Plus className="w-4 h-4 stroke-[2.5]" />
+            <span>CREATE QUEUE</span>
           </button>
         </div>
       </div>
@@ -164,7 +165,7 @@ const OverviewPage = () => {
           value={kpis.currentlyServing ?? 0}
           subtext="At active counters"
           icon={UserCheck}
-          color="sky"
+          color="emerald"
         />
         <StatCard
           title="Completed Today"
@@ -186,29 +187,29 @@ const OverviewPage = () => {
       <div>
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <Layers className="w-5 h-5 text-sky-600 dark:text-sky-400" />
-            <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">
-              Counter Queues
+            <Layers className="w-5 h-5 text-cyan-500 dark:text-cyan-400" />
+            <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight font-mono">
+              ACTIVE COUNTER CONSOLES
             </h3>
-            <span className="px-2 py-0.5 rounded text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
-              {queues.length} {queues.length === 1 ? 'Queue' : 'Queues'}
+            <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-slate-100 dark:bg-white/[0.04] text-cyan-700 dark:text-cyan-300 border border-slate-200 dark:border-white/[0.08]">
+              {queues.length} {queues.length === 1 ? 'CONSOLE' : 'CONSOLES'}
             </span>
           </div>
 
           {queues.length > 0 && (
             <button
               onClick={() => navigate('/queues')}
-              className="text-xs font-semibold text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 flex items-center gap-1 cursor-pointer"
+              className="text-xs font-mono uppercase tracking-wider text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 flex items-center gap-1 cursor-pointer"
             >
-              <span>Manage all queues</span>
+              <span>ALL QUEUES</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           )}
         </div>
 
         {queues.length === 0 ? (
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-8 sm:p-12 text-center flex flex-col items-center justify-center shadow-xs">
-            <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 mb-4">
+          <div className="bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] rounded-xl p-8 sm:p-12 text-center flex flex-col items-center justify-center shadow-xs">
+            <div className="w-12 h-12 rounded-xl bg-slate-100 dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] flex items-center justify-center text-cyan-400 mb-4 shadow-inner">
               <Layers className="w-6 h-6" />
             </div>
             <h4 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
@@ -219,9 +220,9 @@ const OverviewPage = () => {
             </p>
             <button
               onClick={() => setCreateQueueOpen(true)}
-              className="flex items-center gap-2 px-5 py-2.5 bg-sky-600 hover:bg-sky-500 text-white font-semibold text-xs rounded-lg shadow-sm transition-colors cursor-pointer"
+              className="flex items-center gap-2 px-5 py-2.5 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-mono font-bold text-xs uppercase tracking-wider rounded-lg shadow-md shadow-cyan-500/20 transition-all cursor-pointer"
             >
-              <Plus className="w-4 h-4" />
+              <Plus className="w-4 h-4 stroke-[2.5]" />
               <span>Create Your First Queue</span>
             </button>
           </div>
@@ -240,29 +241,29 @@ const OverviewPage = () => {
       </div>
 
       {/* Recent Activity Section */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 sm:p-6 shadow-xs dark:shadow-sm">
+      <div className="bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] rounded-xl p-5 sm:p-6 shadow-xs dark:shadow-md">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <Clock className="w-5 h-5 text-sky-600 dark:text-sky-400" />
-            <h3 className="text-base font-bold text-slate-900 dark:text-white tracking-tight">
-              Recent Activity Feed
+            <Clock className="w-5 h-5 text-cyan-500 dark:text-cyan-400" />
+            <h3 className="text-base font-bold text-slate-900 dark:text-white tracking-tight font-mono">
+              RECENT DISPATCH FEED
             </h3>
           </div>
           <button
             onClick={() => navigate('/history')}
-            className="text-xs font-semibold text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 flex items-center gap-1 cursor-pointer"
+            className="text-xs font-mono uppercase tracking-wider text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 flex items-center gap-1 cursor-pointer"
           >
-            <span>View Full Audit Log</span>
+            <span>FULL AUDIT LOG</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
         {recentTokens.length === 0 ? (
-          <p className="text-xs text-slate-500 text-center py-8">
-            No token activity recorded yet.
+          <p className="text-xs font-mono text-slate-500 text-center py-8">
+            NO DISPATCH ACTIVITY RECORDED YET.
           </p>
         ) : (
-          <div className="divide-y divide-slate-100 dark:divide-slate-800">
+          <div className="divide-y divide-slate-100 dark:divide-white/[0.06]">
             {recentTokens.map((token) => {
               const badge = getStatusBadgeStyle(token.status);
               return (
@@ -271,14 +272,14 @@ const OverviewPage = () => {
                   className="py-3 flex items-center justify-between gap-3 text-xs"
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-950 text-sky-700 dark:text-sky-400 border border-slate-200 dark:border-slate-800 shrink-0">
+                    <span className="font-mono font-bold text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-[#080B11] text-cyan-600 dark:text-cyan-300 border border-slate-200 dark:border-cyan-500/20 shrink-0">
                       {token.tokenNumber}
                     </span>
                     <div className="min-w-0 truncate">
                       <p className="font-semibold text-slate-900 dark:text-white truncate">
                         {token.customerName}
                       </p>
-                      <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">
+                      <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400 truncate">
                         {token.queueId?.name || 'Counter'}
                       </p>
                     </div>
@@ -286,12 +287,12 @@ const OverviewPage = () => {
 
                   <div className="flex items-center gap-4 shrink-0">
                     <span
-                      className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-semibold ${badge.bg}`}
+                      className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-[11px] font-mono font-medium ${badge.bg}`}
                     >
                       <span className={`w-1.5 h-1.5 rounded-full ${badge.dot}`} />
                       {badge.label}
                     </span>
-                    <span className="text-[11px] text-slate-500 dark:text-slate-400 hidden sm:inline-block">
+                    <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 hidden sm:inline-block">
                       {formatTimeAgo(token.createdAt)}
                     </span>
                   </div>

@@ -42,21 +42,20 @@
         "description": "Enterprise Queue Operations & Customer Waiting Line Management Platform"
       }
     </script>
-    <!-- Theme Preload Script to prevent flicker -->
+    <!-- Theme Preload Script: Cockpit Dark Foundation -->
     <script>
       (function() {
-        var theme = localStorage.getItem('queueflow_theme') || 'light';
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
-          document.documentElement.style.colorScheme = 'dark';
-        } else {
+        var theme = localStorage.getItem('queueflow_theme') || 'dark';
+        document.documentElement.classList.add('dark');
+        document.documentElement.style.colorScheme = 'dark';
+        if (theme === 'light') {
           document.documentElement.classList.remove('dark');
           document.documentElement.style.colorScheme = 'light';
         }
       })();
     </script>
   </head>
-  <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased selection:bg-sky-500/20 selection:text-sky-600 dark:selection:text-sky-200 min-h-screen">
+  <body class="bg-[#080B11] text-slate-100 antialiased selection:bg-cyan-500/25 selection:text-cyan-300 min-h-screen">
     <!-- Skip to main content link for accessibility -->
     <a
       href="#main-content"

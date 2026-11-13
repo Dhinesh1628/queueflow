@@ -191,12 +191,12 @@ const QueueDetailPage = () => {
   return (
     <div className="space-y-6" id="main-content">
       {/* Breadcrumb Navigation */}
-      <nav aria-label="Breadcrumb" className="text-xs text-slate-500 dark:text-slate-400">
-        <Link to="/" className="hover:text-slate-900 dark:hover:text-white transition-colors">Dashboard</Link>
-        <span className="mx-1.5">/</span>
-        <Link to="/queues" className="hover:text-slate-900 dark:hover:text-white transition-colors">My Queues</Link>
-        <span className="mx-1.5">/</span>
-        <span className="text-slate-900 dark:text-slate-200 font-semibold">{queue.name}</span>
+      <nav aria-label="Breadcrumb" className="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-cyan-400/70">
+        <Link to="/" className="hover:text-cyan-400 transition-colors">DASHBOARD</Link>
+        <span className="mx-1.5 text-slate-600">/</span>
+        <Link to="/queues" className="hover:text-cyan-400 transition-colors">QUEUES</Link>
+        <span className="mx-1.5 text-slate-600">/</span>
+        <span className="text-slate-900 dark:text-cyan-300 font-bold">{queue.name}</span>
       </nav>
 
       {/* Top Header Bar */}
@@ -204,14 +204,14 @@ const QueueDetailPage = () => {
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate('/queues')}
-            className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 shadow-xs transition-colors cursor-pointer"
+            className="p-2 rounded-lg bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.04] hover:dark:border-cyan-500/30 shadow-xs transition-all cursor-pointer"
             title="Return to Queues list"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-950 text-sky-600 dark:text-sky-400 border border-slate-200 dark:border-slate-800">
+              <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-slate-100 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border border-slate-200 dark:border-cyan-500/30">
                 {queue.prefix}
               </span>
               <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
@@ -219,7 +219,7 @@ const QueueDetailPage = () => {
               </h2>
             </div>
             {queue.description && (
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{queue.description}</p>
+              <p className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-1">{queue.description}</p>
             )}
           </div>
         </div>
@@ -228,42 +228,42 @@ const QueueDetailPage = () => {
         <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={handleCopyLink}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] hover:dark:border-cyan-500/40 text-xs font-mono uppercase text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-all cursor-pointer"
             title="Copy queue URL"
           >
-            {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
-            <span>{copiedLink ? 'Copied' : 'Share Link'}</span>
+            {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-cyan-400" />}
+            <span>{copiedLink ? 'COPIED' : 'SHARE LINK'}</span>
           </button>
 
           <button
             onClick={() => window.print()}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] hover:dark:border-cyan-500/40 text-xs font-mono uppercase text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-all cursor-pointer"
             title="Print queue list"
           >
-            <Printer className="w-3.5 h-3.5" />
-            <span>Print Sheet</span>
+            <Printer className="w-3.5 h-3.5 text-cyan-400" />
+            <span>PRINT SHEET</span>
           </button>
 
           <button
             onClick={() => loadQueueData(true)}
             disabled={refreshing}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] hover:dark:border-cyan-500/40 text-xs font-mono uppercase text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-all cursor-pointer"
           >
-            <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin' : ''}`} />
-            <span>Sync</span>
+            <RefreshCw className={`w-3.5 h-3.5 text-cyan-400 ${refreshing ? 'animate-spin' : ''}`} />
+            <span>SYNC</span>
           </button>
 
           <button
             onClick={() => setEditQueueOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] hover:dark:border-cyan-500/40 text-xs font-mono uppercase text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-all cursor-pointer"
           >
-            <Edit2 className="w-3.5 h-3.5" />
-            <span>Edit</span>
+            <Edit2 className="w-3.5 h-3.5 text-cyan-400" />
+            <span>EDIT</span>
           </button>
 
           <button
             onClick={() => setDeleteQueueOpen(true)}
-            className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-slate-100 dark:hover:bg-slate-800 shadow-xs transition-colors cursor-pointer"
+            className="p-2 rounded-lg bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] hover:dark:border-rose-500/40 text-slate-500 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-slate-100 dark:hover:bg-white/[0.04] shadow-xs transition-all cursor-pointer"
             title="Delete Queue"
           >
             <Trash2 className="w-4 h-4" />
@@ -271,10 +271,10 @@ const QueueDetailPage = () => {
 
           <button
             onClick={() => setCreateTokenOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-mono font-bold uppercase tracking-wider rounded-lg shadow-md shadow-cyan-500/20 transition-all cursor-pointer"
           >
-            <Plus className="w-4 h-4" />
-            <span>Add Person</span>
+            <Plus className="w-4 h-4 stroke-[2.5]" />
+            <span>DISPATCH TICKET</span>
           </button>
         </div>
       </div>

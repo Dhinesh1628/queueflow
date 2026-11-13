@@ -33,36 +33,36 @@ const Sidebar = ({ isOpen, onClose }) => {
         />
       )}
 
-      {/* Sidebar container matching CKD dashboard structure */}
+      {/* Sidebar container matching CarWhisperer Cockpit structure */}
       <aside
-        className={`fixed top-0 bottom-0 left-0 z-40 w-64 bg-white dark:bg-slate-900 border-r border-slate-200/90 dark:border-slate-800 flex flex-col transition-transform duration-200 ease-in-out lg:translate-x-0 ${
+        className={`fixed top-0 bottom-0 left-0 z-40 w-64 bg-white dark:bg-[#0B0F19] border-r border-slate-200/90 dark:border-white/[0.08] flex flex-col transition-transform duration-200 ease-in-out lg:translate-x-0 ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         {/* Brand Header */}
-        <div className="h-16 flex items-center px-6 border-b border-slate-200/80 dark:border-slate-800">
+        <div className="h-16 flex items-center px-6 border-b border-slate-200/80 dark:border-white/[0.08]">
           <Link to="/" onClick={onClose} className="flex items-center gap-3 group">
-            <div className="w-8 h-8 rounded-lg bg-sky-600 flex items-center justify-center text-white font-bold text-sm tracking-wide shadow-sm">
+            <div className="w-8 h-8 rounded-lg bg-cyan-500 flex items-center justify-center text-[#080B11] font-extrabold text-sm tracking-wide shadow-[0_0_14px_rgba(6,182,212,0.45)]">
               QF
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="font-bold text-base text-slate-900 dark:text-white tracking-tight group-hover:text-sky-600 transition-colors">
+                <span className="font-bold text-base text-slate-900 dark:text-white tracking-tight group-hover:text-cyan-400 transition-colors">
                   QueueFlow
                 </span>
-                <span className="px-1.5 py-0.2 text-[10px] font-semibold bg-sky-50 text-sky-700 dark:bg-slate-800 dark:text-slate-300 rounded border border-sky-100 dark:border-slate-700">
-                  CKD
+                <span className="px-1.5 py-0.5 text-[10px] font-mono font-semibold bg-cyan-500/10 text-cyan-400 rounded border border-cyan-500/25">
+                  COCKPIT
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400">Queue Operations Console</p>
+              <p className="text-[10px] text-slate-500 dark:text-slate-400 font-mono tracking-wider uppercase">Command Telemetry</p>
             </div>
           </Link>
         </div>
 
         {/* Navigation Links */}
         <div className="flex-1 px-3 py-5 space-y-1 overflow-y-auto">
-          <div className="px-3 pb-2 text-[11px] font-semibold tracking-wider text-slate-400 uppercase">
-            Management
+          <div className="px-3 pb-2 text-[10px] font-mono font-semibold tracking-widest text-slate-400 dark:text-slate-500 uppercase">
+            TELEMETRY SYSTEMS
           </div>
 
           {navItems.map((item) => {
@@ -74,10 +74,10 @@ const Sidebar = ({ isOpen, onClose }) => {
                 end={item.to === '/'}
                 onClick={onClose}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-xs font-medium transition-all ${
+                  `flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-xs transition-all ${
                     isActive
-                      ? 'bg-sky-50 text-sky-700 dark:bg-slate-800 dark:text-white font-semibold shadow-xs'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-slate-800/60'
+                      ? 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-300 font-semibold border border-cyan-500/25 shadow-[0_0_12px_rgba(6,182,212,0.1)]'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-white/[0.04]'
                   }`
                 }
               >
@@ -87,13 +87,13 @@ const Sidebar = ({ isOpen, onClose }) => {
             );
           })}
 
-          <div className="pt-6 px-3 pb-2 text-[11px] font-semibold tracking-wider text-slate-400 uppercase">
-            Legal & Compliance
+          <div className="pt-6 px-3 pb-2 text-[10px] font-mono font-semibold tracking-widest text-slate-400 dark:text-slate-500 uppercase">
+            LEGAL COMPLIANCE
           </div>
           <Link
             to="/privacy"
             onClick={onClose}
-            className="flex items-center gap-3 px-3.5 py-2 rounded-lg text-xs text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-slate-800/60 transition-colors"
+            className="flex items-center gap-3 px-3.5 py-2 rounded-lg text-xs text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-white/[0.04] transition-colors"
           >
             <ShieldCheck className="w-4 h-4 text-slate-400" />
             <span>Privacy Policy</span>
@@ -101,7 +101,7 @@ const Sidebar = ({ isOpen, onClose }) => {
           <Link
             to="/terms"
             onClick={onClose}
-            className="flex items-center gap-3 px-3.5 py-2 rounded-lg text-xs text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-slate-800/60 transition-colors"
+            className="flex items-center gap-3 px-3.5 py-2 rounded-lg text-xs text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/70 dark:hover:bg-white/[0.04] transition-colors"
           >
             <HelpCircle className="w-4 h-4 text-slate-400" />
             <span>Terms of Service</span>
@@ -109,10 +109,10 @@ const Sidebar = ({ isOpen, onClose }) => {
         </div>
 
         {/* Footer / User Profile Card */}
-        <div className="p-3 border-t border-slate-200/80 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/60">
-          <div className="flex items-center justify-between gap-3 p-2.5 rounded-lg bg-white dark:bg-slate-950 border border-slate-200/80 dark:border-slate-800 shadow-xs">
+        <div className="p-3 border-t border-slate-200/80 dark:border-white/[0.08] bg-slate-50/50 dark:bg-[#0B0F19]">
+          <div className="flex items-center justify-between gap-3 p-2.5 rounded-lg bg-white dark:bg-[#0E1526] border border-slate-200/80 dark:border-white/[0.08] shadow-xs">
             <div className="flex items-center gap-2.5 min-w-0">
-              <div className="w-8 h-8 rounded-md bg-sky-100 dark:bg-slate-800 text-sky-700 dark:text-slate-200 flex items-center justify-center font-bold text-xs uppercase shrink-0">
+              <div className="w-8 h-8 rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/25 flex items-center justify-center font-mono font-bold text-xs uppercase shrink-0">
                 {manager?.name ? manager.name.charAt(0) : 'M'}
               </div>
               <div className="min-w-0 truncate">
@@ -121,7 +121,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                 </p>
                 <a
                   href={`mailto:${manager?.email}`}
-                  className="text-[11px] text-slate-400 hover:text-sky-600 truncate block transition-colors"
+                  className="text-[11px] text-slate-400 hover:text-cyan-400 truncate block transition-colors font-mono"
                   title="Click to send email"
                 >
                   {manager?.email || ''}
@@ -131,7 +131,7 @@ const Sidebar = ({ isOpen, onClose }) => {
             <button
               onClick={logout}
               title="Logout"
-              className="p-1.5 rounded-md text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-slate-800 transition-colors shrink-0 cursor-pointer"
+              className="p-1.5 rounded-md text-slate-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors shrink-0 cursor-pointer"
             >
               <LogOut className="w-4 h-4" />
             </button>

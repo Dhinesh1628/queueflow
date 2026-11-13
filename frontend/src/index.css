@@ -6,35 +6,32 @@
   html, body {
     overflow-x: hidden;
     scroll-behavior: smooth;
+    background-color: #080B11;
   }
 
   body {
-    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased min-h-screen font-sans transition-colors duration-150;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    @apply bg-[#080B11] text-slate-100 antialiased min-h-screen font-sans;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum";
   }
 }
 
-/* Custom Scrollbars */
+/* Cockpit Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #080B11;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #1E293B;
   border-radius: 4px;
 }
 
-.dark ::-webkit-scrollbar-thumb {
-  background: #334155;
-}
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #334155;
 }
 
 /* Print Stylesheet */
