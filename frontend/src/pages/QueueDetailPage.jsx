@@ -83,6 +83,35 @@ const QueueDetailPage = () => {
     return () => clearInterval(timer);
   }, [loadQueueData]);
 
+  // Operational Keyboard Hotkeys: Alt+N (Call Next), Alt+C (Complete Service), Alt+A (Add Person)
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      // Ignore if user is currently typing in an input or textarea
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName)) {
+        return;
+      }
+
+      const key = e.key.toLowerCase();
+      if (e.altKey && key === 'n') {
+        e.preventDefault();
+        if (!isCallingNext && waitingTokens.length > 0) {
+          handleCallNext();
+        }
+      } else if (e.altKey && key === 'c') {
+        e.preventDefault();
+        if (!isCompleting && queue?.stats?.currentlyServingToken?._id) {
+          handleCompleteService(queue.stats.currentlyServingToken._id);
+        }
+      } else if (e.altKey && key === 'a') {
+        e.preventDefault();
+        setCreateTokenOpen(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isCallingNext, isCompleting, waitingTokens, queue]);
+
   const handleCallNext = async () => {
     try {
       setIsCallingNext(true);
@@ -272,9 +301,13 @@ const QueueDetailPage = () => {
           <button
             onClick={() => setCreateTokenOpen(true)}
             className="flex items-center gap-2 px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-mono font-bold uppercase tracking-wider rounded-lg shadow-md shadow-cyan-500/20 transition-all cursor-pointer"
+            title="Dispatch new ticket (Shortcut: Alt+A)"
           >
             <Plus className="w-4 h-4 stroke-[2.5]" />
             <span>DISPATCH TICKET</span>
+            <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded text-[9px] font-mono bg-black/25 text-[#080B11] font-extrabold border border-black/20">
+              Alt+A
+            </kbd>
           </button>
         </div>
       </div>

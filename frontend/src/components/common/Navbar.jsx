@@ -1,11 +1,22 @@
-import React from 'react';
-import { Menu, Database, ShieldCheck, Sun, Moon, Search } from 'lucide-react';
+import React, { useState } from 'react';
+import { Menu, Database, ShieldCheck, Sun, Moon, Volume2, VolumeX } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 import { useTheme } from '../../context/ThemeContext';
+import { isSoundEnabled, setSoundEnabled, playCallNextChime } from '../../utils/sound';
 
 const Navbar = ({ onOpenSidebar, pageTitle = 'Dashboard' }) => {
   const { manager } = useAuth();
   const { theme, toggleTheme } = useTheme();
+  const [soundOn, setSoundOn] = useState(isSoundEnabled());
+
+  const handleToggleSound = () => {
+    const nextState = !soundOn;
+    setSoundOn(nextState);
+    setSoundEnabled(nextState);
+    if (nextState) {
+      playCallNextChime();
+    }
+  };
 
   return (
     <header className="sticky top-0 z-30 h-16 bg-white/90 dark:bg-[#080B11]/90 backdrop-blur-md border-b border-slate-200/80 dark:border-white/[0.08] px-4 sm:px-8 flex items-center justify-between transition-colors">
@@ -39,6 +50,20 @@ const Navbar = ({ onOpenSidebar, pageTitle = 'Dashboard' }) => {
           <ShieldCheck className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
           <span>JWT SCOPED</span>
         </div>
+
+        {/* Audio Chime Toggle */}
+        <button
+          onClick={handleToggleSound}
+          title={soundOn ? 'Audio Chimes: Enabled (Click to Mute)' : 'Audio Chimes: Muted (Click to Enable)'}
+          className={`p-2 rounded-lg transition-colors cursor-pointer ${
+            soundOn
+              ? 'text-cyan-600 dark:text-cyan-400 hover:bg-cyan-500/10'
+              : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-200'
+          }`}
+          aria-label="Toggle audio chimes"
+        >
+          {soundOn ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+        </button>
 
         {/* Theme Toggle Button (Light/Dark) */}
         <button

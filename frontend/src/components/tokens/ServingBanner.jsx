@@ -10,6 +10,7 @@ import {
   Radio,
 } from 'lucide-react';
 import { formatDuration } from '../../utils/formatters';
+import { playCallNextChime, playCompleteChime } from '../../utils/sound';
 
 const ServingBanner = ({
   servingToken,
@@ -21,6 +22,16 @@ const ServingBanner = ({
 }) => {
   const [elapsed, setElapsed] = useState('0s');
   const [copied, setCopied] = useState(false);
+
+  const handleComplete = (id) => {
+    playCompleteChime();
+    onCompleteService(id);
+  };
+
+  const handleCall = () => {
+    playCallNextChime();
+    onCallNext();
+  };
 
   useEffect(() => {
     if (!servingToken || !servingToken.serviceStartedAt) {
@@ -106,12 +117,16 @@ const ServingBanner = ({
           {/* Action: Complete Service */}
           <div className="flex items-center gap-3 shrink-0">
             <button
-              onClick={() => onCompleteService(servingToken._id)}
+              onClick={() => handleComplete(servingToken._id)}
               disabled={isCompleting}
               className="flex items-center gap-2 px-6 py-2.5 bg-emerald-500 hover:bg-emerald-400 disabled:opacity-50 text-[#080B11] font-mono font-bold text-xs rounded-xl shadow-[0_0_18px_rgba(16,185,129,0.35)] transition-all cursor-pointer"
+              title="Complete active service (Shortcut: Alt+C)"
             >
               <CheckCircle className="w-4 h-4" />
               <span>{isCompleting ? 'Finalizing...' : 'COMPLETE SERVICE'}</span>
+              <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded text-[9px] font-mono bg-black/25 text-[#080B11] font-extrabold border border-black/20">
+                Alt+C
+              </kbd>
             </button>
           </div>
         </div>
@@ -143,11 +158,15 @@ const ServingBanner = ({
 
           <div className="flex items-center gap-3 shrink-0">
             <button
-              onClick={onCallNext}
+              onClick={handleCall}
               disabled={isCallingNext || waitingCount === 0}
               className="flex items-center gap-2 px-6 py-2.5 bg-cyan-500 hover:bg-cyan-400 disabled:opacity-30 disabled:cursor-not-allowed text-[#080B11] font-mono font-bold text-xs rounded-xl shadow-[0_0_18px_rgba(6,182,212,0.35)] transition-all cursor-pointer"
+              title="Call next customer (Shortcut: Alt+N)"
             >
               <span>{isCallingNext ? 'Dispatching...' : 'CALL NEXT'}</span>
+              <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded text-[9px] font-mono bg-black/25 text-[#080B11] font-extrabold border border-black/20">
+                Alt+N
+              </kbd>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

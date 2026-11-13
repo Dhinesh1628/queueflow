@@ -1,12 +1,74 @@
-import React from 'react';
+import React, { useId } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   ArrowRight,
   Trash2,
   Edit2,
   Radio,
+  TrendingUp,
 } from 'lucide-react';
 import { formatDateTime } from '../../utils/formatters';
+
+const MiniSparkline = ({ waiting = 0, completed = 0, serving = 0 }) => {
+  const gradientId = useId();
+  // Build a 7-point waveform based on queue load dynamics
+  const base = Math.max(1, completed);
+  const w = Math.max(0, waiting);
+  const s = Math.max(0, serving);
+
+  const points = [
+    Math.max(2, Math.round(base * 0.3)),
+    Math.max(3, Math.round(base * 0.55)),
+    Math.max(1, Math.round(base * 0.8)),
+    Math.max(4, Math.round(base * 0.65 + w * 0.3)),
+    Math.max(2, Math.round(w * 0.6 + s)),
+    Math.max(5, Math.round(w * 0.85 + s)),
+    Math.max(2, w + s + 1),
+  ];
+
+  const max = Math.max(...points, 6);
+  const min = Math.min(...points, 0);
+  const range = max - min || 1;
+
+  const width = 100;
+  const height = 24;
+
+  const coords = points.map((val, idx) => {
+    const x = (idx / (points.length - 1)) * width;
+    const y = height - ((val - min) / range) * (height - 6) - 3;
+    return { x, y };
+  });
+
+  const pathD = coords.reduce((acc, pt, idx) => {
+    return idx === 0 ? `M ${pt.x} ${pt.y}` : `${acc} L ${pt.x} ${pt.y}`;
+  }, '');
+
+  const areaD = `${pathD} L 100 ${height} L 0 ${height} Z`;
+  const lastPoint = coords[coords.length - 1];
+
+  return (
+    <div className="w-full flex items-center justify-between gap-3 pt-1 pb-2">
+      <div className="flex items-center gap-1.5 text-[10px] font-mono text-slate-400 dark:text-cyan-400/70">
+        <TrendingUp className="w-3 h-3 text-cyan-400" />
+        <span>LOAD VELOCITY</span>
+      </div>
+      <div className="w-24 h-6 relative shrink-0">
+        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full overflow-visible">
+          <defs>
+            <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#06B6D4" stopOpacity="0.45" />
+              <stop offset="100%" stopColor="#06B6D4" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          <path d={areaD} fill={`url(#${gradientId})`} />
+          <path d={pathD} fill="none" stroke="#06B6D4" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <circle cx={lastPoint.x} cy={lastPoint.y} r="2" fill="#00F0FF" />
+          <circle cx={lastPoint.x} cy={lastPoint.y} r="4" fill="#00F0FF" className="animate-ping" opacity="0.6" />
+        </svg>
+      </div>
+    </div>
+  );
+};
 
 const QueueCard = ({ queue, onEdit, onDelete }) => {
   const navigate = useNavigate();
@@ -115,6 +177,12 @@ const QueueCard = ({ queue, onEdit, onDelete }) => {
             </span>
           </div>
         </div>
+        {/* Mini Sparkline Load Velocity */}
+        <MiniSparkline
+          waiting={stats.waitingCount || 0}
+          completed={stats.completedCount || 0}
+          serving={stats.servingCount || 0}
+        />
       </div>
 
       {/* Card Footer */}

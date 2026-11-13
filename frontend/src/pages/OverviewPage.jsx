@@ -68,6 +68,30 @@ const OverviewPage = () => {
     loadDashboardData();
   }, [loadDashboardData]);
 
+  // Operational Keyboard Hotkeys: Alt+A (Dispatch Ticket), Alt+Q (Create Queue), Alt+R (Sync)
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName)) {
+        return;
+      }
+
+      const key = e.key.toLowerCase();
+      if (e.altKey && key === 'a') {
+        e.preventDefault();
+        if (queues.length > 0) setCreateTokenOpen(true);
+      } else if (e.altKey && key === 'q') {
+        e.preventDefault();
+        setCreateQueueOpen(true);
+      } else if (e.altKey && key === 'r') {
+        e.preventDefault();
+        loadDashboardData(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [queues, loadDashboardData]);
+
   const handleDeleteConfirm = async () => {
     if (!deleteQueueData) return;
     try {
@@ -113,26 +137,38 @@ const OverviewPage = () => {
             onClick={() => loadDashboardData(true)}
             disabled={refreshing}
             className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white dark:bg-[#0D121F] border border-slate-200 dark:border-white/[0.08] hover:dark:border-cyan-500/40 text-xs font-mono uppercase text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white shadow-xs transition-all cursor-pointer"
+            title="Sync telemetry data (Shortcut: Alt+R)"
           >
             <RefreshCw className={`w-3.5 h-3.5 text-cyan-400 ${refreshing ? 'animate-spin' : ''}`} />
             <span>SYNC</span>
+            <kbd className="hidden sm:inline-block px-1 py-0.5 rounded text-[9px] font-mono bg-slate-200 dark:bg-white/[0.06] text-slate-500 dark:text-slate-400 border border-slate-300 dark:border-white/10">
+              Alt+R
+            </kbd>
           </button>
 
           <button
             onClick={() => setCreateTokenOpen(true)}
             disabled={queues.length === 0}
             className="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-[#0D121F] dark:hover:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] hover:dark:border-cyan-500/40 text-xs font-mono uppercase font-semibold text-slate-800 dark:text-cyan-300 shadow-xs transition-all cursor-pointer disabled:opacity-40"
+            title="Dispatch new ticket (Shortcut: Alt+A)"
           >
             <Plus className="w-3.5 h-3.5" />
             <span>DISPATCH TICKET</span>
+            <kbd className="hidden sm:inline-block px-1 py-0.5 rounded text-[9px] font-mono bg-slate-200 dark:bg-white/[0.06] text-slate-500 dark:text-cyan-400 border border-slate-300 dark:border-white/10">
+              Alt+A
+            </kbd>
           </button>
 
           <button
             onClick={() => setCreateQueueOpen(true)}
             className="flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-xs font-mono font-bold uppercase tracking-wider text-slate-950 shadow-md shadow-cyan-500/20 transition-all cursor-pointer"
+            title="Create counter queue (Shortcut: Alt+Q)"
           >
             <Plus className="w-4 h-4 stroke-[2.5]" />
             <span>CREATE QUEUE</span>
+            <kbd className="hidden sm:inline-block px-1 py-0.5 rounded text-[9px] font-mono bg-black/25 text-[#080B11] font-extrabold border border-black/20">
+              Alt+Q
+            </kbd>
           </button>
         </div>
       </div>
