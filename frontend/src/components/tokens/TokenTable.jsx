@@ -45,11 +45,11 @@ const TokenTable = ({
       <div className="p-4 sm:p-5 border-b border-[#E6E0D4] dark:border-[#3E342C] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <Layers className="w-5 h-5 text-[#8C532B] dark:text-[#C78753]" />
-          <h3 className="text-base font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight font-mono uppercase">
-            WAITING LIST TELEMETRY
+          <h3 className="text-base font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight">
+            Waiting Line
           </h3>
-          <span className="px-2 py-0.5 rounded text-xs font-mono font-semibold bg-[#8C532B]/10 text-[#8C532B] dark:text-[#C78753] border border-[#8C532B]/20">
-            {tokens.length} {tokens.length === 1 ? 'Customer' : 'Customers'}
+          <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-[#8C532B]/10 text-[#8C532B] dark:text-[#C78753]">
+            {tokens.length} {tokens.length === 1 ? 'customer' : 'customers'}
           </span>
         </div>
 
@@ -58,10 +58,10 @@ const TokenTable = ({
           <Search className="w-4 h-4 text-[#8C827A] absolute left-3 top-2.5" />
           <input
             type="text"
-            placeholder="Search telemetry line..."
+            placeholder="Search customer or token..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-[#F8F6F0] dark:bg-[#1A1613] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl pl-9 pr-3.5 py-1.5 text-xs text-[#26221F] dark:text-[#FAF8F5] placeholder-[#8C827A] focus:outline-none focus:border-[#8C532B] transition-colors font-mono"
+            className="w-full bg-[#F8F6F0] dark:bg-[#1A1613] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl pl-9 pr-3.5 py-1.5 text-xs text-[#26221F] dark:text-[#FAF8F5] placeholder-[#8C827A] focus:outline-none focus:border-[#8C532B] transition-colors"
           />
         </div>
       </div>
@@ -72,10 +72,10 @@ const TokenTable = ({
           <div className="w-12 h-12 rounded-2xl bg-[#F8F6F0] dark:bg-[#1A1613] border border-[#E6E0D4] dark:border-[#3E342C] flex items-center justify-center text-[#8C532B] mb-3">
             <Clock className="w-6 h-6" />
           </div>
-          <h4 className="text-sm font-bold text-[#26221F] dark:text-[#FAF8F5] font-mono uppercase">
-            {searchTerm ? 'No matching queue records' : 'Waiting line is clear'}
+          <h4 className="text-sm font-bold text-[#26221F] dark:text-[#FAF8F5]">
+            {searchTerm ? 'No matching records' : 'Waiting line is clear'}
           </h4>
-          <p className="text-xs text-[#736A62] dark:text-[#A69B8F] max-w-sm mt-1 leading-relaxed font-mono">
+          <p className="text-xs text-[#736A62] dark:text-[#A69B8F] max-w-sm mt-1 leading-relaxed">
             {searchTerm
               ? `No waiting customers match "${searchTerm}".`
               : emptyMessage}

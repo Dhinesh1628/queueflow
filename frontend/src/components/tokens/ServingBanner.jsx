@@ -70,11 +70,11 @@ const ServingBanner = ({
 
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#8C532B]/10 text-[#8C532B] dark:text-[#C78753] border border-[#8C532B]/20 flex items-center gap-1.5 uppercase">
+                <span className="px-2 py-0.5 rounded text-[11px] font-semibold bg-[#8C532B]/10 text-[#8C532B] dark:text-[#C78753] border border-[#8C532B]/20 flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#8C532B]" />
-                  <span>ACTIVE DESK DISPATCH</span>
+                  <span>Currently Serving</span>
                 </span>
-                <span className="font-mono text-xs px-2.5 py-0.5 rounded bg-[#F8F6F0] dark:bg-[#1A1613] text-[#26221F] dark:text-[#FAF8F5] border border-[#E6E0D4] dark:border-[#3E342C] flex items-center gap-1.5 font-bold">
+                <span className="text-xs px-2.5 py-0.5 rounded bg-[#F8F6F0] dark:bg-[#1A1613] text-[#26221F] dark:text-[#FAF8F5] border border-[#E6E0D4] dark:border-[#3E342C] flex items-center gap-1.5 font-bold">
                   <span>{servingToken.tokenNumber}</span>
                   <button
                     onClick={copyTokenCode}
@@ -113,14 +113,10 @@ const ServingBanner = ({
             <button
               onClick={() => handleComplete(servingToken._id)}
               disabled={isCompleting}
-              className="flex items-center gap-2 px-6 py-2.5 bg-[#26221F] hover:bg-[#151210] dark:bg-[#FAF8F5] dark:hover:bg-[#E6E0D4] text-[#FAF8F5] dark:text-[#26221F] disabled:opacity-50 font-mono font-bold text-xs rounded-xl shadow-sm transition-all cursor-pointer"
-              title="Complete active service (Shortcut: Alt+C)"
+              className="flex items-center gap-2 px-5 py-2.5 bg-[#26221F] hover:bg-[#151210] dark:bg-[#FAF8F5] dark:hover:bg-[#E6E0D4] text-[#FAF8F5] dark:text-[#26221F] disabled:opacity-50 font-semibold text-xs rounded-xl shadow-xs transition-all cursor-pointer"
             >
               <CheckCircle className="w-4 h-4" />
-              <span>{isCompleting ? 'Finalizing...' : 'COMPLETE SERVICE'}</span>
-              <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded text-[9px] font-mono bg-white/20 dark:bg-black/20 font-extrabold border border-white/20 dark:border-black/20">
-                Alt+C
-              </kbd>
+              <span>{isCompleting ? 'Completing...' : 'Complete Service'}</span>
             </button>
           </div>
         </div>
@@ -132,20 +128,20 @@ const ServingBanner = ({
             </div>
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-[10px] font-mono font-semibold text-[#8C827A] uppercase tracking-widest">
-                  STANDBY TELEMETRY
+                <span className="text-xs font-semibold text-[#8C827A]">
+                  Counter Idle
                 </span>
-                <span className="px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-[#F8F6F0] dark:bg-[#1A1613] text-[#8C532B] dark:text-[#C78753] border border-[#E6E0D4] dark:border-[#3E342C]">
-                  {waitingCount} {waitingCount === 1 ? 'Customer' : 'Customers'} in Queue
+                <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-[#8C532B]/10 text-[#8C532B] dark:text-[#C78753]">
+                  {waitingCount} {waitingCount === 1 ? 'customer' : 'customers'} waiting
                 </span>
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight">
-                Counter Ready for Next Ticket
+                Ready for Next Ticket
               </h3>
               <p className="text-xs text-[#736A62] dark:text-[#A69B8F] mt-0.5">
                 {waitingCount > 0
-                  ? 'Dispatch operator ready. Click "CALL NEXT" to advance the waiting queue.'
-                  : 'Counter line is currently clear. Issue a token to activate dispatch.'}
+                  ? 'Click "Call Next" to bring up the first waiting customer.'
+                  : 'Waiting line is currently empty.'}
               </p>
             </div>
           </div>
@@ -154,13 +150,9 @@ const ServingBanner = ({
             <button
               onClick={handleCall}
               disabled={isCallingNext || waitingCount === 0}
-              className="flex items-center gap-2 px-6 py-2.5 bg-[#8C532B] hover:bg-[#774421] text-white disabled:opacity-30 disabled:cursor-not-allowed font-mono font-bold text-xs rounded-xl shadow-sm transition-all cursor-pointer"
-              title="Call next customer (Shortcut: Alt+N)"
+              className="flex items-center gap-2 px-6 py-2.5 bg-[#8C532B] hover:bg-[#774421] text-white disabled:opacity-30 disabled:cursor-not-allowed font-semibold text-xs rounded-xl shadow-xs transition-all cursor-pointer"
             >
-              <span>{isCallingNext ? 'Dispatching...' : 'CALL NEXT'}</span>
-              <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded text-[9px] font-mono bg-black/25 text-white font-extrabold border border-black/20">
-                Alt+N
-              </kbd>
+              <span>{isCallingNext ? 'Calling...' : 'Call Next'}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

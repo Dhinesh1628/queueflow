@@ -220,12 +220,12 @@ const QueueDetailPage = () => {
   return (
     <div className="space-y-6" id="main-content">
       {/* Breadcrumb Navigation */}
-      <nav aria-label="Breadcrumb" className="text-[11px] font-mono uppercase tracking-wider text-[#8C827A] dark:text-[#C78753]">
-        <Link to="/" className="hover:text-[#8C532B] transition-colors">DASHBOARD</Link>
-        <span className="mx-1.5 text-[#D4CBBF] dark:text-[#4A3E35]">/</span>
-        <Link to="/queues" className="hover:text-[#8C532B] transition-colors">QUEUES</Link>
-        <span className="mx-1.5 text-[#D4CBBF] dark:text-[#4A3E35]">/</span>
-        <span className="text-[#26221F] dark:text-[#FAF8F5] font-bold">{queue.name}</span>
+      <nav aria-label="Breadcrumb" className="text-xs text-[#8C827A] dark:text-[#C78753] flex items-center gap-1.5 font-medium">
+        <Link to="/" className="hover:text-[#8C532B] transition-colors">Dashboard</Link>
+        <span className="text-[#D4CBBF] dark:text-[#4A3E35]">/</span>
+        <Link to="/queues" className="hover:text-[#8C532B] transition-colors">Queues</Link>
+        <span className="text-[#D4CBBF] dark:text-[#4A3E35]">/</span>
+        <span className="text-[#26221F] dark:text-[#FAF8F5] font-semibold">{queue.name}</span>
       </nav>
 
       {/* Top Header Bar */}
@@ -240,7 +240,7 @@ const QueueDetailPage = () => {
           </button>
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-[#8C532B]/10 text-[#8C532B] dark:text-[#C78753] border border-[#8C532B]/20">
+              <span className="text-xs font-semibold px-2 py-0.5 rounded bg-[#8C532B]/10 text-[#8C532B] dark:text-[#C78753] border border-[#8C532B]/20">
                 {queue.prefix}
               </span>
               <h2 className="text-xl sm:text-2xl font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight">
@@ -248,7 +248,7 @@ const QueueDetailPage = () => {
               </h2>
             </div>
             {queue.description && (
-              <p className="text-xs font-mono text-[#736A62] dark:text-[#A69B8F] mt-1">{queue.description}</p>
+              <p className="text-xs text-[#736A62] dark:text-[#A69B8F] mt-1">{queue.description}</p>
             )}
           </div>
         </div>
@@ -257,37 +257,37 @@ const QueueDetailPage = () => {
         <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={handleCopyLink}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-mono uppercase text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-medium text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
             title="Copy queue URL"
           >
             {copiedLink ? <Check className="w-3.5 h-3.5 text-[#2E7D32]" /> : <Copy className="w-3.5 h-3.5 text-[#8C532B] dark:text-[#C78753]" />}
-            <span>{copiedLink ? 'COPIED' : 'SHARE LINK'}</span>
+            <span>{copiedLink ? 'Copied' : 'Share'}</span>
           </button>
 
           <button
             onClick={() => window.print()}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-mono uppercase text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-medium text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
             title="Print queue list"
           >
             <Printer className="w-3.5 h-3.5 text-[#8C532B] dark:text-[#C78753]" />
-            <span>PRINT SHEET</span>
+            <span>Print</span>
           </button>
 
           <button
             onClick={() => loadQueueData(true)}
             disabled={refreshing}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-mono uppercase text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-medium text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
           >
             <RefreshCw className={`w-3.5 h-3.5 text-[#8C532B] dark:text-[#C78753] ${refreshing ? 'animate-spin' : ''}`} />
-            <span>SYNC</span>
+            <span>Refresh</span>
           </button>
 
           <button
             onClick={() => setEditQueueOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-mono uppercase text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-medium text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
           >
             <Edit2 className="w-3.5 h-3.5 text-[#8C532B] dark:text-[#C78753]" />
-            <span>EDIT</span>
+            <span>Edit</span>
           </button>
 
           <button
@@ -300,14 +300,11 @@ const QueueDetailPage = () => {
 
           <button
             onClick={() => setCreateTokenOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-[#8C532B] hover:bg-[#774421] text-white text-xs font-mono font-bold uppercase tracking-wider rounded-lg shadow-sm transition-all cursor-pointer"
-            title="Dispatch new ticket (Shortcut: Alt+A)"
+            className="flex items-center gap-1.5 px-4 py-2 bg-[#8C532B] hover:bg-[#774421] text-white text-xs font-semibold rounded-lg shadow-xs transition-all cursor-pointer"
+            title="Add a new customer token"
           >
             <Plus className="w-4 h-4 stroke-[2.5]" />
-            <span>DISPATCH TICKET</span>
-            <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded text-[9px] font-mono bg-black/25 text-white font-extrabold border border-black/20">
-              Alt+A
-            </kbd>
+            <span>Add Token</span>
           </button>
         </div>
       </div>

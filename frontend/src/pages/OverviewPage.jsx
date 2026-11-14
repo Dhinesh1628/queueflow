@@ -120,15 +120,12 @@ const OverviewPage = () => {
       {/* Top Banner & Quick Action Buttons */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2">
         <div>
-          <nav aria-label="Breadcrumb" className="text-[11px] font-mono uppercase tracking-wider text-[#8C827A] dark:text-[#C78753] mb-1">
-            <span>DASHBOARD</span> <span className="mx-1 text-[#D4CBBF] dark:text-[#4A3E35]">/</span> <span className="text-[#26221F] dark:text-[#FAF8F5] font-bold">OVERVIEW_STUDIO</span>
-          </nav>
           <h2 className="text-xl sm:text-2xl font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight flex items-center gap-2">
-            <span>Queue Operations Control</span>
-            <span className="w-2 h-2 rounded-full bg-[#2E7D32] animate-pulse hidden sm:inline-block" />
+            <span>Queue Dashboard</span>
+            <span className="w-2 h-2 rounded-full bg-[#2E7D32] hidden sm:inline-block" title="System online" />
           </h2>
-          <p className="text-xs sm:text-sm text-[#736A62] dark:text-[#A69B8F] mt-0.5 font-mono">
-            LIVE MULTI-COUNTER DISPATCH · REAL-TIME TELEMETRY FEED
+          <p className="text-xs sm:text-sm text-[#736A62] dark:text-[#A69B8F] mt-1">
+            Monitor active counters, customer tokens, and waiting times.
           </p>
         </div>
 
@@ -136,39 +133,30 @@ const OverviewPage = () => {
           <button
             onClick={() => loadDashboardData(true)}
             disabled={refreshing}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-mono uppercase text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
-            title="Sync telemetry data (Shortcut: Alt+R)"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-medium text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
+            title="Refresh dashboard data"
           >
             <RefreshCw className={`w-3.5 h-3.5 text-[#8C532B] dark:text-[#C78753] ${refreshing ? 'animate-spin' : ''}`} />
-            <span>SYNC</span>
-            <kbd className="hidden sm:inline-block px-1 py-0.5 rounded text-[9px] font-mono bg-[#F8F6F0] dark:bg-[#322A24] text-[#8C827A] dark:text-[#A69B8F] border border-[#E6E0D4] dark:border-[#4A3E35]">
-              Alt+R
-            </kbd>
+            <span>Refresh</span>
           </button>
 
           <button
             onClick={() => setCreateTokenOpen(true)}
             disabled={queues.length === 0}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#F8F6F0] hover:bg-[#F3EFE6] dark:bg-[#26201B] dark:hover:bg-[#322A24] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-mono uppercase font-semibold text-[#8C532B] dark:text-[#C78753] shadow-xs transition-all cursor-pointer disabled:opacity-40"
-            title="Dispatch new ticket (Shortcut: Alt+A)"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white hover:bg-[#F8F6F0] dark:bg-[#26201B] dark:hover:bg-[#322A24] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-semibold text-[#8C532B] dark:text-[#C78753] shadow-xs transition-all cursor-pointer disabled:opacity-40"
+            title="Issue new customer token"
           >
             <Plus className="w-3.5 h-3.5" />
-            <span>DISPATCH TICKET</span>
-            <kbd className="hidden sm:inline-block px-1 py-0.5 rounded text-[9px] font-mono bg-[#EAE4D8] dark:bg-[#322A24] text-[#8C532B] dark:text-[#C78753] border border-[#D4CBBF] dark:border-[#4A3E35]">
-              Alt+A
-            </kbd>
+            <span>Add Token</span>
           </button>
 
           <button
             onClick={() => setCreateQueueOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#8C532B] hover:bg-[#774421] text-xs font-mono font-bold uppercase tracking-wider text-white shadow-sm transition-all cursor-pointer"
-            title="Create counter queue (Shortcut: Alt+Q)"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#8C532B] hover:bg-[#774421] text-xs font-semibold text-white shadow-xs transition-all cursor-pointer"
+            title="Create a new counter queue"
           >
             <Plus className="w-4 h-4 stroke-[2.5]" />
-            <span>CREATE QUEUE</span>
-            <kbd className="hidden sm:inline-block px-1 py-0.5 rounded text-[9px] font-mono bg-black/25 text-white font-extrabold border border-black/20">
-              Alt+Q
-            </kbd>
+            <span>Create Queue</span>
           </button>
         </div>
       </div>
@@ -224,20 +212,20 @@ const OverviewPage = () => {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <Layers className="w-5 h-5 text-[#8C532B] dark:text-[#C78753]" />
-            <h3 className="text-base sm:text-lg font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight font-mono">
-              ACTIVE COUNTER CONSOLES
+            <h3 className="text-base sm:text-lg font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight">
+              Active Queues
             </h3>
-            <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-[#F8F6F0] dark:bg-[#1A1613] text-[#8C532B] dark:text-[#C78753] border border-[#E6E0D4] dark:border-[#3E342C]">
-              {queues.length} {queues.length === 1 ? 'CONSOLE' : 'CONSOLES'}
+            <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-[#8C532B]/10 text-[#8C532B] dark:text-[#C78753]">
+              {queues.length}
             </span>
           </div>
 
           {queues.length > 0 && (
             <button
               onClick={() => navigate('/queues')}
-              className="text-xs font-mono uppercase tracking-wider text-[#8C532B] dark:text-[#C78753] hover:text-[#774421] flex items-center gap-1 cursor-pointer"
+              className="text-xs font-semibold text-[#8C532B] dark:text-[#C78753] hover:text-[#774421] flex items-center gap-1 cursor-pointer transition-colors"
             >
-              <span>ALL QUEUES</span>
+              <span>View all queues</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           )}
@@ -281,22 +269,22 @@ const OverviewPage = () => {
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <Clock className="w-5 h-5 text-[#8C532B] dark:text-[#C78753]" />
-            <h3 className="text-base font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight font-mono">
-              RECENT DISPATCH FEED
+            <h3 className="text-base font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight">
+              Recent Activity
             </h3>
           </div>
           <button
             onClick={() => navigate('/history')}
-            className="text-xs font-mono uppercase tracking-wider text-[#8C532B] dark:text-[#C78753] hover:text-[#774421] flex items-center gap-1 cursor-pointer"
+            className="text-xs font-semibold text-[#8C532B] dark:text-[#C78753] hover:text-[#774421] flex items-center gap-1 cursor-pointer transition-colors"
           >
-            <span>FULL AUDIT LOG</span>
+            <span>View all history</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
         {recentTokens.length === 0 ? (
-          <p className="text-xs font-mono text-[#8C827A] text-center py-8">
-            NO DISPATCH ACTIVITY RECORDED YET.
+          <p className="text-xs text-[#8C827A] text-center py-8">
+            No recent activity recorded yet.
           </p>
         ) : (
           <div className="divide-y divide-[#E6E0D4] dark:divide-[#3E342C]">

@@ -112,7 +112,7 @@ const QueueCard = ({ queue, onEdit, onDelete }) => {
         </div>
 
         {queue.description && (
-          <p className="text-xs text-[#736A62] dark:text-[#A69B8F] line-clamp-2 mb-4 leading-relaxed font-mono">
+          <p className="text-xs text-[#736A62] dark:text-[#A69B8F] line-clamp-2 mb-4 leading-relaxed">
             {queue.description}
           </p>
         )}
@@ -121,24 +121,24 @@ const QueueCard = ({ queue, onEdit, onDelete }) => {
         {currentlyServing ? (
           <div className="mb-4 p-3 rounded-xl bg-[#8C532B]/10 border border-[#8C532B]/20 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <span className="w-2 h-2 rounded-full bg-[#8C532B] animate-ping" />
+              <span className="w-2 h-2 rounded-full bg-[#8C532B] animate-pulse" />
               <div>
-                <span className="text-[10px] font-mono font-bold tracking-wider text-[#8C532B] dark:text-[#C78753] uppercase">
-                  ACTIVE DESK DISPATCH
+                <span className="text-[11px] font-semibold tracking-wide text-[#8C532B] dark:text-[#C78753] uppercase block">
+                  Now Serving
                 </span>
-                <p className="text-xs font-semibold text-[#26221F] dark:text-[#FAF8F5] font-mono">
-                  {currentlyServing.tokenNumber} - {currentlyServing.customerName}
+                <p className="text-xs font-bold text-[#26221F] dark:text-[#FAF8F5]">
+                  {currentlyServing.tokenNumber} — {currentlyServing.customerName}
                 </p>
               </div>
             </div>
-            <span className="text-[10px] text-[#8C532B] dark:text-[#C78753] bg-[#8C532B]/15 px-2 py-0.5 rounded font-mono font-bold border border-[#8C532B]/25">
-              ACTIVE
+            <span className="text-[10px] text-[#8C532B] dark:text-[#C78753] bg-[#8C532B]/15 px-2 py-0.5 rounded font-semibold border border-[#8C532B]/25">
+              IN SERVICE
             </span>
           </div>
         ) : (
-          <div className="mb-4 p-2.5 rounded-xl bg-[#F8F6F0] dark:bg-[#1A1613] border border-[#E6E0D4] dark:border-[#3E342C] flex items-center gap-2 text-xs text-[#736A62] dark:text-[#A69B8F] font-mono">
+          <div className="mb-4 p-2.5 rounded-xl bg-[#F8F6F0] dark:bg-[#1A1613] border border-[#E6E0D4] dark:border-[#3E342C] flex items-center gap-2 text-xs text-[#736A62] dark:text-[#A69B8F]">
             <Radio className="w-3.5 h-3.5 text-[#8C532B] dark:text-[#C78753]" />
-            <span>Telemetry idle • Counter in standby</span>
+            <span>Counter idle • Ready for next token</span>
           </div>
         )}
 
