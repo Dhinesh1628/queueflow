@@ -17,8 +17,12 @@ const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 
-// Connect to MongoDB Database
-connectDB();
+// Connect to MongoDB Database (in non-serverless environments)
+if (!process.env.VERCEL) {
+  connectDB().catch((err) => {
+    console.error('[QueueFlow] Initial connection failed:', err.message);
+  });
+}
 
 // 1. Security Headers via Helmet
 app.use(
@@ -126,6 +130,21 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Ensure database connection is ready for API operations (crucial for Serverless)
+app.use(async (req, res, next) => {
+  if (req.path === '/api/health') return next();
+  try {
+    await connectDB();
+    next();
+  } catch (err) {
+    console.error('[QueueFlow] Database connection error in request handler:', err.message);
+    return res.status(500).json({
+      success: false,
+      message: 'Database connection failed: ' + err.message,
+    });
+  }
+});
+
 // Mount API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/queues', queueRoutes);
@@ -155,10 +174,12 @@ if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
 // Graceful process termination
 process.on('unhandledRejection', (err) => {
   console.error(`Unhandled Rejection: ${err.message}`);
-  if (server) {
-    server.close(() => process.exit(1));
-  } else {
-    process.exit(1);
+  if (!process.env.VERCEL) {
+    if (server) {
+      server.close(() => process.exit(1));
+    } else {
+      process.exit(1);
+    }
   }
 });
 
