@@ -17,7 +17,7 @@ const seedData = async () => {
   await connectDB();
 
   try {
-    const demoEmail = 'demo.manager@queueflow.io';
+    const demoEmail = 'dineshkandukuri336@gmail.com';
     const demoPassword = 'QueueFlow2026!';
 
     // Remove existing demo data to ensure clean state
@@ -31,7 +31,7 @@ const seedData = async () => {
 
     // 1. Create Demo Manager
     const manager = await Manager.create({
-      name: 'Alex Henderson',
+      name: 'Dhinesh Kandukuri',
       email: demoEmail,
       password: demoPassword,
     });

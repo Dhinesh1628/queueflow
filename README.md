@@ -194,7 +194,7 @@ cd backend
 node seed.js
 ```
 > **Default Demo Login:**
-> - Email: `demo.manager@queueflow.io`
+> - Email: `dineshkandukuri336@gmail.com`
 > - Password: `QueueFlow2026!`
 > *(An "Auto-fill" button is also provided directly on the Login page for instant demonstration).*
 

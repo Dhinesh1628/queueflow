@@ -133,7 +133,7 @@ const LoginPage = () => {
                 <button
                   type="button"
                   onClick={() => {
-                    setEmail('demo.manager@queueflow.io');
+                    setEmail('dineshkandukuri336@gmail.com');
                     setPassword('QueueFlow2026!');
                   }}
                   className="text-xs text-[#8C532B] dark:text-[#D4A373] hover:text-[#774421] font-semibold underline cursor-pointer"
@@ -142,7 +142,7 @@ const LoginPage = () => {
                 </button>
               </div>
               <p className="text-[11px] text-[#736A62] dark:text-[#A69B8F] font-mono">
-                demo.manager@queueflow.io • QueueFlow2026!
+                dineshkandukuri336@gmail.com • QueueFlow2026!
               </p>
             </div>
           </div>

@@ -105,7 +105,7 @@ const RegisterPage = () => {
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Alex Henderson"
+                  placeholder="e.g. Dhinesh Kandukuri"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="w-full bg-[#F8F6F0] dark:bg-[#1C1815] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-[#26221F] dark:text-[#FAF8F5] placeholder-[#A69B8F] focus:outline-none focus:border-[#8C532B] focus:ring-1 focus:ring-[#8C532B]/30 transition-colors"
