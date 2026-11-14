@@ -10,9 +10,18 @@ import ConfirmDialog from '../components/common/ConfirmDialog';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 
 const QueuesPage = () => {
-  const [queues, setQueues] = useState([]);
+  const [queues, setQueues] = useState(() => {
+    try {
+      const saved = sessionStorage.getItem('qf_cache_queues');
+      return saved ? JSON.parse(saved) : [];
+    } catch { return []; }
+  });
   const [searchTerm, setSearchTerm] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => {
+    try {
+      return !sessionStorage.getItem('qf_cache_queues');
+    } catch { return true; }
+  });
   const [refreshing, setRefreshing] = useState(false);
 
   // Modals
@@ -24,21 +33,23 @@ const QueuesPage = () => {
   const toast = useToast();
 
   const fetchQueues = useCallback(async (isSilent = false) => {
-    if (!isSilent) setLoading(true);
+    const hasData = queues.length > 0;
+    if (!isSilent && !hasData) setLoading(true);
     else setRefreshing(true);
 
     try {
       const res = await queueService.getQueues();
       if (res.success) {
         setQueues(res.data);
+        try { sessionStorage.setItem('qf_cache_queues', JSON.stringify(res.data)); } catch {}
       }
     } catch (err) {
-      toast.error('Failed to load queues');
+      if (!hasData) toast.error('Failed to load queues');
     } finally {
       setLoading(false);
       setRefreshing(false);
     }
-  }, [toast]);
+  }, [queues.length, toast]);
 
   useEffect(() => {
     fetchQueues();

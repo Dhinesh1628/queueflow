@@ -32,27 +32,38 @@ import LoadingSpinner from '../components/common/LoadingSpinner';
 
 const AnalyticsPage = () => {
   const [timeframe, setTimeframe] = useState('7d');
-  const [analytics, setAnalytics] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [analytics, setAnalytics] = useState(() => {
+    try {
+      const saved = sessionStorage.getItem('qf_cache_analytics_7d');
+      return saved ? JSON.parse(saved) : null;
+    } catch { return null; }
+  });
+  const [loading, setLoading] = useState(() => {
+    try {
+      return !sessionStorage.getItem('qf_cache_analytics_7d');
+    } catch { return true; }
+  });
   const [refreshing, setRefreshing] = useState(false);
   const toast = useToast();
 
   const fetchAnalytics = useCallback(async (isSilent = false) => {
-    if (!isSilent) setLoading(true);
+    const hasData = !!analytics;
+    if (!isSilent && !hasData) setLoading(true);
     else setRefreshing(true);
 
     try {
       const res = await analyticsService.getAnalytics(timeframe);
       if (res.success) {
         setAnalytics(res.data);
+        try { sessionStorage.setItem(`qf_cache_analytics_${timeframe}`, JSON.stringify(res.data)); } catch {}
       }
     } catch (err) {
-      toast.error('Failed to load analytics data');
+      if (!hasData) toast.error('Failed to load analytics data');
     } finally {
       setLoading(false);
       setRefreshing(false);
     }
-  }, [timeframe, toast]);
+  }, [analytics, timeframe, toast]);
 
   useEffect(() => {
     fetchAnalytics();

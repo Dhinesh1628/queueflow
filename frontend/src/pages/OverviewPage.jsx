@@ -26,10 +26,30 @@ import FAQSection from '../components/common/FAQSection';
 import { formatTimeAgo, getStatusBadgeStyle } from '../utils/formatters';
 
 const OverviewPage = () => {
-  const [queues, setQueues] = useState([]);
-  const [analytics, setAnalytics] = useState(null);
-  const [recentTokens, setRecentTokens] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [queues, setQueues] = useState(() => {
+    try {
+      const saved = sessionStorage.getItem('qf_cache_queues');
+      return saved ? JSON.parse(saved) : [];
+    } catch { return []; }
+  });
+  const [analytics, setAnalytics] = useState(() => {
+    try {
+      const saved = sessionStorage.getItem('qf_cache_analytics');
+      return saved ? JSON.parse(saved) : null;
+    } catch { return null; }
+  });
+  const [recentTokens, setRecentTokens] = useState(() => {
+    try {
+      const saved = sessionStorage.getItem('qf_cache_tokens');
+      return saved ? JSON.parse(saved) : [];
+    } catch { return []; }
+  });
+  // Instant render: If cached data exists in sessionStorage, skip the full-page blocking spinner
+  const [loading, setLoading] = useState(() => {
+    try {
+      return !sessionStorage.getItem('qf_cache_queues');
+    } catch { return true; }
+  });
   const [refreshing, setRefreshing] = useState(false);
 
   // Modals
@@ -43,7 +63,8 @@ const OverviewPage = () => {
   const navigate = useNavigate();
 
   const loadDashboardData = useCallback(async (isSilent = false) => {
-    if (!isSilent) setLoading(true);
+    const hasData = queues.length > 0;
+    if (!isSilent && !hasData) setLoading(true);
     else setRefreshing(true);
 
     try {
@@ -53,16 +74,25 @@ const OverviewPage = () => {
         tokenService.getTokens({ limit: 6 }),
       ]);
 
-      if (queuesRes.success) setQueues(queuesRes.data);
-      if (analyticsRes.success) setAnalytics(analyticsRes.data);
-      if (tokensRes.success) setRecentTokens(tokensRes.data);
+      if (queuesRes.success) {
+        setQueues(queuesRes.data);
+        try { sessionStorage.setItem('qf_cache_queues', JSON.stringify(queuesRes.data)); } catch {}
+      }
+      if (analyticsRes.success) {
+        setAnalytics(analyticsRes.data);
+        try { sessionStorage.setItem('qf_cache_analytics', JSON.stringify(analyticsRes.data)); } catch {}
+      }
+      if (tokensRes.success) {
+        setRecentTokens(tokensRes.data);
+        try { sessionStorage.setItem('qf_cache_tokens', JSON.stringify(tokensRes.data)); } catch {}
+      }
     } catch (err) {
-      toast.error('Failed to load dashboard data');
+      if (!hasData) toast.error('Failed to load dashboard data');
     } finally {
       setLoading(false);
       setRefreshing(false);
     }
-  }, [toast]);
+  }, [queues.length, toast]);
 
   useEffect(() => {
     loadDashboardData();

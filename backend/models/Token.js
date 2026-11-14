@@ -69,5 +69,7 @@ const tokenSchema = new mongoose.Schema(
 // Compound indexes for optimal queue ordering and querying
 tokenSchema.index({ queueId: 1, status: 1, position: 1 });
 tokenSchema.index({ managerId: 1, createdAt: -1 });
+tokenSchema.index({ managerId: 1, status: 1 });
+tokenSchema.index({ managerId: 1, status: 1, createdAt: -1 });
 
 module.exports = mongoose.model('Token', tokenSchema);

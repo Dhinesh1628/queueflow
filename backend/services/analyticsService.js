@@ -1,6 +1,23 @@
 const Queue = require('../models/Queue');
 const Token = require('../models/Token');
 
+// In-memory cache for fast analytics responses (10 seconds TTL)
+const analyticsCache = new Map();
+const CACHE_TTL_MS = 10000;
+
+/**
+ * Clear analytics cache for a manager when queues or tokens change
+ */
+const invalidateAnalyticsCache = (managerId) => {
+  if (managerId) {
+    analyticsCache.delete(managerId.toString() + '_today');
+    analyticsCache.delete(managerId.toString() + '_7d');
+    analyticsCache.delete(managerId.toString() + '_30d');
+  } else {
+    analyticsCache.clear();
+  }
+};
+
 /**
  * Helper to get date boundaries based on timeframe
  */
@@ -30,6 +47,12 @@ const getDateRange = (timeframe = '7d') => {
  * Get comprehensive analytics for a manager
  */
 const getManagerAnalytics = async (managerId, timeframe = '7d') => {
+  const cacheKey = `${managerId}_${timeframe}`;
+  const cached = analyticsCache.get(cacheKey);
+  if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
+    return cached.data;
+  }
+
   const { start, end } = getDateRange(timeframe);
 
   // Today boundaries for Today KPIs
@@ -223,7 +246,7 @@ const getManagerAnalytics = async (managerId, timeframe = '7d') => {
 
   const queuePerformance = await Promise.all(queueStatsPromises);
 
-  return {
+  const result = {
     kpis: {
       totalQueues,
       totalTokens: totalTokensAllTime,
@@ -243,8 +266,16 @@ const getManagerAnalytics = async (managerId, timeframe = '7d') => {
     },
     timeframe,
   };
+
+  analyticsCache.set(cacheKey, {
+    timestamp: Date.now(),
+    data: result,
+  });
+
+  return result;
 };
 
 module.exports = {
   getManagerAnalytics,
+  invalidateAnalyticsCache,
 };

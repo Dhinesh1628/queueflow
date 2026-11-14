@@ -12,6 +12,7 @@ const getAnalytics = async (req, res, next) => {
       timeframe
     );
 
+    res.set('Cache-Control', 'private, max-age=5, stale-while-revalidate=10');
     res.status(200).json({
       success: true,
       data,

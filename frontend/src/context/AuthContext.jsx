@@ -9,7 +9,8 @@ export const AuthProvider = ({ children }) => {
     return saved ? JSON.parse(saved) : null;
   });
   const [token, setToken] = useState(() => localStorage.getItem('queueflow_token'));
-  const [loading, setLoading] = useState(true);
+  // Instant render: If token exists in localStorage, do not block initial render with loading spinner
+  const [loading, setLoading] = useState(() => !localStorage.getItem('queueflow_token'));
 
   // Initialize auth check on reload
   useEffect(() => {
