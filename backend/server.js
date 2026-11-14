@@ -138,7 +138,7 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 5050;
 
 let server;
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
   server = app.listen(PORT, () => {
     console.log(`[QueueFlow] Server active & listening on port ${PORT} [${process.env.NODE_ENV || 'development'}]`);
   });
