@@ -89,7 +89,7 @@ const CreateTokenModal = ({
         )}
 
         <div>
-          <label className="block text-xs font-mono font-semibold text-[#26221F] dark:text-[#FAF8F5] uppercase tracking-wider mb-1.5">
+          <label className="block text-xs font-semibold text-[#26221F] dark:text-[#FAF8F5] uppercase tracking-wider mb-1.5">
             Customer Full Name *
           </label>
           <div className="relative">
@@ -97,7 +97,7 @@ const CreateTokenModal = ({
             <input
               type="text"
               required
-              placeholder="e.g. Jonathan Doe"
+              placeholder="e.g. Rajesh Kumar"
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
               className="w-full bg-[#F8F6F0] dark:bg-[#1C1815] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-[#26221F] dark:text-[#FAF8F5] placeholder-[#A69B8F] focus:outline-none focus:border-[#8C532B] focus:ring-1 focus:ring-[#8C532B]/30 transition-colors"
@@ -106,17 +106,17 @@ const CreateTokenModal = ({
         </div>
 
         <div>
-          <label className="block text-xs font-mono font-semibold text-[#26221F] dark:text-[#FAF8F5] uppercase tracking-wider mb-1.5">
+          <label className="block text-xs font-semibold text-[#26221F] dark:text-[#FAF8F5] uppercase tracking-wider mb-1.5">
             Phone Number (Optional)
           </label>
           <div className="relative">
             <Phone className="w-4 h-4 text-[#736A62] dark:text-[#A69B8F] absolute left-3.5 top-3" />
             <input
               type="tel"
-              placeholder="+1 (555) 000-0000"
+              placeholder="+91 98765 43210"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              className="w-full bg-[#F8F6F0] dark:bg-[#1C1815] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-[#26221F] dark:text-[#FAF8F5] placeholder-[#A69B8F] focus:outline-none focus:border-[#8C532B] focus:ring-1 focus:ring-[#8C532B]/30 transition-colors font-mono"
+              className="w-full bg-[#F8F6F0] dark:bg-[#1C1815] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl pl-10 pr-3.5 py-2.5 text-sm text-[#26221F] dark:text-[#FAF8F5] placeholder-[#A69B8F] focus:outline-none focus:border-[#8C532B] focus:ring-1 focus:ring-[#8C532B]/30 transition-colors"
             />
           </div>
         </div>

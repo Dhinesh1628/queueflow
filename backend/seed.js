@@ -75,8 +75,8 @@ const seedData = async () => {
       {
         tokenNumber: 'CS-001',
         sequence: 1,
-        customerName: 'Marcus Vance',
-        phoneNumber: '+1 (555) 234-5678',
+        customerName: 'Aarav Sharma',
+        phoneNumber: '+91 98450 12345',
         queueId: q1._id,
         managerId: manager._id,
         status: 'COMPLETED',
@@ -88,8 +88,8 @@ const seedData = async () => {
       {
         tokenNumber: 'CS-002',
         sequence: 2,
-        customerName: 'Elena Rostova',
-        phoneNumber: '+1 (555) 345-6789',
+        customerName: 'Priya Patel',
+        phoneNumber: '+91 98201 23456',
         queueId: q1._id,
         managerId: manager._id,
         status: 'COMPLETED',
@@ -101,8 +101,8 @@ const seedData = async () => {
       {
         tokenNumber: 'CS-003',
         sequence: 3,
-        customerName: 'Liam O\'Connor',
-        phoneNumber: '+1 (555) 456-7890',
+        customerName: 'Rahul Verma',
+        phoneNumber: '+91 97112 34567',
         queueId: q1._id,
         managerId: manager._id,
         status: 'COMPLETED',
@@ -114,20 +114,20 @@ const seedData = async () => {
       {
         tokenNumber: 'CS-004',
         sequence: 4,
-        customerName: 'Aria Montgomery',
-        phoneNumber: '+1 (555) 567-8901',
+        customerName: 'Ananya Iyer',
+        phoneNumber: '+91 94440 45678',
         queueId: q1._id,
         managerId: manager._id,
         status: 'CANCELLED',
         position: 0,
         createdAt: new Date(now - 1 * dayMs - 1 * hourMs),
       },
-      // Currently SERVING Token
+      // Currently SERVING Token (Started 4 minutes ago)
       {
         tokenNumber: 'CS-005',
         sequence: 5,
-        customerName: 'David Kim',
-        phoneNumber: '+1 (555) 678-9012',
+        customerName: 'Vikram Reddy',
+        phoneNumber: '+91 99800 56789',
         queueId: q1._id,
         managerId: manager._id,
         status: 'SERVING',
@@ -139,8 +139,8 @@ const seedData = async () => {
       {
         tokenNumber: 'CS-006',
         sequence: 6,
-        customerName: 'Sophia Chen',
-        phoneNumber: '+1 (555) 789-0123',
+        customerName: 'Neha Gupta',
+        phoneNumber: '+91 98100 67890',
         queueId: q1._id,
         managerId: manager._id,
         status: 'WAITING',
@@ -150,8 +150,8 @@ const seedData = async () => {
       {
         tokenNumber: 'CS-007',
         sequence: 7,
-        customerName: 'Ethan Wright',
-        phoneNumber: '+1 (555) 890-1234',
+        customerName: 'Rohan Kulkarni',
+        phoneNumber: '+91 98220 78901',
         queueId: q1._id,
         managerId: manager._id,
         status: 'WAITING',
@@ -161,8 +161,8 @@ const seedData = async () => {
       {
         tokenNumber: 'CS-008',
         sequence: 8,
-        customerName: 'Olivia Martinez',
-        phoneNumber: '+1 (555) 901-2345',
+        customerName: 'Pooja Nair',
+        phoneNumber: '+91 98470 89012',
         queueId: q1._id,
         managerId: manager._id,
         status: 'WAITING',
@@ -174,8 +174,8 @@ const seedData = async () => {
       {
         tokenNumber: 'BIL-001',
         sequence: 1,
-        customerName: 'James Wilson',
-        phoneNumber: '+1 (555) 111-2222',
+        customerName: 'Suresh Menon',
+        phoneNumber: '+91 94471 11223',
         queueId: q2._id,
         managerId: manager._id,
         status: 'COMPLETED',
@@ -187,8 +187,8 @@ const seedData = async () => {
       {
         tokenNumber: 'BIL-002',
         sequence: 2,
-        customerName: 'Grace Hopper',
-        phoneNumber: '+1 (555) 222-3333',
+        customerName: 'Kavita Sundaram',
+        phoneNumber: '+91 98410 22334',
         queueId: q2._id,
         managerId: manager._id,
         status: 'COMPLETED',
@@ -200,8 +200,8 @@ const seedData = async () => {
       {
         tokenNumber: 'BIL-003',
         sequence: 3,
-        customerName: 'Lucas Scott',
-        phoneNumber: '+1 (555) 333-4444',
+        customerName: 'Aditya Joshi',
+        phoneNumber: '+91 98901 33445',
         queueId: q2._id,
         managerId: manager._id,
         status: 'WAITING',
@@ -211,8 +211,8 @@ const seedData = async () => {
       {
         tokenNumber: 'BIL-004',
         sequence: 4,
-        customerName: 'Hannah Abbott',
-        phoneNumber: '+1 (555) 444-5555',
+        customerName: 'Deepika Rao',
+        phoneNumber: '+91 98860 44556',
         queueId: q2._id,
         managerId: manager._id,
         status: 'WAITING',
@@ -224,8 +224,8 @@ const seedData = async () => {
       {
         tokenNumber: 'TECH-001',
         sequence: 1,
-        customerName: 'Robert Taylor',
-        phoneNumber: '+1 (555) 666-7777',
+        customerName: 'Arjun Mehra',
+        phoneNumber: '+91 98110 55667',
         queueId: q3._id,
         managerId: manager._id,
         status: 'COMPLETED',
@@ -237,8 +237,8 @@ const seedData = async () => {
       {
         tokenNumber: 'TECH-002',
         sequence: 2,
-        customerName: 'Chloe Bennett',
-        phoneNumber: '+1 (555) 777-8888',
+        customerName: 'Sneha Deshmukh',
+        phoneNumber: '+91 98230 66778',
         queueId: q3._id,
         managerId: manager._id,
         status: 'COMPLETED',
@@ -250,8 +250,8 @@ const seedData = async () => {
       {
         tokenNumber: 'TECH-003',
         sequence: 3,
-        customerName: 'Benjamin Franklin',
-        phoneNumber: '+1 (555) 888-9999',
+        customerName: 'Karthik Subramanian',
+        phoneNumber: '+91 98400 77889',
         queueId: q3._id,
         managerId: manager._id,
         status: 'WAITING',
@@ -266,7 +266,7 @@ const seedData = async () => {
     console.log('\n=============================================');
     console.log('   QUEUEFLOW DEMO SEED COMPLETED SUCCESSFULLY');
     console.log('=============================================');
-    console.log('Manager Email:    demo.manager@queueflow.io');
+    console.log(`Manager Email:    ${demoEmail}`);
     console.log('Manager Password: QueueFlow2026!');
     console.log('=============================================\n');
   } catch (err) {
