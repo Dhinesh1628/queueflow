@@ -24,6 +24,7 @@ import EditQueueModal from '../components/queues/EditQueueModal';
 import ConfirmDialog from '../components/common/ConfirmDialog';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import StatCard from '../components/common/StatCard';
+import { playCallNextChime, playCompleteChime } from '../utils/sound';
 
 const QueueDetailPage = () => {
   const { id } = useParams();
@@ -117,6 +118,7 @@ const QueueDetailPage = () => {
       setIsCallingNext(true);
       const res = await tokenService.callNext(id);
       if (res.success) {
+        playCallNextChime();
         toast.success(res.message);
         loadQueueData(true);
       }
@@ -132,6 +134,7 @@ const QueueDetailPage = () => {
       setIsCompleting(true);
       const res = await tokenService.completeService(id, tokenId);
       if (res.success) {
+        playCompleteChime();
         toast.success(res.message);
         loadQueueData(true);
       }

@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Menu, Database, ShieldCheck, Sun, Moon, Volume2, VolumeX } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 import { useTheme } from '../../context/ThemeContext';
+import { useToast } from '../../hooks/useToast';
 import { isSoundEnabled, setSoundEnabled, playCallNextChime } from '../../utils/sound';
 
 const Navbar = ({ onOpenSidebar, pageTitle = 'Dashboard' }) => {
   const { manager } = useAuth();
   const { theme, toggleTheme } = useTheme();
+  const toast = useToast();
   const [soundOn, setSoundOn] = useState(isSoundEnabled());
 
   const handleToggleSound = () => {
@@ -15,6 +17,9 @@ const Navbar = ({ onOpenSidebar, pageTitle = 'Dashboard' }) => {
     setSoundEnabled(nextState);
     if (nextState) {
       playCallNextChime();
+      toast.success('Audio chimes enabled');
+    } else {
+      toast.info('Audio chimes muted');
     }
   };
 

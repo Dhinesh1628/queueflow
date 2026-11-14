@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from '../common/Modal';
 import { tokenService } from '../../services/tokenService';
 import { useToast } from '../../hooks/useToast';
+import { playTicketChime } from '../../utils/sound';
 import { UserPlus, User, Phone, FileText, ShieldCheck } from 'lucide-react';
 
 const CreateTokenModal = ({
@@ -41,6 +42,7 @@ const CreateTokenModal = ({
       });
 
       if (res.success) {
+        playTicketChime();
         toast.success(
           `Token ${res.data.tokenNumber} generated for ${res.data.customerName}!`
         );
