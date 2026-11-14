@@ -91,8 +91,8 @@ const TokenTable = ({
         </div>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs font-mono">
-            <thead className="bg-[#FAF8F5] dark:bg-[#1A1613] text-[#8C827A] dark:text-[#A69B8F] font-semibold uppercase tracking-wider text-[11px] border-b border-[#E6E0D4] dark:border-[#3E342C]">
+          <table className="w-full text-left text-sm font-sans">
+            <thead className="bg-[#FAF8F5] dark:bg-[#1A1613] text-[#8C827A] dark:text-[#A69B8F] font-semibold text-xs border-b border-[#E6E0D4] dark:border-[#3E342C]">
               <tr>
                 <th className="py-3 px-4 w-16 text-center">Pos</th>
                 <th className="py-3 px-4">Token #</th>
@@ -113,7 +113,7 @@ const TokenTable = ({
                 return (
                   <tr
                     key={token._id}
-                    className="hover:bg-[#FAF8F5] dark:hover:bg-[#322A24] transition-colors"
+                    className="hover:bg-[#F8F6F0] dark:hover:bg-[#2C241F] transition-colors duration-150"
                   >
                     {/* Position */}
                     <td className="py-3.5 px-4 text-center">

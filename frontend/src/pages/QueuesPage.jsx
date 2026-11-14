@@ -80,41 +80,41 @@ const QueuesPage = () => {
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <nav aria-label="Breadcrumb" className="text-[11px] font-mono uppercase tracking-wider text-[#8C827A] dark:text-[#C78753] mb-1">
-            <Link to="/" className="hover:text-[#8C532B] transition-colors">DASHBOARD</Link>
-            <span className="mx-1.5 text-[#D4CBBF] dark:text-[#4A3E35]">/</span>
-            <span className="text-[#26221F] dark:text-[#FAF8F5] font-bold">COUNTER_QUEUES</span>
+          <nav aria-label="Breadcrumb" className="text-xs text-[#8C827A] dark:text-[#C78753] flex items-center gap-1.5 font-medium mb-1">
+            <Link to="/" className="hover:text-[#8C532B] transition-colors">Dashboard</Link>
+            <span className="text-[#D4CBBF] dark:text-[#4A3E35]">/</span>
+            <span className="text-[#26221F] dark:text-[#FAF8F5] font-semibold">Queues</span>
           </nav>
-          <h2 className="text-xl sm:text-2xl font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight font-mono">
-            COUNTER QUEUE FLEET
+          <h2 className="text-xl sm:text-2xl font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight">
+            Queues
           </h2>
-          <p className="text-xs sm:text-sm font-mono text-[#736A62] dark:text-[#A69B8F] mt-0.5">
-            COUNTER CONFIGURATION, WAITING LIST TELEMETRY & TICKET CAPACITY
+          <p className="text-xs sm:text-sm text-[#736A62] dark:text-[#A69B8F] mt-0.5">
+            Manage counter queues, waiting lines, and department desks.
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
           <button
             onClick={() => fetchQueues(true)}
             disabled={refreshing}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-mono uppercase text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-medium text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
           >
             <RefreshCw className={`w-3.5 h-3.5 text-[#8C532B] dark:text-[#C78753] ${refreshing ? 'animate-spin' : ''}`} />
-            <span>SYNC</span>
+            <span>Refresh</span>
           </button>
 
           <button
             onClick={() => setCreateQueueOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-[#8C532B] hover:bg-[#774421] text-white text-xs font-mono font-bold uppercase tracking-wider rounded-lg shadow-sm transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-4 py-2 bg-[#8C532B] hover:bg-[#774421] text-white text-xs font-semibold rounded-lg shadow-xs transition-all cursor-pointer"
           >
             <Plus className="w-4 h-4 stroke-[2.5]" />
-            <span>CREATE QUEUE</span>
+            <span>Create Queue</span>
           </button>
         </div>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl p-3 sm:p-4 flex items-center justify-between gap-3 shadow-sm">
+      <div className="bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] rounded-2xl p-3 sm:p-4 flex items-center justify-between gap-3 shadow-xs">
         <div className="relative flex-1 max-w-md">
           <Search className="w-4 h-4 text-[#8C827A] absolute left-3.5 top-2.5" />
           <input
@@ -122,12 +122,12 @@ const QueuesPage = () => {
             placeholder="Search queues by name or prefix..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-[#F8F6F0] dark:bg-[#1A1613] border border-[#E6E0D4] dark:border-[#3E342C] rounded-lg pl-10 pr-3.5 py-1.5 text-xs text-[#26221F] dark:text-[#FAF8F5] placeholder-[#8C827A] focus:outline-none focus:border-[#8C532B] font-mono transition-all"
+            className="w-full bg-[#F8F6F0] dark:bg-[#1A1613] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl pl-10 pr-3.5 py-1.5 text-xs text-[#26221F] dark:text-[#FAF8F5] placeholder-[#8C827A] focus:outline-none focus:border-[#8C532B] transition-all"
           />
         </div>
 
-        <span className="text-xs font-mono uppercase text-[#8C827A] dark:text-[#C78753] shrink-0">
-          TELEMETRY: {filteredQueues.length} / {queues.length} {queues.length === 1 ? 'CONSOLE' : 'CONSOLES'}
+        <span className="text-xs text-[#8C827A] dark:text-[#C78753] shrink-0 font-medium">
+          {filteredQueues.length} of {queues.length} {queues.length === 1 ? 'queue' : 'queues'}
         </span>
       </div>
 

@@ -12,21 +12,21 @@ const StatCard = ({ title, value, subtext, icon: Icon, color = 'slate' }) => {
   const currentIconColor = iconColors[color] || iconColors.slate;
 
   return (
-    <div className="bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl p-4 sm:p-5 shadow-sm relative overflow-hidden transition-all hover:border-[#8C532B]/40">
+    <div className="bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] rounded-2xl p-4 sm:p-5 shadow-xs relative overflow-hidden transition-all duration-200 ease-out hover:border-[#8C532B]/50 hover:-translate-y-0.5 hover:shadow-md">
       <div className="flex items-center justify-between">
         <div>
-          <p className="font-mono text-[11px] font-semibold uppercase tracking-wider text-[#8C827A] dark:text-[#A69B8F] mb-1">
+          <p className="text-xs font-semibold text-[#8C827A] dark:text-[#A69B8F] mb-1">
             {title}
           </p>
-          <h4 className="font-mono text-2xl sm:text-3xl font-extrabold text-[#26221F] dark:text-[#FAF8F5] tracking-tight">
+          <h4 className="text-2xl sm:text-3xl font-extrabold text-[#26221F] dark:text-[#FAF8F5] tracking-tight">
             {value}
           </h4>
           {subtext && (
-            <p className="font-mono text-[11px] text-[#A69B8F] dark:text-[#7A6F66] mt-1 font-medium">{subtext}</p>
+            <p className="text-xs text-[#A69B8F] dark:text-[#7A6F66] mt-1 font-normal">{subtext}</p>
           )}
         </div>
         {Icon && (
-          <div className={`p-2.5 rounded-lg border shrink-0 ${currentIconColor}`}>
+          <div className={`p-2.5 rounded-xl border shrink-0 ${currentIconColor}`}>
             <Icon className="w-5 h-5" />
           </div>
         )}

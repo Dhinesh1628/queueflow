@@ -96,23 +96,23 @@ const AnalyticsPage = () => {
         <div>
           <div className="flex items-center gap-2">
             <BarChart3 className="w-5 h-5 text-[#8C532B] dark:text-[#C78753]" />
-            <h2 className="text-xl sm:text-2xl font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight font-mono">
-              TELEMETRY & OPERATIONAL ANALYTICS
+            <h2 className="text-xl sm:text-2xl font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight">
+              Analytics & Reports
             </h2>
           </div>
-          <p className="text-xs sm:text-sm font-mono text-[#736A62] dark:text-[#A69B8F] mt-0.5">
-            DATABASE METRICS DERIVED FROM ATOMIC TICKET CREATION & SERVICE DELTAS
+          <p className="text-xs sm:text-sm text-[#736A62] dark:text-[#A69B8F] mt-0.5">
+            Real-time metrics on wait times, queue volumes, and service resolution.
           </p>
         </div>
 
         {/* Date Filter & Refresh */}
         <div className="flex items-center gap-2.5">
-          <div className="inline-flex bg-[#F8F6F0] dark:bg-[#1A1613] border border-[#E6E0D4] dark:border-[#3E342C] rounded-lg p-1 text-xs font-mono uppercase">
+          <div className="inline-flex bg-[#F8F6F0] dark:bg-[#1A1613] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl p-1 text-xs">
             <button
               onClick={() => setTimeframe('today')}
-              className={`px-3 py-1.5 rounded-md font-semibold transition-all cursor-pointer ${
+              className={`px-3 py-1.5 rounded-lg font-medium transition-all duration-150 cursor-pointer ${
                 timeframe === 'today'
-                  ? 'bg-[#8C532B] text-white font-bold shadow-sm'
+                  ? 'bg-[#8C532B] text-white font-semibold shadow-xs'
                   : 'text-[#736A62] dark:text-[#A69B8F] hover:text-[#26221F] dark:hover:text-[#FAF8F5]'
               }`}
             >
@@ -120,9 +120,9 @@ const AnalyticsPage = () => {
             </button>
             <button
               onClick={() => setTimeframe('7d')}
-              className={`px-3 py-1.5 rounded-md font-semibold transition-all cursor-pointer ${
+              className={`px-3 py-1.5 rounded-lg font-medium transition-all duration-150 cursor-pointer ${
                 timeframe === '7d'
-                  ? 'bg-[#8C532B] text-white font-bold shadow-sm'
+                  ? 'bg-[#8C532B] text-white font-semibold shadow-xs'
                   : 'text-[#736A62] dark:text-[#A69B8F] hover:text-[#26221F] dark:hover:text-[#FAF8F5]'
               }`}
             >
@@ -130,9 +130,9 @@ const AnalyticsPage = () => {
             </button>
             <button
               onClick={() => setTimeframe('30d')}
-              className={`px-3 py-1.5 rounded-md font-semibold transition-all cursor-pointer ${
+              className={`px-3 py-1.5 rounded-lg font-medium transition-all duration-150 cursor-pointer ${
                 timeframe === '30d'
-                  ? 'bg-[#8C532B] text-white font-bold shadow-sm'
+                  ? 'bg-[#8C532B] text-white font-semibold shadow-xs'
                   : 'text-[#736A62] dark:text-[#A69B8F] hover:text-[#26221F] dark:hover:text-[#FAF8F5]'
               }`}
             >
@@ -143,7 +143,7 @@ const AnalyticsPage = () => {
           <button
             onClick={() => fetchAnalytics(true)}
             disabled={refreshing}
-            className="p-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] text-[#736A62] dark:text-[#A69B8F] hover:text-[#26221F] dark:hover:text-[#FAF8F5] transition-all cursor-pointer"
+            className="p-2 rounded-xl bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] text-[#736A62] dark:text-[#A69B8F] hover:text-[#26221F] dark:hover:text-[#FAF8F5] transition-all duration-150 cursor-pointer shadow-xs"
             title="Refresh Analytics"
           >
             <RefreshCw className={`w-4 h-4 text-[#8C532B] dark:text-[#C78753] ${refreshing ? 'animate-spin' : ''}`} />

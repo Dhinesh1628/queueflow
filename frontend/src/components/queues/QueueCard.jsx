@@ -48,9 +48,9 @@ const MiniSparkline = ({ waiting = 0, completed = 0, serving = 0 }) => {
 
   return (
     <div className="w-full flex items-center justify-between gap-3 pt-1 pb-2">
-      <div className="flex items-center gap-1.5 text-[10px] font-mono text-[#8C827A] dark:text-[#C78753]">
+      <div className="flex items-center gap-1.5 text-xs text-[#8C827A] dark:text-[#C78753]">
         <TrendingUp className="w-3 h-3 text-[#8C532B] dark:text-[#C78753]" />
-        <span>LOAD VELOCITY</span>
+        <span>Activity</span>
       </div>
       <div className="w-24 h-6 relative shrink-0">
         <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-full overflow-visible">
@@ -62,8 +62,7 @@ const MiniSparkline = ({ waiting = 0, completed = 0, serving = 0 }) => {
           </defs>
           <path d={areaD} fill={`url(#${gradientId})`} />
           <path d={pathD} fill="none" stroke="#8C532B" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-          <circle cx={lastPoint.x} cy={lastPoint.y} r="2" fill="#8C532B" />
-          <circle cx={lastPoint.x} cy={lastPoint.y} r="4" fill="#8C532B" className="animate-ping" opacity="0.4" />
+          <circle cx={lastPoint.x} cy={lastPoint.y} r="2.5" fill="#8C532B" />
         </svg>
       </div>
     </div>
@@ -76,7 +75,7 @@ const QueueCard = ({ queue, onEdit, onDelete }) => {
   const currentlyServing = stats.currentlyServingToken;
 
   return (
-    <div className="bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 rounded-2xl p-5 shadow-sm transition-all flex flex-col justify-between group">
+    <div className="bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/50 hover:-translate-y-0.5 hover:shadow-md rounded-2xl p-5 shadow-xs transition-all duration-200 ease-out flex flex-col justify-between group">
       <div>
         {/* Top Header */}
         <div className="flex items-start justify-between gap-3 mb-3">

@@ -77,38 +77,38 @@ const TokenHistoryPage = () => {
         <div>
           <div className="flex items-center gap-2">
             <History className="w-5 h-5 text-[#8C532B] dark:text-[#C78753]" />
-            <h2 className="text-xl sm:text-2xl font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight font-mono">
-              AUDIT TELEMETRY & TOKEN LOG
+            <h2 className="text-xl sm:text-2xl font-bold text-[#26221F] dark:text-[#FAF8F5] tracking-tight">
+              Token History
             </h2>
           </div>
-          <p className="text-xs sm:text-sm font-mono text-[#736A62] dark:text-[#A69B8F] mt-0.5">
-            IMMUTABLE LIFECYCLE AUDIT OF ALL GENERATED TOKENS AND DURATION TIMESTAMPS
+          <p className="text-xs sm:text-sm text-[#736A62] dark:text-[#A69B8F] mt-0.5">
+            Review all issued, completed, and cancelled customer tokens.
           </p>
         </div>
 
         <div className="flex items-center gap-2">
           <button
             onClick={() => window.print()}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-mono uppercase text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-medium text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
             title="Print log"
           >
             <Printer className="w-3.5 h-3.5 text-[#8C532B] dark:text-[#C78753]" />
-            <span>PRINT LOG</span>
+            <span>Print</span>
           </button>
 
           <button
             onClick={() => fetchTokens(true)}
             disabled={refreshing}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-mono uppercase text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] hover:border-[#8C532B]/40 text-xs font-medium text-[#594F45] dark:text-[#FAF8F5] shadow-xs transition-all cursor-pointer"
           >
             <RefreshCw className={`w-3.5 h-3.5 text-[#8C532B] dark:text-[#C78753] ${refreshing ? 'animate-spin' : ''}`} />
-            <span>SYNC</span>
+            <span>Refresh</span>
           </button>
         </div>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl p-4 flex flex-col md:flex-row items-center justify-between gap-3 shadow-sm">
+      <div className="bg-white dark:bg-[#26201B] border border-[#E6E0D4] dark:border-[#3E342C] rounded-2xl p-4 flex flex-col md:flex-row items-center justify-between gap-3 shadow-xs">
         {/* Search */}
         <div className="relative w-full md:w-80">
           <Search className="w-4 h-4 text-[#8C827A] absolute left-3.5 top-3" />
@@ -117,19 +117,19 @@ const TokenHistoryPage = () => {
             placeholder="Search by name, token #, phone..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-[#F8F6F0] dark:bg-[#1A1613] border border-[#E6E0D4] dark:border-[#3E342C] rounded-lg pl-10 pr-3.5 py-2 text-xs text-[#26221F] dark:text-[#FAF8F5] placeholder-[#8C827A] focus:outline-none focus:border-[#8C532B] font-mono transition-all"
+            className="w-full bg-[#F8F6F0] dark:bg-[#1A1613] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl pl-10 pr-3.5 py-2 text-xs text-[#26221F] dark:text-[#FAF8F5] placeholder-[#8C827A] focus:outline-none focus:border-[#8C532B] transition-all"
           />
         </div>
 
         {/* Dropdowns */}
-        <div className="flex items-center gap-2.5 w-full md:w-auto font-mono text-xs">
+        <div className="flex items-center gap-2.5 w-full md:w-auto text-xs">
           {/* Queue Filter */}
           <select
             value={selectedQueue}
             onChange={(e) => setSelectedQueue(e.target.value)}
-            className="bg-[#F8F6F0] dark:bg-[#1A1613] border border-[#E6E0D4] dark:border-[#3E342C] rounded-lg px-3 py-2 text-xs text-[#26221F] dark:text-[#FAF8F5] focus:outline-none focus:border-[#8C532B] flex-1 md:flex-initial transition-all"
+            className="bg-[#F8F6F0] dark:bg-[#1A1613] border border-[#E6E0D4] dark:border-[#3E342C] rounded-xl px-3 py-2 text-xs text-[#26221F] dark:text-[#FAF8F5] focus:outline-none focus:border-[#8C532B] flex-1 md:flex-initial transition-all"
           >
-            <option value="">ALL QUEUES</option>
+            <option value="">All Queues</option>
             {queues.map((q) => (
               <option key={q._id} value={q._id}>
                 {q.name} ({q.prefix})
